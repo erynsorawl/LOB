@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html {
     font-size: 25px;
 }
@@ -133,4 +134,141 @@ html {
     .LOBtable {
         width: 25%;
     }
+=======
+html {
+    font-size: 25px;
+}
+
+.margin {
+    margin: 20px 0;
+}
+
+.main {
+    line-height: 40px;
+}
+
+.explain {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 1.5%;
+    padding-bottom: 0.1px;
+}
+
+.background {
+    background-color: rgb(68, 69, 80);
+}
+
+.LOBtable {
+    width: 50%;
+    aspect-ratio: 1/1;
+    max-height: 50%;
+    margin: auto;
+    border: solid;
+    table-layout: fixed;
+    
+}
+
+.LOBtd {
+    border-style: solid;
+    border-color: black;
+    border-spacing: 15px;
+    border-width: 7px;
+    aspect-ratio: 1/1;
+    justify-content: center;
+    background-color: #FFFFFF;
+}
+
+.tableBorder {
+    border: solid;
+    aspect-ratio: 1/1;
+    border-width: 15px;
+    margin: -1px;
+}
+
+.counter {
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin: 0; 
+    position: relative; 
+    top: 50%;
+}
+
+.counter2 {
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    margin: 0; 
+    position: relative; 
+    top: 50%;
+    color: white;
+    text-shadow: 0px 0px 5px black;
+}
+
+.toggleCounters {
+    width: 240px;
+}
+
+.genFade {
+    border: solid;
+    aspect-ratio: 1/1;
+    border-width: 15px;
+    margin: -16px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.border-green {
+    border-color: rgb(0, 255, 0);
+}
+
+.border-blue {
+    border-color: blue;
+}
+
+.border-cyan {
+    border-color: cyan;
+}
+
+.numberInput {
+    width: 75px;
+}
+
+
+
+@media screen and (min-width: 1000px) and (max-height: 1200px) {
+    .LOBtable {
+        width: 35%;
+    }
+  }
+
+@media screen and (min-width: 1100px) and (max-height: 1300px) {
+    .LOBtable {
+        width: 35%;
+    }
+  }
+
+@media screen and (min-width: 1800px) and (max-height: 2000px) {
+    .LOBtable {
+        width: 35%;
+    }
+}
+
+@media screen and (min-width: 1400px) and (max-height: 1200px) {
+    .LOBtable {
+        width: 25%;
+    }
+  }
+
+@media screen and (min-width: 1600px) and (max-height: 1300px) {
+    .LOBtable {
+        width: 25%;
+    }
+  }
+
+@media screen and (min-width: 2500px) and (max-height: 2000px) {
+    .LOBtable {
+        width: 25%;
+    }
+>>>>>>> 2d10cc0a7f3f4b5575046b90435d774d0496d651
 }
