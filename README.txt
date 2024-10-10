@@ -54,3 +54,4 @@ Rework the clean and guess mechanics, give each cell an integer value instead of
 input.
 
 Actually, just add a toggle that shows those numbers as text in each cell, while the color is more of a visual representation.
+Test
