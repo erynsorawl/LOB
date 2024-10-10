@@ -1,0 +1,48 @@
+{% extends 'base.html' %} {% block title %}LOB{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-center m-3">
+        <div class="bg-primary rounded">
+            <h1 class = 'text-center text-white'>
+                Learn Outside The Box 
+            </h1>
+        </div>
+    </div>
+
+    <table id='Tab' class="align-items-center LOBtable">
+        {% for i in range(size) %}
+            <tr>
+                {% for j in range(size) %}
+                        <td class='LOBtd' id="t{{j + (size * i)}}" onclick="colorSwitch(this)">
+                            <div id="d{{j + (size * i)}}" class='tableBorder'>
+                                <div style="position: relative; z-index: 1;" id="di{{j + (size * i)}}" class='genFade hidden'></div>
+                            </div></td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="d-flex justify-content-center m-3">
+        {% block buttons %}
+        {% endblock %}
+    </div>
+
+    <div class="bg-primary center-div explain rounded text-wrap">
+        <p class="text-center text-white">
+            {% block explanation %}
+            {% endblock %}
+        </p>
+    </div>
+    
+{% endblock %}
+
+{% block javascript %}
+{% block levelscript %}
+{% endblock %}
+<script type="text/javascript" src="/static/LOB.js"></script>
+<script>
+    if (!s) {
+        new_puzzle()
+    }
+</script>
+{% endblock %}
