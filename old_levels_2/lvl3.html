@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'lvl.html' %}
 {% block buttons %}
 <button class="btn btn-primary m-1" onclick="generate()">Guess</button>
@@ -22,29 +21,4 @@
         const size = 4
         let s = new URLSearchParams(window.location.search).get('seed')
     </script>
-=======
-{% extends 'lvl.html' %}
-{% block buttons %}
-<button class="btn btn-primary m-1" onclick="generate()">Guess</button>
-<button class="btn btn-primary m-1" onclick="check(1)">Check</button>
-{% endblock %}
-
-{% block explanation %}
-    Now the computer's really struggling - only 75% of the squares will be accurate on each guess, and the board's become bigger to boot! <br><br>
-    It'd be way too hard to count the colors for each and every square, so we'll be adding a new mechanic - border coloring. <br><br>
-    Now, the computer will keep track of how common each guess is, and it'll let you know by making the borders of the more common guesses brighter. <br><br>
-    When you've clicked 'Guess' enough times, it should be pretty clear what the pattern is. Go ahead and try it!
-{% endblock %}
-
-{% block levelscript %}
-    <script>
-        const colors =['rgb(255, 255, 255)', 'rgb(0, 255, 0)']
-        const cases = [[10, 10, 10, 10], [0, 10, 0, 10]]
-        const acc = .75
-        const closeEnough = 1
-        const borderColors = ['border-white', 'border-green']
-        const size = 4
-        let s = new URLSearchParams(window.location.search).get('seed')
-    </script>
->>>>>>> 2d10cc0a7f3f4b5575046b90435d774d0496d651
 {% endblock %}

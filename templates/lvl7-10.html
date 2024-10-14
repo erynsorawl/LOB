@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends 'base.html' %} {% block title %}LOB{% endblock %}
 
 {% block content %}
@@ -46,53 +45,4 @@
 </script>
 {% block postscript %}
 {% endblock %}
-=======
-{% extends 'base.html' %} {% block title %}LOB{% endblock %}
-
-{% block content %}
-    <div class="d-flex justify-content-center m-3">
-        <div class="bg-primary rounded">
-            <h1 class = 'text-center text-white ml-2 mr-2'>
-                Learn Outside The Box 
-            </h1>
-        </div>
-    </div>
-
-    <table id='Tab' class="align-items-center LOBtable">
-        {% for i in range(size) %}
-            <tr>
-                {% for j in range(size) %}
-                        <td class='LOBtd' id="t{{j + (size * i)}}">
-                            <div id="d{{j + (size * i)}}" class='tableBorder'><p class="d-flex justify-content-center counter2 hidden"></p> </div></td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-
-    <div class="d-flex justify-content-center m-3">
-        {% block buttons %}
-        {% endblock %}
-    </div>
-
-    <div class="bg-primary center-div explain rounded text-wrap">
-        <p class="text-center text-white">
-            {% block explanation %}
-            {% endblock %}
-        </p>
-    </div>
-    
-{% endblock %}
-
-{% block javascript %}
-{% block levelscript %}
-{% endblock %}
-<script type="text/javascript" src="/static/LOB.js"></script>
-<script>
-    if (!s) {
-        new_puzzle()
-    }
-</script>
-{% block postscript %}
-{% endblock %}
->>>>>>> 2d10cc0a7f3f4b5575046b90435d774d0496d651
 {% endblock %}
