@@ -24,6 +24,8 @@ for (i = 1; i < size2 / 15; i++) {
 solution = []
 solRatios = []
 boxCounters = []
+lastMiss = 0
+lastHit = 0
 for (let j=0; j < cases.length; j++) {
     solRatios[j] = 0
 }
@@ -264,6 +266,30 @@ function updateCounter(genSolution) {
     }
 }
 
+function updateCounter2(genSolution) {
+    // calculate number of hits and misses since last update
+    hitDiff = hitCount - lastHit
+    missDiff = missCount - lastMiss
+
+    // check for highest counter and update counter array
+    // multiply counter increase by ratio of hits to misses
+    for (let i=0; i < solution.length; i++) {
+    boxCounters[i] = boxCounters[i] + Math.round((genSolution[i] * (missDiff / hitDiff)))
+        if (topCounter < boxCounters[i]) {
+            topCounter = boxCounters[i]
+        }
+    }
+
+    // check for lowest counter
+    bottomCounter = boxCounters[0]
+    for (let i=0; i < boxCounters.length; i++) {
+        if (bottomCounter > boxCounters[i]) {
+            bottomCounter = boxCounters[i]
+        }
+    }
+}
+
+
 function updateHitMiss() {
     // update hit and miss counts
     document.getElementById('hit').innerHTML = ("Hit x" + hitCount.toString())
@@ -320,10 +346,6 @@ function updateColor(type) {
     }
 }
 
-function updateBoxColor() {
-    
-}
-
 // Flash a generated solution on screen
 function basicGenerate() {
     genSolution = generateSolution()
@@ -355,7 +377,7 @@ function mediumGenerate() {
 }
 
 // Adjust border colors based on generated solution if it is more than a certain amount accurate to the main solution
-function advancedGenerate(loops, condense) {
+function advancedGenerate(loops, condense, missBonus) {
     if (loops > maxLoops) {
         loops = maxLoops
     }
@@ -385,12 +407,19 @@ function advancedGenerate(loops, condense) {
             missCount++
         }
 
+        // update counters
         if (hit) {
-            updateCounter(genSolution)
+            if (missBonus) {
+                updateCounter2(genSolution)
+            }
+            else {
+                updateCounter(genSolution)
+            }
         } 
     }
 
     updateHitMiss()
+    console.log(genSolution, boxCounters)
 
     if (!condense) {
         updateColor('Border')

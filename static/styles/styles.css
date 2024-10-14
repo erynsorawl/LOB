@@ -44,7 +44,7 @@ html {
 .tableBorder {
     border: solid;
     aspect-ratio: 1/1;
-    border-width: 15px;
+    border-width: 0.5rem;
     margin: -1px;
 }
 
@@ -64,6 +64,7 @@ html {
     top: 50%;
     color: white;
     text-shadow: 0px 0px 5px black;
+    height: 2rem;
 }
 
 .toggleCounters {
@@ -103,11 +104,18 @@ html {
     .LOBtable {
         width: 35%;
     }
+    html{
+        font-size: 17px;
+    }
+
   }
 
 @media screen and (min-width: 1100px) and (max-height: 1300px) {
     .LOBtable {
         width: 35%;
+    }
+    html{
+        font-size: 17px;
     }
   }
 
@@ -115,11 +123,17 @@ html {
     .LOBtable {
         width: 35%;
     }
+    html{
+        font-size: 17px;
+    }
 }
 
 @media screen and (min-width: 1400px) and (max-height: 1200px) {
     .LOBtable {
         width: 25%;
+    }
+    html{
+        font-size: 12px;
     }
   }
 
@@ -127,10 +141,16 @@ html {
     .LOBtable {
         width: 25%;
     }
+    html{
+        font-size: 12px;
+    }
   }
 
 @media screen and (min-width: 2500px) and (max-height: 2000px) {
     .LOBtable {
         width: 25%;
+    }
+    html{
+        font-size: 12px;
     }
 }
