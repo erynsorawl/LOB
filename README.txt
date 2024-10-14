@@ -55,3 +55,4 @@ input.
 
 Actually, just add a toggle that shows those numbers as text in each cell, while the color is more of a visual representation.
 Test
+Another quick test
