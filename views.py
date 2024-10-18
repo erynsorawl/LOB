@@ -43,14 +43,6 @@ def lvl7():
 def lvl8():
     return render_template("lvl8.html", size=6)
 
-@views.route('/Level9')
+@views.route('/LearnOutsideTheBox')
 def lvl9():
-    return render_template("lvl9.html", size=6)
-
-@views.route('/Level10')
-def lvl10():
-    return render_template("lvl10.html", size=6)
-
-@views.route('/Levelbonus')
-def lvlbonus():
-    return render_template("bonus.html", size=6)
+    return render_template("LearnOutsideTheBox.html", size=9)

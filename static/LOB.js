@@ -26,6 +26,27 @@ solRatios = []
 boxCounters = []
 lastMiss = 0
 lastHit = 0
+sections = []
+sectionNumber = 0
+
+if (size == 6) {
+    sectionNumber = 4
+}
+
+if (size == 9) {
+    sectionNumber = 9
+}
+
+
+for (i=0; i < sectionNumber; i++) {
+    sections[i] = []
+    for (j=0;j<9;j++) {
+            sections[i][j] = j + (Math.floor((j/3) + 0.1) * 3) + (3 * i) + (Math.floor(i / Math.sqrt(sectionNumber)) * size * 
+            (Math.floor(i/Math.sqrt(sectionNumber)) * Math.sqrt(sectionNumber)))
+    }
+}
+
+
 for (let j=0; j < cases.length; j++) {
     solRatios[j] = 0
 }
@@ -60,7 +81,6 @@ for (let i=0; i < solution.length; i++) {
 }
 
 solRatio = solRatios[1] / solution.length
-console.log(solRatio)
 
 hitCount = 0
 missCount = 0
@@ -81,11 +101,15 @@ function decode_hex(rgba) {
     }
     indicies = [1, 3, 5]
     rgbaVal=['', '', '', '']
-    for (i = 0; i < indicies.length; i++) {
-        rgbaVal[i] = Math.floor(parseInt(rgba[indicies[i]]))
+    for (ck = 0; ck < indicies.length; ck++) {
+        rgbaVal[ck] = Math.floor(parseInt(rgba[indicies[ck]]))
     }
     rgbaVal[3] = Math.floor(rgba[7] * 255) 
     return rgbaVal
+}
+
+function alter_test (rgba, rgbaAlter) {
+    return '#FFFFFFFF'
 }
 
 function alter_hex(rgba, rgbaAlter)
@@ -94,9 +118,9 @@ function alter_hex(rgba, rgbaAlter)
 
     // if a is higher than the highest rgb value, set it equal instead
     max = 0
-    for (i = 0; i < 3; i++) {
-        if (rgbaVal[i] > max) {
-            max = rgbaVal[i]
+    for (pk = 0; pk < 3; pk++) {
+        if (rgbaVal[pk] > max) {
+            max = rgbaVal[pk]
         }
     }
 
@@ -106,21 +130,21 @@ function alter_hex(rgba, rgbaAlter)
 
     // alter rgba values based on inputs, with a maximum of 255 and a minimum of 0.
 
-    for (i=0; i<4; i++) {
-        rgbaVal[i] = rgbaVal[i] + rgbaAlter[i]
-        if (rgbaVal[i] > 255){
-            rgbaVal[i] = 255
+    for (pk=0; pk<4; pk++) {
+        rgbaVal[pk] = rgbaVal[pk] + rgbaAlter[pk]
+        if (rgbaVal[pk] > 255){
+            rgbaVal[pk] = 255
         }
-        if (rgbaVal[i] < 0) {
-            rgbaVal[i] = 0
+        if (rgbaVal[pk] < 0) {
+            rgbaVal[pk] = 0
         }
     }
 
 
     // convert rgba values into a hex code, and return it.
     nHex = ''
-    for (i = 0; i < 4; i++) {
-        hexlet = rgbaVal[i].toString(16)
+    for (pk = 0; pk < 4; pk++) {
+        hexlet = rgbaVal[pk].toString(16)
         if (hexlet.length < 2) {
             nHex = nHex + '0' + hexlet
         }
@@ -157,7 +181,6 @@ function advancedCheck() {
     for (let i=0; i < solution.length; i++) {
         let tColor = window.getComputedStyle(document.getElementById('d' + i.toString())).backgroundColor
         boxGreen = decode_hex(tColor)[1]
-        console.log(boxGreen)
         if (boxGreen > checkRigor) {
             answer[i] = 1
         }
@@ -270,6 +293,13 @@ function updateCounter2(genSolution) {
     // calculate number of hits and misses since last update
     hitDiff = hitCount - lastHit
     missDiff = missCount - lastMiss
+    if (missDiff < 1) {
+        missDiff = 1
+    }
+    if (hitDiff > missDiff)
+    {
+        hitDiff = missDiff
+    }
 
     // check for highest counter and update counter array
     // multiply counter increase by ratio of hits to misses
@@ -298,6 +328,8 @@ function updateHitMiss() {
 
 function updateColor(type) {
 
+    console.log(topCounter, bottomCounter)
+
     // update counter visuals
     for (let i = 0; i < solution.length; i++) {
         document.getElementById('d' + i.toString()).firstChild.innerHTML = boxCounters[i]
@@ -309,12 +341,18 @@ function updateColor(type) {
     if (range > 20) {
 
         for (let i=0; i < solution.length; i++) {
-            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) / (range / 255))
+            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) / (range / 320))
+            if (borderIntensity[i] > 255) {
+                borderIntensity[i] = 255
+            }
         }
     }
     else {
         for (let i=0; i < solution.length; i++) {
-            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) * 12)
+            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) * 16)
+            if (borderIntensity[i] > 255) {
+                borderIntensity[i] = 255
+            }
         }
     }
 
@@ -344,6 +382,66 @@ function updateColor(type) {
             element.style.backgroundColor = rgba
         }
     }
+}
+
+function updateColor2() {
+    // update counter visuals
+    for (let i = 0; i < solution.length; i++) {
+        document.getElementById('d' + i.toString()).firstChild.innerHTML = boxCounters[i]
+    }
+
+    tempTC = 0
+    tempBC = Number.MAX_VALUE
+    ranges = []
+
+    // calculate ranges for each section
+    for (i=0;i<sectionNumber;i++) {
+        for (j=0;j<9;j++) {
+            if (boxCounters[sections[i][j]] > tempTC) {
+                tempTC = boxCounters[sections[i][j]]
+            }
+        }
+        tempBC = 
+        console.log(tempBC, tempTC)
+        ranges[i] = tempTC - tempBC
+        // set border intensities based on range
+        if (ranges[i] > 20) {
+
+            for (j=0; j < 9; j++) {
+                borderIntensity[sections[i][j]] = Math.round((boxCounters[sections[i][j]] - tempBC) / (ranges[i] / 255))
+            }
+        }
+        else {
+            for (j=0; j < 9; j++) {
+                borderIntensity[sections[i][j]] = Math.round((boxCounters[sections[i][j]] - tempBC) * 12)
+            }
+        }
+
+
+        // change blue amount based on range
+        alter = [0, 0, 0, 0]
+        if (ranges[i] > 20) {
+            alter[2]= 255
+        }
+        else {
+            alter[2] = ranges[i] * 12
+        }
+
+        // set border colors
+        for (j=0; j < 9; j++) {
+            element = document.getElementById('d' + sections[i][j].toString())
+            alter[1] = borderIntensity[sections[i][j]]
+            alter[3] = borderIntensity[sections[i][j]]
+            if (alter[2] > alter[3]) {
+                alter[3] = alter[2]
+            }
+            rgba = "rgba(0, 0, 0, 0)"
+            rgba = alter_hex(rgba, alter)
+            element.style.backgroundColor = rgba
+        }
+    }
+
+    
 }
 
 // Flash a generated solution on screen
@@ -419,11 +517,9 @@ function advancedGenerate(loops, condense, missBonus) {
     }
 
     updateHitMiss()
-    console.log(genSolution, boxCounters)
 
     if (!condense) {
         updateColor('Border')
-        console.log('here')
     }
 }
 

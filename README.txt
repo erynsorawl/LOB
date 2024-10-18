@@ -22,10 +22,7 @@ Stage 8: Make it so that 'Hits' count extra after a lot of 'Misses'
 
 Stage 9: Give the player a way to select a certain set of boxes and focus on one area at a time to target problem areas without messing with good ones.
 
-Stage 10: Let the player make certain areas more biased, and let them see how it affect hit ratios
-
-Learn Outside the Box: Turn it into a chain challenge, where you need to fill multiple boards at once - but once you've gotten pretty far one, the computer will look for similarities in
-every other board you do. This will be necessary to completely finish every board. 
+Stage 10: Chain levels, with neutral boxes, all boxes might be shared between profiles
 
 Give Bob a learning motif
 

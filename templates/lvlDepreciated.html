@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block buttons %}
-<button class="btn btn-primary m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense')">Guess</button>
-<button class="btn btn-primary m-1" onclick="updateColor('Box')">Condense</button>
+<button class="btn btn-primary m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense', 'missBonus')">Guess</button>
+<button class="btn btn-primary m-1" onclick="updateColor2()">Condense</button>
 <button class="btn btn-primary m-1" onclick="advancedCheck()">Check</button>
 <button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
 </div>
 <div class="d-flex justify-content-center m-3">
     <span class="text-white bg-primary p-1">Tolerance:</span>
-    <input style="background-color: rgb(0, 68, 156);" id='tolerance' class = "text-white numberInput border border-primary pl-1" type="number" max="100" min="0" step="1" value="50">
+    <input style="background-color: rgb(0, 68, 156);" id='tolerance' class = "text-white numberInput border border-primary pl-1" type="number" max="100" min="0" step=".1" value="50">
     <span class="text-white bg-primary p-1">%</span>
 
 
@@ -28,11 +28,11 @@
 {% endblock %}
 
 {% block explanation %}
-    Looks like we've got a huge change here - the squares can't be clicked anymore! Instead, the Condense button will color the board for you. <br><br>
-    This means it's gonna be a lot harder to make small adjustments. Luckily, we've also added a 'Tolerance' input, 
-    which will allow you to change the point where something is considered a 'hit' or a 'miss' <br><br>
-    Putting a higher number in the Tolerance field will slow things down a bit, but it'll also make the end result a lot more accurate.
-    Try fiddling around with it, and find that perfect balance between quality and speed!
+This time, the change is a relatively minor one - the more 'Misses' you get, the more your 'Hits' will count towards the counter. <br><br>
+
+This means you'll be able to set the tolerance a bit higher without sacrificing as much time, letting you make your patterns just a bit more accurate. <br><br>
+
+You're gonna need the extra accuracy for this one. Give it a try!
 {% endblock %}
 
 {% block levelscript %}
