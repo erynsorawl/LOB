@@ -13,8 +13,8 @@
         {% for i in range(size) %}
             <tr>
                 {% for j in range(size) %}
-                        <td class='LOBtd' id="t{{j + (size * i)}}" onclick="colorSwitch(this)">
-                            <div id="d{{j + (size * i)}}" class='tableBorder'><p class="d-flex justify-content-center counter hidden"></p> </div></td>
+                        <td class='LOBtd' id="t{{j + (size * i)}}">
+                            <div id="d{{j + (size * i)}}" class='tableBorder' onclick="colorSwitch(this)"><p class="d-flex justify-content-center counter hidden"></p> </div></td>
                 {% endfor %}
             </tr>
         {% endfor %}

@@ -8,23 +8,24 @@
 
 {% block buttons %}
     <button class="btn btn-primary m-1" onclick="mediumGenerate()">Guess</button>
-    <button class="btn btn-primary m-1" onclick="check(1)">Check</button>
+    <button class="btn btn-primary m-1" onclick="check()">Check</button>
     <button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
 {% endblock %}
 
 {% block explanation %}
-    That's all for the basics. now it gets difficult: the computer's guessing accuracy has dropped to 75%. <br>
-    In addition, we've turned off the counter numbers by default - if you'd like to see them again, click the 'Counters' button on the navbar. <br>
-    Finally, we've made the checker a little less strict - your answer only needs to be 90% correct to continue. Give it a go!
+    This one's gonna be a little harder - the computer's guesses are now only about 55% accurate! You might need some trial and error to get through this one. <br><br>
+    To make things a little easier, we'll make the 'Check' button a little less strict. Now, you only need a 90% accurate answer to move on to the next level. <br><br>
+    In addition, we've turned off the counter numbers by default - if you'd like to see them again, click the 'Toggle Counters' button on the navbar. Good luck!
 {% endblock %}
 
 {% block levelscript %}
     <script>
-        const colors =['rgb(255, 255, 255)', 'rgb(0, 255, 255)']
+        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
         const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
-        const acc = .75
+        const acc = .60
         const closeEnough = .9
         const size = 5
+        const checkRigor = 100
         let s = new URLSearchParams(window.location.search).get('seed')
     </script>
 {% endblock %}

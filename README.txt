@@ -53,3 +53,7 @@ input.
 Actually, just add a toggle that shows those numbers as text in each cell, while the color is more of a visual representation.
 Test
 Another quick test
+
+Add a 'notes' button for all the text, so it can be toggled over the boxes instead of scrolled to. Default to having it overlaid. Check!
+Add a 'next level' or 'continue' overlay that pops up when the level is complete, after a celebration animation. If continued, add the 'next level' button to the right side.
+Put the 'hit and miss' counters on the left, and the 'percent complete, try again' intfo on the right

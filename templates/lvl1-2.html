@@ -1,6 +1,11 @@
 {% extends 'base.html' %} {% block title %}LOB{% endblock %}
 
 {% block content %}
+
+<!--Credit: https://gifer.com/en/XZ5V-->
+<img id="sparkle-gifr" class="sparkle sparkr hidden" src="/static/assets/sparkle.gif">
+<img id="sparkle-gifl" class="sparkle sparkl hidden" src="/static/assets/sparkle.gif">
+
     <div class="d-flex justify-content-center m-3">
         <div class="bg-primary rounded">
             <h1 class = 'text-center text-white ml-2 mr-2'>
@@ -9,12 +14,12 @@
         </div>
     </div>
 
-    <table id='Tab' class="align-items-center LOBtable">
+    <table id='Tab' class="align-items-center LOBtable hidden dn">
         {% for i in range(size) %}
             <tr>
                 {% for j in range(size) %}
-                        <td class='LOBtd' id="t{{j + (size * i)}}" onclick="colorSwitch(this)">
-                            <div id="d{{j + (size * i)}}" class='tableBorder'>
+                        <td class='LOBtd' id="t{{j + (size * i)}}">
+                            <div id="d{{j + (size * i)}}" class='tableBorder' onclick="colorSwitch(this)">
                                 <div id="di{{j + (size * i)}}" class='genFade hidden'></div>
                             </div></td>
                 {% endfor %}
@@ -22,15 +27,16 @@
         {% endfor %}
     </table>
 
-    <div class="d-flex justify-content-center m-3">
+    <div id = "buttons" class="d-flex justify-content-center m-3 hidden dn">
         {% block buttons %}
         {% endblock %}
     </div>
 
-    <div class="bg-primary center-div explain rounded text-wrap">
+    <div id="notes" class="bg-primary center-div explain rounded text-wrap">
         <p class="text-center text-white">
             {% block explanation %}
-            {% endblock %}
+            {% endblock %} <br>
+            <button class="overBtn bg-dark-blue m-1" onclick="notes()">Close</button>
         </p>
     </div>
     

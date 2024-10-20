@@ -19,37 +19,23 @@ for (i = 1; i < size2 / 15; i++) {
     seeds[i] = Math.round(seed * (Math.pow((seeds[i-1] % 594.23936746878), 34.983263826382726)))
 }
 
-// Use seed floats to create a unique solution that will always be the same given the same seed parameter, 
-// and create some statistics describing the solution for use in other functions
+// define statistics for use in other functions
+// array containing binary cell solutions
 solution = []
+
+// counters of 1s and 0s in the solution
 solRatios = []
+solRatios[0] = 0
+solRatios[1] = 0
+
+// counters for each cell
 boxCounters = []
+
+// last recorded hit and miss counters
 lastMiss = 0
 lastHit = 0
-sections = []
-sectionNumber = 0
 
-if (size == 6) {
-    sectionNumber = 4
-}
-
-if (size == 9) {
-    sectionNumber = 9
-}
-
-
-for (i=0; i < sectionNumber; i++) {
-    sections[i] = []
-    for (j=0;j<9;j++) {
-            sections[i][j] = j + (Math.floor((j/3) + 0.1) * 3) + (3 * i) + (Math.floor(i / Math.sqrt(sectionNumber)) * size * 
-            (Math.floor(i/Math.sqrt(sectionNumber)) * Math.sqrt(sectionNumber)))
-    }
-}
-
-
-for (let j=0; j < cases.length; j++) {
-    solRatios[j] = 0
-}
+// iterate over the seeds array and create solutions for each cell (15 per seed), up to board size
 for (i = 0; i < seeds.length; i++) {
 
     tempSol = Array.from(Math.round(seeds[i] % (10 ** 15)).toString())
@@ -65,13 +51,10 @@ for (i = 0; i < seeds.length; i++) {
     }
 }
 
+// reduce solution numbers down to 1s and 0s
 for (let i=0; i < solution.length; i++) {
-    solution[i] = solution[i] % colors.length
-    for (j = 0; j < cases.length; j++) {
-        if (solution[i] == j) {
-            solRatios[j]++
-        }
-    }
+    solution[i] = solution[i] % 2
+    solRatios[solution[i]]++
 
     // give all 'd' elements a transparent white border color
     document.getElementById('d'.concat(i.toString())).style.borderColor = "#00000000"
@@ -80,16 +63,21 @@ for (let i=0; i < solution.length; i++) {
     boxCounters[i] = 0
 }
 
+// ratio of 1s to 0s
 solRatio = solRatios[1] / solution.length
 
+// counter statistics
 hitCount = 0
 missCount = 0
 cleanCount = 0
 topCounter = 0
 bottomCounter = 0
-borderIntensity = []
 range = 0
 
+// array of border colors for each cell
+borderIntensity = []
+
+// convert a hex code into a list of rgba values
 function decode_hex(rgba) {
     // convert rgba string into a list of rgba values
     rgba = rgba.split(/,| |\(|\)/)
@@ -108,10 +96,7 @@ function decode_hex(rgba) {
     return rgbaVal
 }
 
-function alter_test (rgba, rgbaAlter) {
-    return '#FFFFFFFF'
-}
-
+// take an rgba value and an array of 4 integers,  adjust the rgba value based on these integers, and return the adjusted rgba value
 function alter_hex(rgba, rgbaAlter)
 {
     rgbaVal = decode_hex(rgba)
@@ -156,30 +141,22 @@ function alter_hex(rgba, rgbaAlter)
     return nHex
 }
 
-// Check whether the current pattern matches the main solution
-function check() { 
-    count = 0
-    for (let i=0; i < solution.length; i++) {
-        let tColor = window.getComputedStyle(document.getElementById('t' + i.toString())).backgroundColor
-    if (tColor === colors[solution[i]]) {
-            count++
+// Cycle box color when box is clicked
+function colorSwitch(element) {
+    let color = window.getComputedStyle(element).backgroundColor;
+    for (let i=0; i < colors.length; i++) {
+        if (color === colors[i]) {
+            element.style.background = colors[(i+1) % colors.length]
         }
-    }
-
-    if (count >= solution.length * closeEnough) {
-        alert('Well done! Score: ' + Math.round((count / solution.length) * 100) + '%')
-    }
-    else {
-        alert('Try again! Progress: ' + Math.round((count / solution.length) * 100)  + '%')
     }
 }
 
-// Check whether the computer-generated board colors match the main solution
-function advancedCheck() {
+// Check whether the board colors match the solution
+function check() {
     count = 0
     answer = []
-    for (let i=0; i < solution.length; i++) {
-        let tColor = window.getComputedStyle(document.getElementById('d' + i.toString())).backgroundColor
+    for (i=0; i < solution.length; i++) {
+        tColor = window.getComputedStyle(document.getElementById('d' + i.toString())).backgroundColor
         boxGreen = decode_hex(tColor)[1]
         if (boxGreen > checkRigor) {
             answer[i] = 1
@@ -198,23 +175,6 @@ function advancedCheck() {
     }
     else {
         alert('Try again! Progress: ' + Math.round((count / solution.length) * 100)  + '%')
-    }
-}
-
-// test function
-function cheat() {
-    for (let i=0; i < solution.length; i++) { 
-        // give all 'd' and 'di' elements a border color
-    }
-}
-
-// Cycle box color when box is clicked
-function colorSwitch(element) {
-    let color = window.getComputedStyle(element).backgroundColor;
-    for (let i=0; i < colors.length; i++) {
-        if (color === colors[i]) {
-            element.style.background = colors[(i+1) % colors.length]
-        }
     }
 }
 
@@ -271,6 +231,7 @@ function advGenSol() {
     return genSolution
 }
 
+// update boxCounter array
 function updateCounter(genSolution) {
     // check for highest counter and update counter array
     for (let i=0; i < solution.length; i++) {
@@ -289,6 +250,7 @@ function updateCounter(genSolution) {
     }
 }
 
+// update boxCounter array, but with a bonus based on number of hits
 function updateCounter2(genSolution) {
     // calculate number of hits and misses since last update
     hitDiff = hitCount - lastHit
@@ -319,16 +281,15 @@ function updateCounter2(genSolution) {
     }
 }
 
-
+// update hit and miss counters
 function updateHitMiss() {
     // update hit and miss counts
     document.getElementById('hit').innerHTML = ("Hit x" + hitCount.toString())
     document.getElementById('miss').innerHTML = ("Miss x" + missCount.toString())
 }
 
+// update visuals for counter increases
 function updateColor(type) {
-
-    console.log(topCounter, bottomCounter)
 
     // update counter visuals
     for (let i = 0; i < solution.length; i++) {
@@ -384,66 +345,6 @@ function updateColor(type) {
     }
 }
 
-function updateColor2() {
-    // update counter visuals
-    for (let i = 0; i < solution.length; i++) {
-        document.getElementById('d' + i.toString()).firstChild.innerHTML = boxCounters[i]
-    }
-
-    tempTC = 0
-    tempBC = Number.MAX_VALUE
-    ranges = []
-
-    // calculate ranges for each section
-    for (i=0;i<sectionNumber;i++) {
-        for (j=0;j<9;j++) {
-            if (boxCounters[sections[i][j]] > tempTC) {
-                tempTC = boxCounters[sections[i][j]]
-            }
-        }
-        tempBC = 
-        console.log(tempBC, tempTC)
-        ranges[i] = tempTC - tempBC
-        // set border intensities based on range
-        if (ranges[i] > 20) {
-
-            for (j=0; j < 9; j++) {
-                borderIntensity[sections[i][j]] = Math.round((boxCounters[sections[i][j]] - tempBC) / (ranges[i] / 255))
-            }
-        }
-        else {
-            for (j=0; j < 9; j++) {
-                borderIntensity[sections[i][j]] = Math.round((boxCounters[sections[i][j]] - tempBC) * 12)
-            }
-        }
-
-
-        // change blue amount based on range
-        alter = [0, 0, 0, 0]
-        if (ranges[i] > 20) {
-            alter[2]= 255
-        }
-        else {
-            alter[2] = ranges[i] * 12
-        }
-
-        // set border colors
-        for (j=0; j < 9; j++) {
-            element = document.getElementById('d' + sections[i][j].toString())
-            alter[1] = borderIntensity[sections[i][j]]
-            alter[3] = borderIntensity[sections[i][j]]
-            if (alter[2] > alter[3]) {
-                alter[3] = alter[2]
-            }
-            rgba = "rgba(0, 0, 0, 0)"
-            rgba = alter_hex(rgba, alter)
-            element.style.backgroundColor = rgba
-        }
-    }
-
-    
-}
-
 // Flash a generated solution on screen
 function basicGenerate() {
     genSolution = generateSolution()
@@ -453,14 +354,14 @@ function basicGenerate() {
         for (let i=0; i < solution.length; i++) { 
             cL = document.getElementById('di' + i.toString()).classList
             cL.remove("hidden")
-            cL.add("animate__animated", "animate__fadeOut", borderColors[genSolution[i]])
+            cL.add("animate__animated", "animate__fadeOut", backgroundColors[genSolution[i]], borderColors[genSolution[i]])
         }
         
         setTimeout(() => {
             for (let i=0; i < solution.length; i++) { 
                 cL = document.getElementById('di' + i.toString()).classList
                 cL.add("hidden")
-                cL.remove("animate__animated", "animate__fadeOut", borderColors[genSolution[i]])
+                cL.remove("animate__animated", "animate__fadeOut", backgroundColors[genSolution[i]], borderColors[genSolution[i]])
             }
         }, "1000");
     }
@@ -523,6 +424,7 @@ function advancedGenerate(loops, condense, missBonus) {
     }
 }
 
+// generate a new seed and redirect
 function new_puzzle() {
     dir = window.location.href
     if (dir.split('?').length > 1) {
@@ -533,8 +435,9 @@ function new_puzzle() {
     }
 }
 
+// toggle the counters tracking how many times a box has bee guessed
 function toggleCounters() {
-    if (document.getElementById('d' + i.toString()).firstChild.classList.contains("hidden"))
+    if (document.getElementById('d0').firstChild.classList.contains("hidden"))
     {
         for (let i = 0; i < solution.length; i++) {
             document.getElementById('d' + i.toString()).firstChild.classList.remove("hidden")
@@ -546,4 +449,59 @@ function toggleCounters() {
         }
     }
 
+}
+
+// switch between notes and game, with animation
+function notes() {
+    tableEl = document.getElementById('Tab')
+
+    // if an animation isn't already running
+    if (!tableEl.classList.contains('animate__animated') || !document.getElementById('notes').classList.contains('animate__animated')) {
+
+        // if the game is currently hidden
+        if (tableEl.classList.contains('hidden', 'dn')) {
+
+            // fade out the notes
+            document.getElementById('notes').classList.add("animate__animated", "animate__fadeOut")
+
+            // wait until notes are done fading out, then hide them and fade in the game
+            setTimeout(() => {
+                document.getElementById('notes').classList.add('hidden', 'dn')
+                tableEl.classList.remove('hidden', 'dn')
+                tableEl.classList.add("animate__animated", "animate__fadeIn")
+                document.getElementById('buttons').classList.remove('hidden', 'dn')
+                document.getElementById('buttons').classList.add("animate__animated", "animate__fadeIn")
+            }, "1000");
+
+            // wait until game is done fading in, then remove all animation tags
+            setTimeout(() => {
+                tableEl.classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut")
+                document.getElementById('buttons').classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut")
+                document.getElementById('notes').classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut")
+            }, "2000");
+        }
+
+        // if the game isn't hidden
+        else {
+
+            // fade out the game
+            tableEl.classList.add("animate__animated", "animate__fadeOut")
+            document.getElementById('buttons').classList.add("animate__animated", "animate__fadeOut")
+
+            // wait until game is done fading out, then hide it and fade in the notes
+            setTimeout(() => {
+                tableEl.classList.add('hidden', 'dn')
+                document.getElementById('buttons').classList.add('hidden', 'dn')
+                document.getElementById('notes').classList.remove('hidden', 'dn')
+                document.getElementById('notes').classList.add("animate__animated", "animate__fadeIn")
+            }, "1000");
+
+            // wait until the notes are done fading in, then remove all animation tags
+            setTimeout(() => {
+                tableEl.classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut")
+                document.getElementById('buttons').classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut")
+                document.getElementById('notes').classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut")
+            }, "2000");
+        }
+    }
 }
