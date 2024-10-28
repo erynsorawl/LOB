@@ -6,6 +6,7 @@
     <button class="btn btn-secondary ml-4 toggleCounters" onclick="toggleCounters()">Toggle Counters</button>
     <span style="padding: 8px;" class="text-white bg-secondary ml-3">Guesses:</span>
     <input id='guesses' class="text-white bg-secondary numberInput pl-2 ml-1" type="number" max="200" min="0" step="1" value="100">
+    <button class="btn btn-primary m-1" onclick="notes()">Notes</button>
 </div>
 {% endblock %}
 
@@ -14,17 +15,11 @@
 <button class="btn btn-primary m-1" onclick="updateColor('Box')">Condense</button>
 <button class="btn btn-primary m-1" onclick="check()">Check</button>
 <button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
-</div>
 <div class="d-flex justify-content-center m-3">
     <span class="text-white bg-primary p-1">Tolerance:</span>
     <input id='tolerance' class = "text-white numberInput border border-primary pl-1 bg-dark-blue" type="number" max="100" min="0" step="1" value="50">
     <span class="text-white bg-primary p-1">%</span>
-
-
 </div>
-<div class="mb-3">
-    <div id='hit' class="text-center text-white">Hit x0</div>
-    <div id='miss' class="text-center text-white">Miss x0</div>
 {% endblock %}
 
 {% block explanation %}

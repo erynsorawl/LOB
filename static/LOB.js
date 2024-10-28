@@ -158,6 +158,7 @@ function check() {
     for (i=0; i < solution.length; i++) {
         tColor = window.getComputedStyle(document.getElementById('d' + i.toString())).backgroundColor
         boxGreen = decode_hex(tColor)[1]
+        console.log(boxGreen)
         if (boxGreen > checkRigor) {
             answer[i] = 1
         }
@@ -284,8 +285,8 @@ function updateCounter2(genSolution) {
 // update hit and miss counters
 function updateHitMiss() {
     // update hit and miss counts
-    document.getElementById('hit').innerHTML = ("Hit x" + hitCount.toString())
-    document.getElementById('miss').innerHTML = ("Miss x" + missCount.toString())
+    document.getElementById('hitInfo').innerHTML = ("Hits: " + hitCount.toString())
+    document.getElementById('missInfo').innerHTML = ("Misses: " + missCount.toString())
 }
 
 // update visuals for counter increases
@@ -453,23 +454,23 @@ function toggleCounters() {
 
 // switch between notes and game, with animation
 function notes() {
-    tableEl = document.getElementById('Tab')
+    tableEl = document.getElementById('centerBox')
 
     // if an animation isn't already running
     if (!tableEl.classList.contains('animate__animated') || !document.getElementById('notes').classList.contains('animate__animated')) {
 
         // if the game is currently hidden
-        if (tableEl.classList.contains('hidden', 'dn')) {
+        if (tableEl.classList.contains('hidden', 'd-none')) {
 
             // fade out the notes
             document.getElementById('notes').classList.add("animate__animated", "animate__fadeOut")
 
             // wait until notes are done fading out, then hide them and fade in the game
             setTimeout(() => {
-                document.getElementById('notes').classList.add('hidden', 'dn')
-                tableEl.classList.remove('hidden', 'dn')
-                tableEl.classList.add("animate__animated", "animate__fadeIn")
-                document.getElementById('buttons').classList.remove('hidden', 'dn')
+                document.getElementById('notes').classList.add('hidden', 'd-none')
+                tableEl.classList.remove('hidden', 'd-none')
+                tableEl.classList.add("animate__animated", "animate__fadeIn", "d-flex")
+                document.getElementById('buttons').classList.remove('hidden', 'd-none')
                 document.getElementById('buttons').classList.add("animate__animated", "animate__fadeIn")
             }, "1000");
 
@@ -490,9 +491,9 @@ function notes() {
 
             // wait until game is done fading out, then hide it and fade in the notes
             setTimeout(() => {
-                tableEl.classList.add('hidden', 'dn')
-                document.getElementById('buttons').classList.add('hidden', 'dn')
-                document.getElementById('notes').classList.remove('hidden', 'dn')
+                tableEl.classList.add('hidden', 'd-none')
+                document.getElementById('buttons').classList.add('hidden', 'd-none')
+                document.getElementById('notes').classList.remove('hidden', 'd-none')
                 document.getElementById('notes').classList.add("animate__animated", "animate__fadeIn")
             }, "1000");
 

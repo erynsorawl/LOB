@@ -3,7 +3,7 @@
 {% block navbar_extra %}
 <br>
 <div class="navbar-nav">
-    <button class="btn btn-secondary ml-4 toggleCounters" onclick="toggleCounters()">Toggle Counters</button>
+    <button class="btn btn-secondary ml-4 w-240p" onclick="toggleCounters()">Toggle Counters</button>
     <span style="padding: 8px;" class="text-white bg-secondary ml-3">Guesses:</span>
     <input id='guesses' class="text-white bg-secondary numberInput" type="number" max="1000" min="0" step="1" value="20">
     <input id='tolerance' class="numberInput hidden" type="number" max="100" min="0" step=".1" value="52">
@@ -15,10 +15,7 @@
 <button class="btn btn-primary m-1" onclick="updateColor('Border')">Condense</button>
 <button class="btn btn-primary m-1" onclick="check()">Check</button>
 <button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
-</div>
-<div class="mb-3">
-    <div id='hit' class="text-center text-white">Hit x0</div>
-    <div id='miss' class="text-center text-white">Miss x0</div>
+<button class="btn btn-primary m-1" onclick="notes()">Notes</button>
 {% endblock %}
 
 {% block explanation %}
@@ -39,5 +36,6 @@
         const maxLoops = 50
         const checkRigor = 100
         let s = new URLSearchParams(window.location.search).get('seed')
+        document.getElementById('info1').classList.remove("hidden")
     </script>
 {% endblock %}

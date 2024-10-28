@@ -7,32 +7,40 @@
 <img id="sparkle-gifl" class="sparkle sparkl hidden" src="/static/assets/sparkle.gif">
 
     <div class="d-flex justify-content-center m-3">
-        <div class="bg-primary rounded">
-            <h1 class = 'text-center text-white ml-2 mr-2'>
+        <div class="bg-primary rounded shadow-lg">
+            <h1 class = 'text-center text-white ml-2 mr-2 t-shadow-s'>
                 Learn Outside The Box 
             </h1>
         </div>
     </div>
+    <div id="centerBox" class="justify-content-center w-40 m-auto hidden d-none">
+        <div class="m-auto mr-2 w-4">
+        </div>
+        <table class="align-items-center w-24 m-auto border t-layout-fixed bg-black">
+            {% for i in range(size) %}
+                <tr>
+                    {% for j in range(size) %}
+                            <td class='LOBtd' id="t{{j + (size * i)}}">
+                                <div id="d{{j + (size * i)}}" class='tableBorder' onclick="colorSwitch(this)">
+                                    <div id="di{{j + (size * i)}}" class='genFade hidden'></div>
+                                </div>
+                            </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="m-auto mr-2 w-4">
+            <p id="accInfo" class="text-cyan info">Accuracy: 0%</p>
+            <a class="btn btn-primary p-1" href="/">Next Level</a>
+        </div>
+    </div>
 
-    <table id='Tab' class="align-items-center LOBtable hidden dn">
-        {% for i in range(size) %}
-            <tr>
-                {% for j in range(size) %}
-                        <td class='LOBtd' id="t{{j + (size * i)}}">
-                            <div id="d{{j + (size * i)}}" class='tableBorder' onclick="colorSwitch(this)">
-                                <div id="di{{j + (size * i)}}" class='genFade hidden'></div>
-                            </div></td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-
-    <div id = "buttons" class="d-flex justify-content-center m-3 hidden dn">
+    <div id = "buttons" class="d-flex justify-content-center m-3 hidden d-none">
         {% block buttons %}
         {% endblock %}
     </div>
 
-    <div id="notes" class="bg-primary center-div explain rounded text-wrap">
+    <div id="notes" class="bg-primary center-div m-5 pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg">
         <p class="text-center text-white">
             {% block explanation %}
             {% endblock %} <br>
