@@ -1,36 +1,42 @@
-{% extends 'lvl3-6.html' %}
+{% extends 'lvl2.html' %}
 
-{% block buttons %}
-<button class="btn btn-primary m-1" onclick="mediumGenerate('noblue')">Guess</button>
-<button class="btn btn-primary m-1" onclick="check()">Check</button>
-<button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
-<button class="btn btn-primary m-1" onclick="notes()">Notes</button>
+{% block level %}: Level 3{% endblock %}
+
+{# change the guess button to the second version #}
+{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Guess</button> 
+<input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-1">{% endblock %}
+
+{% block box %}<p class="up-5 text-center counter h-1 div-center overlay"></p>{% endblock %}
+
+
+{% block hint %}
+    Hint: Try spamming the 'Guess' button.
 {% endblock %}
 
-{% block explanation %}
-    Now the computer's really struggling - only 75% of the squares will be accurate on each guess, and the board's become bigger to boot! <br>
-    It'd be way too hard to count the colors for each and every square, so we'll be adding a new mechanic: now, the computer will keep track of how often each box shows up, 
-    and the most common boxes will slowly turn green. <br>
-    When you've clicked 'Guess' enough times, it should be pretty clear what the pattern is. Go ahead and try it!
+{% block levelNum %}
+<script>
+    const levelNum = 3
+</script>
 {% endblock %}
 
-{% block levelscript %}
+{% block acc %}
     <script>
-        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
-        const borderColors = ['border-blue', 'border-cyan']
-        const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
         const acc = .75
-        const closeEnough = 1
-        const size = 4
-        const checkRigor = 100
+    </script>
+{% endblock %}
 
-        let s = new URLSearchParams(window.location.search).get('seed')
-    </script>
-{% endblock %}
-{% block postscript %}
+{% block size %}
     <script>
-        for (let i = 0; i < 16; i++) {
-            document.getElementById('d' + i.toString()).firstChild.classList.remove("hidden")
-        }
+        const size = 4
     </script>
 {% endblock %}
+{% block counterLvl %}
+<script>
+    const counterLvl = 1
+</script>
+{%endblock%}
+{% block hintThreshold %}
+<script>
+    const hintThreshold = 5
+</script>
+{%endblock%}

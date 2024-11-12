@@ -1,41 +1,46 @@
-{% extends 'lvl3-6.html' %}
+{% extends 'lvl5.html' %}
 
-{% block navbar_extra %}
-<br>
-<div class="navbar-nav">
-    <button class="btn btn-secondary ml-4 w-240p" onclick="toggleCounters()">Toggle Counters</button>
-    <span style="padding: 8px;" class="text-white bg-secondary ml-3">Guesses:</span>
-    <input id='guesses' class="text-white bg-secondary numberInput" type="number" max="1000" min="0" step="1" value="20">
-    <input id='tolerance' class="numberInput hidden" type="number" max="100" min="0" step=".1" value="52">
-</div>
+{% block level %}: Level 6{% endblock %}
+
+{% block navbar_extra_3 %}
+    <span style="padding: 8px;" class="text-white bg-secondary rounded ml-3">Guesses:</span> 
+    <input id='guesses' class="text-white bg-secondary border-style-none ml-1 w-2 rounded" 
+    type="number" max="{% block max_guess %}50{%endblock%}" min="0" step="1" value="{% block guess_value %}20{%endblock%}">
 {% endblock %}
 
-{% block buttons %}
-<button class="btn btn-primary m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense')">Guess</button>
-<button class="btn btn-primary m-1" onclick="updateColor('Border')">Condense</button>
-<button class="btn btn-primary m-1" onclick="check()">Check</button>
-<button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
-<button class="btn btn-primary m-1" onclick="notes()">Notes</button>
-{% endblock %}
+{% block button0 %}<button class="button rounded text-cyan m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense')">Guess</button>{% endblock %}
+
+{% block button0_1 %}<button class="button rounded text-aether m-1" onclick="updateColor('Border')">Condense</button>{% endblock %}
 
 {% block explanation %}
-    This one's only going to make a small change - instead of showing up every time you click 'Guess', the counters and colors will only update when you click 'Condense'. <br>
-    This probably won't make much sense right now, but it'll be important later. <br><br>
-    Also, since all this clicking's starting to get a bit tedious, we'll let you choose how many guesses one click of the Guess button will give you.
-    You can find this option on the navbar. <br><br>
-    Finally, we'll also be increasing the size, just to keep things interesting.
+    This one's only going to make a small change - instead of showing up every time you click <span class="text-cyan">Guess</span>, 
+    the counters and colors will only update when you click <span class="text-aether">Condense</span>.
+    You'll only be able to make a certain number of <span class="text-cyan">Guesses</span> before 
+    the button will stop working, and you'll have to <span class="text-aether">Condense</span> to make it to work again.<br><br>
+    This probably won't make much sense right now, but it'll be pretty important later. <br><br>
+    Also, in case you're finding all this clicking a little tedious, we'll be letting you choose how many guesses 
+    one click of the <span class="text-cyan">Guess</span> button will give you.
+    You can find this option on the navbar.
 {% endblock %}
 
-{% block levelscript %}
-    <script>
-        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
-        const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
-        const acc = .2
-        const closeEnough = .9
-        const size = 6
-        const maxLoops = 50
-        const checkRigor = 100
-        let s = new URLSearchParams(window.location.search).get('seed')
-        document.getElementById('info1').classList.remove("hidden")
-    </script>
+{% block levelNum %}
+<script>
+    const levelNum = 6
+</script>
 {% endblock %}
+
+{% block size %}
+<script>
+    const size = 6
+</script>
+{% endblock %}
+{% block maxLoops %}
+<script>
+    const maxLoops = 50
+</script>
+{%endblock%}
+{% block maxGuess %}
+<script>
+    const maxGuess = 600
+</script>
+{%endblock%}

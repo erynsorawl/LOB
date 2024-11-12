@@ -1,19 +1,17 @@
-{% extends 'lvl1-2.html' %}
+{% extends 'lvl.html' %}
 
-{% block buttons %}
-    <button class="btn btn-primary m-1" onclick="basicGenerate()">Guess</button>
-    <button class="btn btn-primary m-1" onclick="check()">Check</button>
-    <button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
-    <button class="btn btn-primary m-1" onclick="notes()">Notes</button>
+{% block level %}: Level 1{% endblock %}
+
+{% block navbar_extra %}
+    <button class="btn bg-secondary m-1" onclick="new_puzzle()">New Seed</button>
 {% endblock %}
 
-{% block explanation %}
-    Welcome to Learn Outside the Box, or LOB! LOB is a puzzle game where you click on the boxes to color them. <br> 
-    Your goal is to color the board in a specific pattern. <br><br>
-        
-    To figure out this pattern, click the 'Guess' button at the bottom of the board. This will flash the computer's best guess on screen.<br><br>
+{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Guess</button>{% endblock %}
+{% block button1 %}<button id='check' class="button rounded text-purple m-1" onclick="check()">Check</button>{% endblock %}
+{% block button2 %}<a id="nextLevel" class="button text-green rounded m-1 d-none box-glow" href="/Level{{nextLevel}}">Next Level</a>{% endblock %}
 
-    For the first level, the guess will always be 100% correct. Go ahead and color them in!
+{% block explanation %}
+
 {% endblock %}
 
 {% block levelscript %}
@@ -22,10 +20,46 @@
         const borderColors = ['border-blue', 'border-cyan']
         const backgroundColors = ['bg-blue', 'bg-cyan']
         const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
-        const acc = 1
-        const closeEnough = 1
-        const size = 3
-        const checkRigor = 100
         let s = new URLSearchParams(window.location.search).get('seed')
     </script>
+{% endblock %}
+{% block levelNum %}
+<script>
+    const levelNum = 1
+</script>
+{% endblock %}
+{% block acc %}
+<script> 
+    const acc = 1 
+</script>
+{% endblock %}
+{% block closeEnough %}
+<script>
+    const closeEnough = 1
+</script>
+{% endblock %}
+{% block checkRigor %}
+<script>
+    const checkRigor = 100
+</script>
+{% endblock %}
+{% block size %}
+<script>
+    const size = 3
+</script>
+{% endblock %}
+{% block hold %}
+<script>
+    const hold = 0
+</script>
+{% endblock %}
+{% block counterLvl %}
+<script>
+    const counterLvl = 0
+</script>
+{% endblock %}
+{% block hintThreshold %}
+<script>
+    const hintThreshold = -1
+</script>
 {% endblock %}

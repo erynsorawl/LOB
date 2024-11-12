@@ -1,48 +1,167 @@
 {% extends 'base.html' %} {% block title %}LOB{% endblock %}
 
 {% block content %}
+<!--Sparkle animation that plays on victory-->
+<!--Credit: https://gifer.com/en/XZ5V-->
+<img id="sparkle-gifr" class="sparkle sparkr hidden" src="/static/assets/sparkle.gif">
+<img id="sparkle-gifl" class="sparkle sparkl hidden" src="/static/assets/sparkle.gif">
+
+<!--Popup text that tells you how well you did-->
+<div id="win-fail" class="abs-center w-24 h-10 text-4 text-center t-shadow text-green overlay d-none">Well done!</div>
+
+    <!--Level Title-->
     <div class="d-flex justify-content-center m-3">
-        <div class="bg-primary rounded">
-            <h1 class = 'text-center text-white'>
-                Learn Outside The Box 
+        <div class="bg-dark rounded shadow-lg">
+            <h1 class = 'text-center text-white ml-2 mr-2 t-shadow-s'>
+                Learn Outside The Box{% block level %}{% endblock %}
             </h1>
         </div>
     </div>
 
-    <table id='Tab' class="align-items-center LOBtable">
-        {% for i in range(size) %}
-            <tr>
-                {% for j in range(size) %}
-                        <td class='LOBtd' id="t{{j + (size * i)}}" >
-                            <div id="d{{j + (size * i)}}" class='tableBorder' onclick="colorSwitch(this)">
-                                <div style="position: relative; z-index: 1;" id="di{{j + (size * i)}}" class='genFade hidden'></div>
-                            </div></td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
+    <!--Container for center-screen items-->
+    <div id="centerBox" class="d-flex justify-content-center w-40 m-auto">
+        <!--Hit and miss counters-->
+        <div id="info1" class="m-auto mr-2 w-4">
+            {% block hitMiss %}
+            {% endblock %}
+        </div>
+        {# generate table based on size variable #}
+        <!--Game board-->
+        <table class="align-items-center w-24 m-auto border t-layout-fixed bg-black">
+            {% for i in range(size) %}
+                <tr>
+                    {% for j in range(size) %}
+                            <td class='LOBtd' id="t{{j + (size * i)}}">
+                                <div id="d{{j + (size * i)}}" class='tableBorder' onclick="colorSwitch(this)">
+                                    <div id="di{{j + (size * i)}}" class='
+                                        genFade 
+                                        hidden 
+                                        d-flex 
+                                        align-items-center 
+                                        justify-content-center 
+                                        text-dark 
+                                        text-glow 
+                                        {% block di_none %}{% endblock %}'
+                                        
+                                    ></div>
+                                    {% block box %}
+                                    {% endblock %}
+                                </div>
+                            </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <!--Accuracy counter and next level link-->
+        <div class="m-auto justify-content-center mr-2 w-4">
+            <p id="accInfo" class="text-purple info hidden">Accuracy: 0%</p>
+        </div>
+    </div>
 
-    <div class="d-flex justify-content-center m-3">
-        {% block buttons %}
+    <!--Container for buttons-->
+    <div id = "buttons" class="d-flex justify-content-center m-3">
+        {% block button0 %}
+        {% endblock %}
+        {% block button0_1 %}
+        {% endblock %}
+        {% block button1 %}
+        {% endblock %}
+        {% block button2 %}
+        {% endblock %}
+        {% block button3 %}
+        {% endblock %}
+        {% block button4 %}
+        {% endblock %}
+        {% block button5 %}
+        {% endblock %}
+        {% block button6 %}
         {% endblock %}
     </div>
 
-    <div class="bg-primary center-div explain rounded text-wrap">
+    <!--Second container for buttons-->
+    <div id = "lowerButtons" class="d-flex justify-content-center m-3 hidden d-none">
+        {% block lower_button0 %}
+        {% endblock %}
+    </div>
+
+    <!--Notes that appear at start of each level-->
+    <div id="hint" class="bg-dark text-white center-div m-auto w-40 pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg hidden d-none">
         <p class="text-center text-white">
-            {% block explanation %}
-            {% endblock %}
+            {% block hint %}
+            {% endblock %} <br>
+            <button class="overBtn bg-secondary m-1" onclick="hint()">Close</button>
         </p>
     </div>
     
 {% endblock %}
 
 {% block javascript %}
-{% block levelscript %}
-{% endblock %}
-<script type="text/javascript" src="/static/LOB.js"></script>
-<script>
-    if (!s) {
-        new_puzzle()
-    }
-</script>
+    {% block levelscript %}
+    {% endblock %}
+    {% block acc %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block closeEnough %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block checkRigor %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block size %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block hold %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block counterLvl %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block hintThreshold %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block missBonus %}
+    <script>
+    </script>
+    {% endblock %}
+    {% block maxLoops %}
+    <script>
+
+    </script>
+    {%endblock%}
+    {% block maxGuess %}
+    <script>
+
+    </script>
+    {%endblock%}
+    {% block levelNum %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block holdSpeed %}
+    <script>
+
+    </script>
+    {% endblock %}
+
+    <script type="text/javascript" src="/static/LOB.js"></script>
+    <script>
+        if (!s) {
+            new_puzzle()
+        }
+    </script>
 {% endblock %}

@@ -1,46 +1,46 @@
-{% extends 'lvl7-10.html' %}
+{% extends 'lvl7.html' %}
 
-{% block navbar_extra %}
-<br>
-<div class="navbar-nav">
-    <button class="btn btn-secondary ml-4 w-240p" onclick="toggleCounters()">Toggle Counters</button>
-    <span style="padding: 8px;" class="text-white bg-secondary ml-3">Guesses:</span>
-    <input id='guesses' class="text-white bg-secondary numberInput pl-2 ml-1" type="number" max="100" min="0" step="1" value="40">
-</div>
-{% endblock %}
+{% block level %}: Level 8{% endblock %}
 
-{% block buttons %}
-<button class="btn btn-primary m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense', 'missBonus')">Guess</button>
-<button class="btn btn-primary m-1" onclick="updateColor('Box')">Condense</button>
-<button class="btn btn-primary m-1" onclick="check()">Check</button>
-<button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
-<button class="btn btn-primary m-1" onclick="notes()">Notes</button>
-<div class="d-flex justify-content-center m-3">
-    <span class="text-white bg-primary p-1">Tolerance:</span>
-    <input id='tolerance' class = "text-white numberInput border border-primary pl-1 bg-dark-blue" type="number" max="100" min="0" step="1" value="50">
-    <span class="text-white bg-primary p-1">%</span>
+{% block max_guess %}100{%endblock%}
+{% block guess_value %}40{%endblock%}
 
-
-</div>
-{% endblock %}
+{% block button0 %}<button class="button rounded text-cyan m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense', 'missBonus')">Guess</button>{% endblock %}
 
 {% block explanation %}
-This time, the change is a relatively minor one - the more 'Misses' you get, the more your 'Hits' will count towards the counters. <br><br>
+    This time, the change is a relatively minor one - the more <span class="text-blue">Misses</span> you get, the more your <span class="text-green">Hits</span> 
+    will increase the <span class="text-cyan">Counters</span> when you <span class="text-green">Condense</span>. <br><br>
 
-This means you'll be able to set the tolerance a bit higher without sacrificing as much time, letting you make your patterns just a bit more accurate. <br><br>
+    This means you'll be able to set the <span class="text-yellow">Tolerance</span> a bit higher without sacrificing as much time, letting you make your patterns just a bit more 
+    <span class="text-purple">Accurate</span>. <br><br>
 
-You're gonna need the extra accuracy for this one. Give it a try!
+    You're gonna need the extra <span class="text-purple">accuracy</span> for this one. Give it a try!
 {% endblock %}
 
-{% block levelscript %}
-    <script>
-        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
-        const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
-        const acc = .2
-        const closeEnough = .9
-        const size = 8
-        const checkRigor = 200
-        const maxLoops = 50
-        let s = new URLSearchParams(window.location.search).get('seed')
-    </script>
+{% block levelNum %}
+<script>
+    const levelNum = 8
+</script>
 {% endblock %}
+
+{% block checkRigor %}
+<script>
+    const checkRigor = 240
+</script>
+{% endblock %}
+
+{% block size %}
+<script>
+    const size = 8
+</script>
+{% endblock %}
+{% block maxLoops %}
+<script>
+    const maxLoops = 100
+</script>
+{%endblock%}
+{% block maxGuess %}
+<script>
+    const maxGuess = 2000
+</script>
+{%endblock%}

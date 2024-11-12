@@ -1,20 +1,46 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Index
-{% endblock %}
+{% extends 'base.html' %} {% block title %}LOB{% endblock %}
 
 {% block content %}
-<br>
-<div class="d-flex justify-content-center">
-    <div class="bg-primary rounded">
-        <h1 class = 'text-center text-white'>
-            &nbsp; Learn Outside The Box &nbsp;
+
+<div class="d-flex justify-content-center m-3">
+    <div class="bg-dark rounded shadow-lg">
+        <h1 class = 'text-center text-white ml-2 mr-2 t-shadow-s'>
+            Learn Outside The Box{% block level %}{% endblock %}
         </h1>
     </div>
 </div>
-<br>
+<div id="centerBox" class="justify-content-center w-40 m-auto d-none">
+    <table class="align-items-center w-24 m-auto border t-layout-fixed bg-black">
+        {% for i in range(size) %}
+            <tr>
+                {% for j in range(size) %}
+                        <td class='LOBtd' id="t{{j + (size * i)}}">
+                            <div id="d{{j + (size * i)}}" class='tableBorder border-style-none' onclick="colorSwitch(this)">
+                            </div>
+                        </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div id = "buttons" class="d-flex justify-content-center abs-center">
+    <a id="nextLevel" class="button rounded text-white p-2" href="/Level1">Begin</a>
+</div>
 {% endblock %}
 
 {% block javascript %}
+    <script>
+        s = 0
+    </script>
+    <script>
+        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
+        const borderColors = ['border-blue', 'border-cyan']
+        const backgroundColors = ['bg-blue', 'bg-cyan']
+        const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
+    </script>
+    <script>
+        const size = 3
+    </script>
+    <script type="text/javascript" src="/static/LOB.js"></script>
 {% endblock %}

@@ -59,3 +59,16 @@ Add a 'next level' or 'continue' overlay that pops up when the level is complete
 Put the 'hit and miss' counters on the left, and the 'percent complete, try again' intfo on the right
 
 Add a "LOB" board that's just the neuroscience explanation
+
+shrink font size when text gets too long, adjust counter size based on board size
+
+Change level 4 to demonstrate the 'hit or miss' mechanic, not the holding mechanic. Have it guess one at a time, but have a little red/green notification that tells you whether
+each guess is reliable or unreliable, and add an 'unreliable guess' counter to the center.
+
+Level 5 will be the hold button and no flash demonstration.
+
+Change tolerance to a scale of 1 to 10, 10 being 70% and 1 being 50%. Change the name to 'On a scale of 1-10, how high are your standards?'
+Also change the 'This guess is reliable' to 'You think this guess is reliable'
+
+Change the ending to 'Congratulations, story mode complete! If you'd like to play more, click here! If you'd like to know more about how
+you accidentally just learned neuroscience, click here!

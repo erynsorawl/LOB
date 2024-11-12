@@ -1,32 +1,69 @@
-{% extends 'lvl3-6.html' %}
+{% extends 'lvl3.html' %}
+
+{% block level %}: Level 4{% endblock %}
+
+{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="removeGlow()">Guess</button>{% endblock %}
 
 {% block navbar_extra %}
-<div class="navbar-nav">
-    <button class="btn btn-secondary ml-4 w-240p" onclick="toggleCounters()">Toggle Counters</button>
-</div>
+    <div class="navbar-nav">
+        <button class="btn btn-secondary ml-4 w-240p" onclick="toggleCounters()">Toggle Counters</button>
+        {% block navbar_extra_2 %}<input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-2">{% endblock %}
+        {% block navbar_extra_3 %}
+        {% endblock %}
+    </div>
 {% endblock %}
 
-{% block buttons %}
-    <button class="btn btn-primary m-1" onclick="mediumGenerate()">Guess</button>
-    <button class="btn btn-primary m-1" onclick="check()">Check</button>
-    <button class="btn btn-primary m-1" onclick="new_puzzle()">New Puzzle</button>
-    <button class="btn btn-primary m-1" onclick="notes()">Notes</button>
+{% block hitMiss %}
+    <p id="hitInfo" class="text-cyan info hidden">Hits: 0</p>
+    <p id="missInfo" class="text-blue info hidden">Misses: 0</p>
 {% endblock %}
 
-{% block explanation %}
-    This one's gonna be a little harder - the computer's guesses are now only about 55% accurate! You might need some trial and error to get through this one. <br><br>
-    To make things a little easier, we'll make the 'Check' button a little less strict. Now, you only need a 90% accurate answer to move on to the next level. <br><br>
-    In addition, we've turned off the counter numbers by default - if you'd like to see them again, click the 'Toggle Counters' button on the navbar. Good luck!
+{% block box %}
+    <p class="up-5 text-center counter h-1 div-center overlay hidden"></p>
 {% endblock %}
 
-{% block levelscript %}
+{% block hint %}
+    Hint: Try holding the 'Guess' button.
+{% endblock %}
+
+{% block levelNum %}
+<script>
+    const levelNum = 4
+</script>
+{% endblock %}
+
+{% block acc %}
+<script>
+    const acc = .60
+</script>
+{% endblock %}
+{% block hold %}
+<script>
+    const hold = 1
+</script>
+{%endblock%}
+{% block closeEnough %}
+<script>
+    const closeEnough = .9
+</script>
+{%endblock%}
+{% block size %}
     <script>
-        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
-        const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
-        const acc = .60
-        const closeEnough = .9
         const size = 5
-        const checkRigor = 100
-        let s = new URLSearchParams(window.location.search).get('seed')
     </script>
 {% endblock %}
+{% block missBonus %}
+<script>
+    const missBonus = 0
+</script>
+{%endblock%}
+{% block holdSpeed %}
+<script>
+    const holdSpeed = 100
+</script>
+{% endblock %}
+{% block hintThreshold %}
+<script>
+    const hintThreshold = 10
+</script>
+{%endblock%}
