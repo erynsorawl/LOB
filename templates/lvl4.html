@@ -6,20 +6,17 @@
 
 {% block navbar_extra %}
     <div class="navbar-nav">
-        <button class="btn btn-secondary ml-4 w-240p" onclick="toggleCounters()">Toggle Counters</button>
-        {% block navbar_extra_2 %}<input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-2">{% endblock %}
+        {% block navbar_extra_2 %}
+        {% endblock %}
         {% block navbar_extra_3 %}
+        <input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-2">
         {% endblock %}
     </div>
 {% endblock %}
 
 {% block hitMiss %}
-    <p id="hitInfo" class="text-cyan info hidden">Hits: 0</p>
-    <p id="missInfo" class="text-blue info hidden">Misses: 0</p>
-{% endblock %}
-
-{% block box %}
-    <p class="up-5 text-center counter h-1 div-center overlay hidden"></p>
+    <p id="hitInfo" class="text-green info">Hits: 0</p>
+    <p id="missInfo" class="text-red info">Misses: 0</p>
 {% endblock %}
 
 {% block hint %}

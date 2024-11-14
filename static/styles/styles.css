@@ -1,13 +1,18 @@
 :root {
     --box-size: 30px;
+    font-size: 25px;
 }
 
-html {
+.html {
     font-size: 25px;
 }
 
 
 /* classes */
+
+    .abutton {
+        padding-top: .66em !important;
+    }
 
     .button {
         background-color: #212529;
@@ -21,8 +26,8 @@ html {
         text-decoration: none;
         vertical-align: middle;
         border: 1px solid transparent;
-        padding: .375rem .75rem;
-        font-size: 1rem;
+        padding: .375em .75em;
+        height: 3rem;
         transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
 
@@ -78,7 +83,7 @@ html {
         top: 0;
         bottom: 0;
         width: calc(var(--box-size) * 20);
-        width: calc(var(--box-size) * 20);
+        height: calc(var(--box-size) * 20);
     }
 
     .sparkr {
@@ -90,6 +95,26 @@ html {
         left: 0;
         right: 1;
         transform: rotateY(180deg);
+    }
+
+    .hint {
+        position: absolute;
+        margin: 20% 10% auto 20%;
+        top: 0;
+        bottom: 0;
+        left: 1;
+        right: 0;
+    }
+
+    .reliable {
+        position: absolute;
+        margin-left: 10%;
+        margin-right: 20%;
+        top: 1;
+        bottom: 1;
+        left: 0;
+        right: 1;
+        height: 2em
     }
 
     .tableBorder {
@@ -167,6 +192,10 @@ html {
         text-shadow: 0px 0px 5px black;
     }
 
+    .text-red {
+        color: red;
+    }
+
     .text-purple {
         color: rgb(218, 161, 255)
     }
@@ -192,7 +221,7 @@ html {
     }
 
     .text-blue {
-        color: rgb(129, 194, 255)
+        color: rgb(17, 0, 255)
     }
 
     .text-cyan {
@@ -243,6 +272,14 @@ html {
         background-color: rgb(0, 68, 156);
     }
 
+    .bg-dark-green {
+        background-color: rgb(0, 83, 0)
+    }
+
+    .bg-maroon {
+        background-color: rgb(68, 0, 0);
+    }
+
     .bg-cyan {
         background-color: cyan;
     }
@@ -262,15 +299,19 @@ html {
     }
 
     .text-05 {
-        font-size: 0.5em
+        font-size: 0.5em;
     }
 
     .text-075 {
-        font-size: 0.75em
+        font-size: 0.75em;
     }
 
     .text-1 {
-        font-size: 1em
+        font-size: 1em;
+    }
+
+    .box-text {
+        font-size: calc(var(--box-size) * 2);
     }
 
     .text-4 {
@@ -326,5 +367,9 @@ html {
         table-layout: fixed;
     }
 
-@media screen and (min-width: 2400px) {
+@media screen and (max-height: 1200px) {
+    :root {
+        --box-size: 18px;
+        font-size: 22px;
+    }
   }
