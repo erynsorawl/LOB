@@ -20,16 +20,16 @@
     </div>
 
     <!--Hints that appear after a certain point on some levels-->
-    <div id="hint" class="h-10 bg-dark text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg hidden d-none hint">
+    <div id="hint" class="bg-dark text-white txtw-15 pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r2-c2">
         <p class="text-center text-white">
             {% block hint %}
             {% endblock %} <br>
-            <button class="overBtn bg-secondary m-1" onclick="hint()">Close</button>
+            <button class="button rounded bg-secondary m-1" onclick="hint()">Close</button>
         </p>
     </div>
 
     <!--Notification that tells the player how the hit and miss function works-->
-    <div id="reliable" class="h-10 bg-maroon text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg reliable">
+    <div id="reliable" class="bg-maroon text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r1-c1">
         <p class="text-center text-white">
             This guess is reliable.
         </p>
@@ -38,14 +38,14 @@
     <!--Container for center-screen items-->
     <div id="centerBox" class="d-flex justify-content-center w-40 m-auto">
         <!--Hit and miss counters-->
-        <div id="info1" class="m-auto mr-2 w-4">
+        <div id="info1" class="text-center r2-c1 w-4 txtw-8 text-1-5 lh-4 h-4 d-block">
             {% block hitMiss %}
             {% endblock %}
         </div>
 
         {# generate table based on size variable #}
         <!--Game board-->
-        <table class="align-items-center w-24 m-auto border t-layout-fixed bg-black">
+        <table class="align-items-center w-24 rc-cc border t-layout-fixed bg-black">
             {% for i in range(size) %}
                 <tr>
                     {% for j in range(size) %}
@@ -71,13 +71,13 @@
             {% endfor %}
         </table>
         <!--Accuracy counter and next level link-->
-        <div class="m-auto justify-content-center mr-2 w-4">
-            <p id="accInfo" class="text-purple info hidden">Accuracy: 0%</p>
+        <div class="r1-c2">
+            <p id="accInfo" class="text-purple info text-1-5 text-center">Accuracy: 0 %</p>
         </div>
     </div>
 
     <!--Container for buttons-->
-    <div id = "buttons" class="d-flex justify-content-center m-3">
+    <div id = "buttons" class="d-flex justify-content-center r-3">
         {% block button0 %}
         {% endblock %}
         {% block button0_1 %}
@@ -97,7 +97,7 @@
     </div>
 
     <!--Second container for buttons-->
-    <div id = "lowerButtons" class="d-flex justify-content-center m-3 hidden d-none">
+    <div id = "lowerButtons" class="d-flex justify-content-center r-4">
         {% block lower_button0 %}
         {% endblock %}
     </div>
