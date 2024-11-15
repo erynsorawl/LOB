@@ -201,7 +201,7 @@ function check() {
         }, "3000");
     }
     else if (count >= solution.length * closeEnough) {
-        document.getElementById('accInfo').innerHTML = 'Accuracy: ' + accuracy.toString() + ' %' 
+        document.getElementById('accInfo').innerHTML = 'Accuracy: ' + accuracy.toString() + '%' 
         if (!complete) {
         document.getElementById('accInfo').classList.remove('hidden')
         document.getElementById('sparkle-gifr').classList.remove('hidden')

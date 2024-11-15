@@ -26,20 +26,20 @@
     </head>
     <body class="bg-dark2">
         <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow z-1">
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                 data-target="#navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" href="/">Home&nbsp;</a>
+                    <a class="nav-item nav-link mr-auto ml-auto" href="/">Home</a>&nbsp;&nbsp;
                 </div>
                 <div class="navbar-nav">
-                    <div class="dropdown">
+                    <div class="dropdown navbar-nav collapse-margin">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Choose a level
-                        </button>
+                        </button>&emsp; <br>
                         <div class="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item text-light" href="/Level1">Level 1</a>
                             <a class="dropdown-item text-light" href="/Level2">Level 2</a>
@@ -55,6 +55,7 @@
                 </div>
                 {% block navbar_extra %}
                 {% endblock %}
+                <br>
             </div>
         </nav>
         <!--Main content-->

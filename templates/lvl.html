@@ -11,11 +11,11 @@
 
 
     <!--Level Title-->
-    <div class="d-flex justify-content-center m-3">
-        <div class="bg-dark rounded shadow-lg">
-            <h1 class = 'text-center text-white ml-2 mr-2 t-shadow-s box-text'>
+    <div class="d-flex justify-content-center m-3 title">
+        <div class="bg-dark rounded shadow-lg p-1 pb-2">
+            <span class = 'text-center text-white ml-2 mr-2 t-shadow-s'>
                 Learn Outside The Box{% block level %}{% endblock %}
-            </h1>
+            </span>
         </div>
     </div>
 
@@ -29,7 +29,7 @@
     </div>
 
     <!--Notification that tells the player how the hit and miss function works-->
-    <div id="reliable" class="bg-maroon text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r1-c1">
+    <div id="reliable" class="bg-maroon text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r1-c1 hidden">
         <p class="text-center text-white">
             This guess is reliable.
         </p>
@@ -38,7 +38,7 @@
     <!--Container for center-screen items-->
     <div id="centerBox" class="d-flex justify-content-center w-40 m-auto">
         <!--Hit and miss counters-->
-        <div id="info1" class="text-center r2-c1 w-4 txtw-8 text-1-5 lh-4 h-4 d-block">
+        <div id="info1" class="text-center r2-c1 w-4 txtw-8 text-1-5 h-4 lh-4 d-block">
             {% block hitMiss %}
             {% endblock %}
         </div>
@@ -71,9 +71,7 @@
             {% endfor %}
         </table>
         <!--Accuracy counter and next level link-->
-        <div class="r1-c2">
-            <p id="accInfo" class="text-purple info text-1-5 text-center">Accuracy: 0 %</p>
-        </div>
+        <span id="accInfo" class="text-purple info text-1-5 text-center r1-c2">Accuracy: 0%</span>
     </div>
 
     <!--Container for buttons-->
@@ -97,7 +95,7 @@
     </div>
 
     <!--Second container for buttons-->
-    <div id = "lowerButtons" class="d-flex justify-content-center r-4">
+    <div id = "lowerButtons" class="r-4">
         {% block lower_button0 %}
         {% endblock %}
     </div>

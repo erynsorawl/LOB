@@ -16,18 +16,16 @@
 
     .button {
         background-color: #212529;
-        padding: 3px 10px 5px 10px;
         color: white;
         text-shadow: 0px 0px 2px black;
         display: inline-block;
         font-weight: 400;
-        line-height: 1.5;
         text-align: center;
         text-decoration: none;
         vertical-align: middle;
         border: 1px solid transparent;
-        padding: .375em .75em;
-        height: 2.5rem;
+        padding: calc(var(--box-size) * .3) calc(var(--box-size) * .6);
+        height: calc(var(--box-size) * 2.2);
         transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
 
@@ -55,7 +53,8 @@
 
     .info {
         text-align: center;
-        width: calc(var(--box-size) * 8);
+        display: block;
+        width: 8em;
         text-shadow: 0px 0px 2px black;
     }
 
@@ -68,6 +67,7 @@
         justify-content: center;
         background-color: blue;
     }
+
 
     .sparkle {
         z-index: -1;
@@ -303,7 +303,7 @@
         position: absolute;
         top: calc((var(--box-size) * 17) + 2rem);
         left: 50%;
-        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -20), 0); 
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -22), 0); 
     }
 
     .rc-cc {
@@ -315,7 +315,7 @@
 
     .r1-c2 {
         position: absolute;
-        top: calc((var(--box-size) * 19) + 2rem);
+        top: calc((var(--box-size) * 15) + 6rem);
         left: 50%;
         transform: translate(-50%, -50%) translate(calc(var(--box-size) * 20), 0);  
     }
@@ -339,6 +339,16 @@
         top: calc((var(--box-size) * 32) + 6rem);
         left: 50%;
         transform: translate(-50%, -50%); 
+    }
+
+    .title {
+        position: absolute;
+        top: calc((var(--box-size) * 3) + 2rem);
+        left: 50%;
+        transform: translate(-50%, -50%) translate(-1rem);  
+        font-size: 1.8em;
+        font-weight: 600;
+        width: calc(var(--box-size) * 24)
     }
 
     .wrap {
@@ -365,17 +375,12 @@
         font-size: 2em;
     }
 
-    .box-text {
-        font-size: calc(var(--box-size) * 2);
-    }
-
     .text-4 {
         font-size: 4em;
     }
 
     .text-center {
         text-align: center;
-        vertical-align: center;
     }
 
     .text-center-v {
@@ -402,7 +407,7 @@
     }
 
     .lh-4 {
-        line-height: 2em;
+        line-height: 1.5em;
     }
 
     .lh-40 {
@@ -430,6 +435,14 @@
         table-layout: fixed;
     }
 
+@media screen and (max-width: 990px) {
+    .collapse-margin {
+        margin-left: auto;
+        margin-right: auto;
+        width: 10rem;
+    }
+}
+
 @media screen and (max-height: 1200px) {
     :root {
         --box-size: 25px;
@@ -437,7 +450,7 @@
     }
   }
 
-  @media screen and (max-width: 1550px) {
+  @media screen and (max-width: 1650px) {
     :root {
         --box-size: 25px;
         font-size: 22px;
@@ -456,6 +469,10 @@
         --box-size: 20px;
         font-size: 19px;
     }
+
+    .title {
+        font-size: 1.5rem;
+    }
   }
 
   @media screen and (max-height: 800px) {
@@ -469,7 +486,7 @@
     }
   }
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1150px) {
     :root {
         --box-size: 15px;
         font-size: 16px;
@@ -480,37 +497,46 @@
     }
   }
 
-  @media screen and (max-height: 650px) {
-    :root {
-        --box-size: 10px;
-        font-size: 12px;
-    }
-
-    .r2-c2 {
-        transform: translate(-50%, -50%) translate(calc(var(--box-size) * 22), 0);  
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    :root {
-        --box-size: 10px;
-        font-size: 12px;
-    }
-
+  @media screen and (max-width: 900px) {
     .r1-c1 {
-        top: calc((var(--box-size) * 2) + 2.5em);
+        top: calc((var(--box-size) * 2) + 2em);
         transform: translate(-50%, 0);
     }
 
+    .r1-c2 {
+        top: calc((var(--box-size) * 39) + 3.5rem);
+        transform: translate(-50%, 0);
+        width: 10em;
+    }
+
+    .r2-c1 {
+        top: calc((var(--box-size) * 36.5) + 3.5rem);
+        transform: translate(-50%, 0);
+        width: 20rem;
+        margin-top: -1px;
+    }
+
+    .info {
+        display: inline;
+        line-height: normal;
+    }
+
     .r2-c2 {
-        transform: translate(-50%, -50%) translate(calc(var(--box-size) * 22), 0);  
+        top: calc((var(--box-size) * 43) + 2.5em);
+        transform: translate(-50%, 0);
+        width: 20em;
     }
 
   }
+  
+  @media screen and (max-width: 633px) {
 
-  @media screen and (max-height: 450px) {
     :root {
-        --box-size: 7px;
-        font-size: 9px;
+        --box-size: 12px;
+        font-size: 13px;
+    }
+
+    .title {
+        font-size: 1.4rem;
     }
   }

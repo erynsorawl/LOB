@@ -5,9 +5,11 @@
 {% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="removeGlow()">Guess</button>{% endblock %}
 
 {% block navbar_extra %}
-    <div class="navbar-nav">
+    <div class="navbar-nav collapse-margin">
         {% block navbar_extra_2 %}
         {% endblock %}
+    </div>
+    <div class="collapse-margin pl-2">
         {% block navbar_extra_3 %}
         <input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-2">
         {% endblock %}
@@ -15,7 +17,7 @@
 {% endblock %}
 
 {% block hitMiss %}
-    <span id="hitInfo" class="text-green info lh-4">Hits: 0</span>
+    <span id="hitInfo" class="text-green info">Hits: 0</span> &nbsp;
     <span id="missInfo" class="text-red info">Misses: 0</span>
 {% endblock %}
 
