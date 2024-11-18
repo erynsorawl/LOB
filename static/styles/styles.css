@@ -35,7 +35,7 @@
         margin: 0; 
         position: relative; 
         text-align: center;
-        vertical-align: center;
+        vertical-align: middle;
         color: white;
         text-shadow:
         -1px -1px 0 #000,
@@ -63,6 +63,7 @@
         border-color: black;
         border-spacing: 15px;
         border-width: 0.3em;
+        overflow: hidden;
         aspect-ratio: 1/1;
         justify-content: center;
         background-color: blue;
@@ -190,8 +191,8 @@
         text-shadow: 0px 0px 5px black;
     }
 
-    .text-red {
-        color: rgb(255, 108, 40);
+    .text-orange {
+        color: rgb(255, 177, 88);
     }
 
     .text-purple {
@@ -275,7 +276,7 @@
     }
 
     .bg-maroon {
-        background-color: rgb(68, 0, 0);
+        background-color: rgb(68, 25, 0);
     }
 
     .bg-cyan {
@@ -312,6 +313,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
 
     .r1-c2 {
         position: absolute;
@@ -384,9 +386,7 @@
     }
 
     .text-center-v {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        padding-top: calc(50% - 1em);
     }
 
     .div-center {
@@ -422,6 +422,12 @@
         margin-top: calc(var(--box-size) * -5);
         margin-bottom: calc(var(--box-size) * -5);
     }
+    
+    .up-10 {
+        margin-top: calc(var(--box-size) * -10);
+        margin-bottom: calc(var(--box-size) * -10);
+    }
+
 
     .z-1 {
         z-index: 1;
@@ -429,6 +435,16 @@
 
     .overlay {
         z-index: 2;
+    }
+
+    .overlap {
+        margin-top: -4rem;
+        margin-bottom: -4rem;
+        text-align: center;
+    }
+
+    .underlay {
+        z-index: -2;
     }
 
     .t-layout-fixed {

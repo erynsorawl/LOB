@@ -20,7 +20,7 @@
     </div>
 
     <!--Hints that appear after a certain point on some levels-->
-    <div id="hint" class="bg-dark text-white txtw-15 pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r2-c2">
+    <div id="hint" class="bg-dark text-white txtw-15 pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r2-c2 hidden">
         <p class="text-center text-white">
             {% block hint %}
             {% endblock %} <br>
@@ -35,9 +35,7 @@
         </p>
     </div>
 
-    <!--Container for center-screen items-->
-    <div id="centerBox" class="d-flex justify-content-center w-40 m-auto">
-        <!--Hit and miss counters-->
+    <!--Hit and miss counters-->
         <div id="info1" class="text-center r2-c1 w-4 txtw-8 text-1-5 h-4 lh-4 d-block">
             {% block hitMiss %}
             {% endblock %}
@@ -54,25 +52,25 @@
                                     <div id="di{{j + (size * i)}}" class='
                                         genFade 
                                         hidden 
-                                        d-flex 
-                                        align-items-center 
-                                        justify-content-center 
+                                        text-center
+                                        text-center-v
                                         text-dark 
                                         text-glow 
                                         {% block di_none %}{% endblock %}'
                                         
                                     ></div>
-                                    {% block box %}
-                                    {% endblock %}
+                                    <div id = "p{{j + (size * i)}}" class="overlap">
+                                        {% block box %}
+                                        {% endblock %}
+                                    </div>
                                 </div>
                             </td>
                     {% endfor %}
                 </tr>
             {% endfor %}
         </table>
-        <!--Accuracy counter and next level link-->
-        <span id="accInfo" class="text-purple info text-1-5 text-center r1-c2">Accuracy: 0%</span>
-    </div>
+        <!--Accuracy counter-->
+        <span id="accInfo" class="text-purple info text-1-5 text-center r1-c2 hidden">Accuracy: 0%</span>
 
     <!--Container for buttons-->
     <div id = "buttons" class="d-flex justify-content-center r-3">
@@ -99,7 +97,8 @@
         {% block lower_button0 %}
         {% endblock %}
     </div>
-
+{% block extra %}
+{%endblock%}
     
 {% endblock %}
 
@@ -161,6 +160,16 @@
     </script>
     {% endblock %}
     {% block holdSpeed %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block condense %}
+    <script>
+
+    </script>
+    {% endblock %}
+    {% block flash %}
     <script>
 
     </script>

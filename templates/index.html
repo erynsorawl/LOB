@@ -1,46 +1,59 @@
-{% extends 'base.html' %} {% block title %}LOB{% endblock %}
+{% extends 'lvl.html' %}
 
-{% block content %}
+{% block extra %}
+<a id="nextLevel" class="button rounded text-white box-glow rc-cc overlay" href="/Level1">Start</a>
+{%endblock%}
 
-<div class="d-flex justify-content-center m-3">
-    <div class="bg-dark rounded shadow-lg">
-        <h1 class = 'text-center text-white ml-2 mr-2 t-shadow-s'>
-            Learn Outside The Box{% block level %}{% endblock %}
-        </h1>
-    </div>
-</div>
-<div id="centerBox" class="justify-content-center w-40 m-auto d-none">
-    <table class="align-items-center w-24 m-auto border t-layout-fixed bg-black">
-        {% for i in range(size) %}
-            <tr>
-                {% for j in range(size) %}
-                        <td class='LOBtd' id="t{{j + (size * i)}}">
-                            <div id="d{{j + (size * i)}}" class='tableBorder border-style-none' onclick="colorSwitch(this)">
-                            </div>
-                        </td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-    </table>
-</div>
+{% block explanation %}
 
-<div id = "buttons" class="d-flex justify-content-center abs-center">
-    <a id="nextLevel" class="button rounded text-white p-2" href="/Level1">Begin</a>
-</div>
 {% endblock %}
 
-{% block javascript %}
-    <script>
-        s = 0
-    </script>
+{% block levelscript %}
     <script>
         const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
         const borderColors = ['border-blue', 'border-cyan']
         const backgroundColors = ['bg-blue', 'bg-cyan']
         const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
+        let s = new URLSearchParams(window.location.search).get('seed')
     </script>
-    <script>
-        const size = 3
-    </script>
-    <script type="text/javascript" src="/static/LOB.js"></script>
+{% endblock %}
+{% block levelNum %}
+<script>
+    const levelNum = 1
+</script>
+{% endblock %}
+{% block acc %}
+<script> 
+    const acc = 1 
+</script>
+{% endblock %}
+{% block closeEnough %}
+<script>
+    const closeEnough = 1
+</script>
+{% endblock %}
+{% block checkRigor %}
+<script>
+    const checkRigor = 100
+</script>
+{% endblock %}
+{% block size %}
+<script>
+    const size = 3
+</script>
+{% endblock %}
+{% block hold %}
+<script>
+    const hold = 0
+</script>
+{% endblock %}
+{% block counterLvl %}
+<script>
+    const counterLvl = 0
+</script>
+{% endblock %}
+{% block hintThreshold %}
+<script>
+    const hintThreshold = -1
+</script>
 {% endblock %}

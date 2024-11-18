@@ -30,6 +30,7 @@ solRatios[1] = 0
 
 // counters for each cell
 boxCounters = []
+boxMissCounters = []
 
 // last recorded hit and miss counters
 lastMiss = 0
@@ -69,7 +70,11 @@ for (let i=0; i < solution.length; i++) {
 
     // populate box counters
     boxCounters[i] = 0
+    boxMissCounters[i] = 0
 }
+
+// toggleCounter state
+TCState = 0
 
 // ratio of 1s to 0s
 solRatio = solRatios[1] / solution.length
@@ -90,6 +95,8 @@ count4 = 0
 
 // array of border colors for each cell
 borderIntensity = []
+
+console.log(solRatios)
 
 // convert a hex code into a list of rgba values
 function decode_hex(rgba) {
@@ -284,38 +291,36 @@ function generateSolution() {
 // Generate a completely random solution, and adjust it so it has a similar on/off ratio to the main solution.
 function advGenSol() {
     genSolution=[]
-    genOnCount = 0
-    genOffCount = 0
-    genOnIndex = []
-    genOffIndex = []
+    changedIndex=[]
+    // track which solution indexes haven't been changed, and make genSolution match the solution
+    for (i=0; i<solution.length;i++) {
+        changedIndex[i] = i
+        genSolution[i] = solution[i]
+    }
 
-    // populate the genSolution array with randomized neuron activations
-    for (let i=0; i < solution.length; i++) {
-        genSolution[i] = Math.round(Math.random() * 10) % 2
-        if (genSolution[i] == 1) {
-            genOnCount++
-            genOnIndex.push(i)
-        }
-        else {
-            genOffCount++
-            genOffIndex.push(i)
-        }
-        
-        // if the generated solution has too many on cells, reduce them to desired levels
-        if (genOnCount > solRatios[1] + Math.round(solution.length/8)) {
-            n = genOnIndex[Math.round(Math.random() * genOnIndex.length)]
-            genSolution[n] = 0
-            genOnCount--
-        }
-        // if the generated solution has too many off cells, reduce them to desired levels
-        if (genOffCount > solRatios[0] + Math.round(solution.length/8)) {
-            n = genOffIndex[Math.round(Math.random() * genOffIndex.length)]
-            genSolution[n] = 0
-            genOffCount--
-        }
-        
-    }  
-    return genSolution
+    // define a desired genAcc
+    genAcc = (Math.random() / 4) + acc
+    console.log(genAcc)
+
+    // calculate number of wrong squares to get this accuracy
+    wrongs = Math.round((1 - genAcc) * solution.length)
+    console.log(wrongs)
+
+    // alter the solution randomly to match tmpGenAcc
+    for (i=0;i<wrongs;i++) {
+        // select a random index from the changedIndex array
+        tmpIndex = Math.floor(Math.random() * (solution.length - i))
+        // flip that cell in the genSolution
+    
+        genSolution[changedIndex[tmpIndex]] = (genSolution[changedIndex[tmpIndex]] + 1) % 2
+
+        // remove that index from the array
+        changedIndex.splice(tmpIndex, 1)
+    }
+
+    console.log(changedIndex)
+
+    return [genSolution, genAcc]
 }
 
 // update boxCounter array
@@ -337,7 +342,7 @@ function updateCounter(genSolution) {
     }
 }
 
-// update boxCounter array, but with a bonus based on number of hits
+// update boxCounter array, but with a bonus based on number of misses
 function updateCounter2(genSolution) {
     // calculate number of hits and misses since last update
     hitDiff = hitCount - lastHit
@@ -375,11 +380,20 @@ function updateHitMiss() {
     document.getElementById('missInfo').innerHTML = ("Misses: " + missCount.toString())
 }
 
+function updateMissCounter(genSolution) {
+    for (i=0;i<solution.length;i++) {
+        if (genSolution[i] == 0){
+            boxMissCounters[i]++
+        }
+    }
+}
+
 // update visuals for counter increases
 function updateColor(type) {
     guessCount = 0
     for (let i = 0; i < solution.length; i++) {
-        document.getElementById('d' + i.toString()).getElementsByTagName('p')[0].innerHTML = boxCounters[i]
+        document.getElementById('d' + i.toString()).getElementsByTagName('span')[0].innerHTML = boxCounters[i]
+        document.getElementById('d' + i.toString()).getElementsByTagName('span')[1].innerHTML = boxMissCounters[i]
     }
 
     range = topCounter - bottomCounter
@@ -479,10 +493,17 @@ function basicGenerate() {
         document.getElementById('hint').classList.remove('hidden', 'd-none')
         document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
     }
+    genFlash(genSolution)
+}
+
+// flash genSol on screen
+function genFlash(genSolution) {
+    if (!document.getElementById('p0').classList.contains("hidden")) {
+        toggleCounters()
+    }
 
     boxOn = []
-
-    if (!document.getElementById('di0').classList.contains('animate__animated') && levelNum < 4) {
+    if (!document.getElementById('di0').classList.contains('animate__animated')) {
         
         for (i=0; i<solution.length; i++) {
             boxOn[i] = decode_hex(window.getComputedStyle(document.getElementById('d' + i.toString())).backgroundColor)[1] > checkRigor
@@ -505,14 +526,14 @@ function basicGenerate() {
                             document.getElementById('di' + i.toString()).innerHTML = "Whoops"
                         }
                         else {
-                            document.getElementById('di' + i.toString()).innerHTML = "(Not this one)"
+                            document.getElementById('di' + i.toString()).innerHTML = "(Not this)"
                         }
                     }
                 }
             }
             else {
                 if (genSolution[i] == 1) {
-                    document.getElementById('di' + i.toString()).innerHTML = "Maybe me?"
+                    document.getElementById('di' + i.toString()).innerHTML = "Maybe?"
                 }
                 else {
                     document.getElementById('di' + i.toString()).innerHTML = ""
@@ -536,6 +557,10 @@ function basicGenerate() {
             for (let i=0; i < solution.length; i++) { 
                 document.getElementById('di' + i.toString()).classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut", backgroundColors[genSolution[i]], borderColors[genSolution[i]])
                 document.getElementById('di' + i.toString()).classList.add("hidden")
+                document.getElementById('reliable').classList.add("hidden")
+                if (document.getElementById('p0').classList.contains("hidden") && TCState == 0) {
+                    toggleCounters()
+                }
             }
         }, "2500");
     }
@@ -543,68 +568,7 @@ function basicGenerate() {
 
 // Adjust border colors based on generated solution if it is more than a certain amount accurate to the main solution
 if (hold) {
-    holdit(document.getElementById('guess'), function() {
-        if (document.getElementById('tolerance').value == -2) {
-            tolerance = 0
-        }
-        else if (document.getElementById('tolerance').value > -1) {
-            tolerance = document.getElementById('tolerance').value / 100
-        }
-        else {
-            tolerance = (50 + ((1 / solRatio)) ** 1.2) / 100
-        }
-
-        if (totalGuessCount == hintThreshold) {
-            document.getElementById('hint').classList.remove('hidden', 'd-none')
-            document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
-        }
-
-        if (levelNum < 6) {
-            genSolution = generateSolution()
-        }
-        else {
-            genSolution = advGenSol()
-        }
-        genCor = 0
-        genAcc = 0
-        hit = 0
-
-        // Calculate how accurate genSolution is
-        for (let i=0; i < solution.length; i++) {
-            if (genSolution[i] == solution[i]) {
-                genCor++
-            }
-        }
-
-        genAcc = genCor / solution.length
-
-        // decide whether it's a hit or a miss
-        if (genAcc > tolerance) {
-            hit = 1
-            hitCount++
-        }
-        else
-        {
-            hit = 0
-            missCount++
-        }
-        // update counters
-        if (hit) {
-            if (missBonus) {
-                updateCounter2(genSolution)
-            }
-            else {
-                updateCounter(genSolution)
-            }
-        guessCount++
-        // if condense button hasn't been added yet, update immediately
-        if (levelNum < 6) {
-            updateColor('Border')
-        }
-    }
-    totalGuessCount++
-    updateHitMiss()
-    }, 1000, 4, holdSpeed)
+    holdit(document.getElementById('guess'), advancedGenerate(), 1000, 4, holdSpeed)
 }
 
 function removeGlow() {
@@ -614,7 +578,71 @@ function removeGlow() {
     }
 }
 
-function advancedGenerate(condense) {
+function advancedGenerate() {
+    if (document.getElementById('tolerance').value == -2) {
+        tolerance = 0
+    }
+    else if (document.getElementById('tolerance').value > -1) {
+        tolerance = document.getElementById('tolerance').value / 100
+    }
+    else {
+        tolerance = (52 + ((1 / solRatio)) ** 1.2) / 100
+    }
+
+    if (totalGuessCount == hintThreshold) {
+        document.getElementById('hint').classList.remove('hidden', 'd-none')
+        document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
+    }
+    tmp = advGenSol()
+    genSolution = tmp[0]
+    genAcc = tmp[1]
+    hit = 0
+
+    // decide whether it's a hit or a miss
+    if (genAcc > tolerance) {
+        hit = 1
+        hitCount++
+    }
+    else
+    {
+        hit = 0
+        missCount++
+    }
+    // update counters
+    if (hit) {
+        if (levelNum == 4) {
+            document.getElementById('reliable').classList.remove('hidden', 'bg-maroon')
+            document.getElementById('reliable').classList.add('bg-dark-green')
+            document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is somewhat reliable.</p>'
+        }
+        if (missBonus) {
+            updateCounter2(genSolution)
+        }
+        else {
+            updateCounter(genSolution)
+        }
+    }
+    else {
+        updateMissCounter(genSolution)
+        if (levelNum == 4) {
+            document.getElementById('reliable').classList.remove('hidden', 'bg-dark-green')
+            document.getElementById('reliable').classList.add('bg-maroon')
+            document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is unreliable.</p>'
+        }
+    }
+    guessCount++
+    // if condense button hasn't been added yet, update immediately
+    if (levelNum < 6) {
+        updateColor('Border')
+    }
+
+totalGuessCount++
+updateHitMiss()
+
+    if (flash) {
+        genFlash(genSolution)
+    }
+
     if (!condense) {
         updateColor('Border')
     }
@@ -632,16 +660,20 @@ function new_puzzle() {
 }
 
 // toggle the counters tracking how many times a box has bee guessed
-function toggleCounters() {
-    if (document.getElementById('d0').getElementsByTagName('p')[0].classList.contains("hidden"))
+function toggleCounters(toggle) {
+    if (toggle) {
+        TCState = (TCState + 1) % 2
+    }
+
+    if (document.getElementById('p0').classList.contains("hidden"))
     {
         for (let i = 0; i < solution.length; i++) {
-            document.getElementById('d' + i.toString()).getElementsByTagName('p')[0].classList.remove("hidden")
+            document.getElementById('p' + i.toString()).classList.remove("hidden")
         }
     }
     else {
         for (let i = 0; i < solution.length; i++) {
-            document.getElementById('d' + i.toString()).getElementsByTagName('p')[0].classList.add("hidden")
+            document.getElementById('p' + i.toString()).classList.add("hidden")
         }
     }
 
