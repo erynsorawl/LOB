@@ -2,22 +2,10 @@
 
 {% block level %}: Level 5{% endblock %}
 
-{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick="advancedGenerate()">Guess</button>{% endblock %}
+{% block button0 %}<button id="guess" class="button rounded text-cyan m-1 box-glow">Guess</button>{% endblock %}
 
-{% block explanation %}
-    Welp, now the computer's just guessing <span class="text-yellow">randomly</span>. How are you supposed to figure anything out now?<br><br>
-    Luckily, there's a solution - the <span class="text-cyan">Guesses</span> may be random, but we've still got a vague idea of how close they're getting to the 
-    <span class="text-purple">Answer</span>. <br><br>
-    From now on, we'll be adding a <span class="text-green">Hit</span> or <span class="text-blue">Miss</span> function - whenever a <span class="text-cyan">Guess</span> is 
-    <span class="text-green">over 55%</span> accurate, it'll be considered a <span class="text-green">Hit</span>, and added to the board as usual. When it's 
-    <span class="text-blue">under 55%</span> accurate, it'll be considered a <span class="text-blue">Miss</span> instead, and it won't be added to the board. <br><br>
-    You'll need to make a few more guesses than usual, but this means you'll be able to keep going as if the computer's guesses were all over 
-    <span class="text-yellow">55%</span> accurate. <br><br>
-    In addition, we've improved the <span class="text-cyan">Guess</span> button to make it guess 10 times every click, just to speed things up a bit. Try it out!
-{% endblock %}
-
-{% block box %}
-    <p class="up-5 text-center counter h-1 div-center overlay hidden"></p>
+{% block hint %}
+    Hint: Try holding the 'Guess' button.
 {% endblock %}
 
 {% block levelNum %}
@@ -28,7 +16,7 @@
 
 {% block acc %}
 <script>
-    const acc = .2
+    const acc = .40
 </script>
 {% endblock %}
 
@@ -43,9 +31,9 @@
         const size = 5
     </script>
 {% endblock %}
-{% block maxLoops %}
+{% block hintThreshold %}
 <script>
-    const maxLoops = 50
+    const hintThreshold = 5
 </script>
 {%endblock%}
 {% block maxGuess %}

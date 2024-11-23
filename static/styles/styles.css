@@ -29,21 +29,6 @@
         transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
 
-    .counter {
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-        margin: 0; 
-        position: relative; 
-        text-align: center;
-        vertical-align: middle;
-        color: white;
-        text-shadow:
-        -1px -1px 0 #000,
-        1px -1px 0 #000,
-        -1px 1px 0 #000,
-        1px 1px 0 #000;  
-    }
-
     .genFade {
         border: solid;
         aspect-ratio: 1/1;
@@ -173,8 +158,16 @@
         height: calc(var(--box-size) * 2);
     }
 
+    .h-2-5 {
+        height: calc(var(--box-size) * 2.5);
+    }
+
+    .h-3 {
+        height: calc(var(--box-size) * 3);
+    }
+
     .h-4 {
-        height: calc(var(--box-size) * 2);
+        height: calc(var(--box-size) * 4);
     }
 
     .h-10 {
@@ -217,6 +210,18 @@
 
     .text-orange {
         color: orange;
+    }
+
+    .text-dark-orange {
+        color: rgb(153, 99, 0);
+    }
+
+    .text-black {
+        color: black;
+    }
+
+    .text-red {
+        color: red;
     }
 
     .text-blue {
@@ -386,7 +391,7 @@
     }
 
     .text-center-v {
-        padding-top: calc(50% - 1em);
+        padding-top: calc(50% - 1rem);
     }
 
     .div-center {
@@ -431,6 +436,10 @@
 
     .z-1 {
         z-index: 1;
+    }
+
+    .ar-1 {
+        aspect-ratio: 1/1;
     }
 
     .overlay {

@@ -6,7 +6,7 @@
 {% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Guess</button> 
 <input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-1">{% endblock %}
 
-{% block box %}<p class="up-5 text-center counter h-1 div-center overlay"></p>{% endblock %}
+{% block countSize %}text-1-5{%endblock%}
 
 
 {% block hint %}
@@ -18,13 +18,11 @@
     const levelNum = 3
 </script>
 {% endblock %}
-
 {% block acc %}
     <script>
-        const acc = .75
+        const acc = .63
     </script>
 {% endblock %}
-
 {% block size %}
     <script>
         const size = 4

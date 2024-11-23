@@ -2,10 +2,9 @@
 
 {% block level %}: Level 8{% endblock %}
 
-{% block max_guess %}100{%endblock%}
-{% block guess_value %}40{%endblock%}
-
-{% block button0 %}<button class="button rounded text-cyan m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense', 'missBonus')">Guess</button>{% endblock %}
+{% block hint %}
+    Hint: Sometimes you'll need to miss a lot to score a big win.
+{% endblock %}
 
 {% block explanation %}
     This time, the change is a relatively minor one - the more <span class="text-blue">Misses</span> you get, the more your <span class="text-green">Hits</span> 
@@ -17,6 +16,11 @@
     You're gonna need the extra <span class="text-purple">accuracy</span> for this one. Give it a try!
 {% endblock %}
 
+{% block hintThreshold %}
+<script>
+    const hintThreshold = 200
+</script>
+{%endblock%}
 {% block levelNum %}
 <script>
     const levelNum = 8
@@ -39,8 +43,14 @@
     const maxLoops = 100
 </script>
 {%endblock%}
+
 {% block maxGuess %}
 <script>
-    const maxGuess = 2000
+    const maxGuess = 800
 </script>
 {%endblock%}
+{% block holdSpeed %}
+<script>
+    const holdSpeed = 15
+</script>
+{% endblock %}

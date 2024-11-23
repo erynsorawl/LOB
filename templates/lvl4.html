@@ -15,7 +15,14 @@
     </div>
 {% endblock %}
 
-{% block box %}<span class="text-center z-1 counter h-1 text-lime"></span>&nbsp;&nbsp;<span class="text-center z-1 counter h-1 text-orange"></span>{% endblock %}
+{% block hint %}
+    Tip: You can enable or disable the box counters using the 'Toggle Counters' button.
+{% endblock %}
+
+{% block countSize %}
+{%endblock%}
+
+{% block countInner %}<span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>{%endblock%}
 
 {% block hitMiss %}
     <span id="hitInfo" class="text-green info">Hits: 0</span> &nbsp;
@@ -61,7 +68,7 @@
 {% endblock %}
 {% block hintThreshold %}
 <script>
-    const hintThreshold = Number.MAX_SAFE_INTEGER
+    const hintThreshold = 10
 </script>
 {%endblock%}
 {% block condense %}

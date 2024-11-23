@@ -2,26 +2,19 @@
 
 {% block level %}: Level 6{% endblock %}
 
-{% block navbar_extra_3 %}
-    <span style="padding: 8px;" class="text-white bg-secondary rounded txtw-6">Guesses:</span> 
-    <input id='guesses' class="text-white bg-secondary border-style-none w-4 rounded" 
-    type="number" max="{% block max_guess %}50{%endblock%}" min="0" step="1" value="{% block guess_value %}20{%endblock%}">
-{% endblock %}
-
-{% block button0 %}<button class="button rounded text-cyan m-1" onclick="advancedGenerate(document.getElementById('guesses').value, 'condense')">Guess</button>{% endblock %}
+{% block button0 %}<button id="guess" class="button rounded text-cyan m-1">Guess</button>{% endblock %}
 
 {% block button0_1 %}<button class="button rounded text-aether m-1" onclick="updateColor('Border')">Condense</button>{% endblock %}
 
-{% block explanation %}
-    This one's only going to make a small change - instead of showing up every time you click <span class="text-cyan">Guess</span>, 
-    the counters and colors will only update when you click <span class="text-aether">Condense</span>.
-    You'll only be able to make a certain number of <span class="text-cyan">Guesses</span> before 
-    the button will stop working, and you'll have to <span class="text-aether">Condense</span> to make it to work again.<br><br>
-    This probably won't make much sense right now, but it'll be pretty important later. <br><br>
-    Also, in case you're finding all this clicking a little tedious, we'll be letting you choose how many guesses 
-    one click of the <span class="text-cyan">Guess</span> button will give you.
-    You can find this option on the navbar.
+{% block hint %}
+    Hint: Press the 'Condense' button whenever you get stuck.
 {% endblock %}
+
+{% block hintThreshold %}
+<script>
+    const hintThreshold = 10
+</script>
+{%endblock%}
 
 {% block levelNum %}
 <script>
@@ -34,13 +27,18 @@
     const size = 6
 </script>
 {% endblock %}
-{% block maxLoops %}
-<script>
-    const maxLoops = 50
-</script>
-{%endblock%}
 {% block maxGuess %}
 <script>
-    const maxGuess = 600
+    const maxGuess = 100
 </script>
 {%endblock%}
+{% block holdSpeed %}
+<script>
+    const holdSpeed = 50
+</script>
+{% endblock %}
+{% block holdDelay %}
+<script>
+    const holdDelay = 500
+</script>
+{% endblock %}

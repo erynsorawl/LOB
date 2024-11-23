@@ -1,6 +1,6 @@
 {% extends 'lvl8.html' %}
 
-{% block level %}: Final Level{% endblock %}
+{% block level %}: Finale{% endblock %}
 
 {% block counter_size %}text-05{% endblock %}
 {% block max_guess %}200{%endblock%}
@@ -10,16 +10,21 @@
     <p class="text-center counter h-1 div-center hidden"></p>
 {% endblock %}
 
-{% block explanation %}
-    And now, for the final challenge: a 12x12 board! Imagine if you had to do this level the same way you did level 2, remembering every <span class="text-cyan">Guess</span>
-    that popped up on your screen, and recreating the common results yourself! It'd be possible, but it would take an absurd amount of time to make it even vaguely 
-    <span class="text-purple">Accurate</span> <br><br>
-    Luckily for you, you've gotten many tools to make this easier - the <span class="text-lime">Counters</span> that keep track of all these <span class="text-cyan">Guesses</span>,
-    the <span class="text-yellow">Tolerance</span> bar that filters out useless information, and the <span class="text-aether">Condense</span> button that allows the 
-    <span class="text-yellow">Tolerance</span> bar to work at its best, while simultaneously removing the need to click every single square. <br><br>
-    And now, once you've completed this final level, we'll finally get to see why you were given these tools, 
-    and why this game is called <b>Learn Outside The Box</b>
+{% block hint %}
+    Hint: Go big or go home!
 {% endblock %}
+
+{% block hintThreshold %}
+<script>
+    const hintThreshold = 500
+</script>
+{%endblock%}
+
+{% block closeEnough %}
+<script>
+    const closeEnough = .99
+</script>
+{%endblock%}
 
 {% block levelNum %}
 <script>
@@ -29,7 +34,7 @@
 
 {% block checkRigor %}
 <script>
-    const checkRigor = 250
+    const checkRigor = 245
 </script>
 {% endblock %}
 
@@ -38,13 +43,13 @@
     const size = 12
 </script>
 {% endblock %}
-{% block maxLoops %}
-<script>
-    const maxLoops = 200
-</script>
-{%endblock%}
 {% block maxGuess %}
 <script>
-    const maxGuess = 5000
+    const maxGuess = 2000
 </script>
 {%endblock%}
+{% block holdSpeed %}
+<script>
+    const holdSpeed = 5
+</script>
+{% endblock %}

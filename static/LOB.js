@@ -71,6 +71,11 @@ for (let i=0; i < solution.length; i++) {
     // populate box counters
     boxCounters[i] = 0
     boxMissCounters[i] = 0
+
+    // disable p elements if below certain level
+    if (levelNum != 4) {
+        document.getElementById('p' + i.toString()).classList.add('d-none')
+    }
 }
 
 // toggleCounter state
@@ -95,8 +100,6 @@ count4 = 0
 
 // array of border colors for each cell
 borderIntensity = []
-
-console.log(solRatios)
 
 // convert a hex code into a list of rgba values
 function decode_hex(rgba) {
@@ -163,11 +166,18 @@ function alter_hex(rgba, rgbaAlter)
 }
 
 // Cycle box color when box is clicked
-function colorSwitch(element) {
+function colorSwitch(element, elNum) {
     let color = window.getComputedStyle(element).backgroundColor;
     for (let i=0; i < colors.length; i++) {
+        countElement = document.getElementById('p' + elNum.toString())
+        countElement1 = countElement.getElementsByTagName('span')[0]
+        countElement2 = countElement.getElementsByTagName('span')[1]
         if (color === colors[i]) {
             element.style.background = colors[(i+1) % colors.length]
+            countElement1.classList.add(textColors1[i])
+            countElement1.classList.remove(textColors1[(i + 1) % 2])
+            countElement2.classList.add(textColors2[i])
+            countElement2.classList.remove(textColors2[(i + 1) % 2])
         }
     }
 }
@@ -200,6 +210,7 @@ function check() {
         document.getElementById('sparkle-gifl').classList.remove('hidden')
         document.getElementById('nextLevel').classList.remove('d-none')
         check_flash('perfect')
+        document.getElementById('guess').classList.remove('box-glow')
         document.getElementById('check').classList.remove('box-glow')
         complete = 1
         setTimeout(() => {
@@ -216,6 +227,7 @@ function check() {
         document.getElementById('nextLevel').classList.remove('d-none')
         check_flash('win')
         document.getElementById('check').classList.remove('box-glow')
+        document.getElementById('guess').classList.remove('box-glow')
         complete = 1
         setTimeout(() => {
             document.getElementById('sparkle-gifr').classList.add('hidden')
@@ -300,11 +312,9 @@ function advGenSol() {
 
     // define a desired genAcc
     genAcc = (Math.random() / 4) + acc
-    console.log(genAcc)
 
     // calculate number of wrong squares to get this accuracy
     wrongs = Math.round((1 - genAcc) * solution.length)
-    console.log(wrongs)
 
     // alter the solution randomly to match tmpGenAcc
     for (i=0;i<wrongs;i++) {
@@ -317,8 +327,6 @@ function advGenSol() {
         // remove that index from the array
         changedIndex.splice(tmpIndex, 1)
     }
-
-    console.log(changedIndex)
 
     return [genSolution, genAcc]
 }
@@ -391,9 +399,14 @@ function updateMissCounter(genSolution) {
 // update visuals for counter increases
 function updateColor(type) {
     guessCount = 0
-    for (let i = 0; i < solution.length; i++) {
-        document.getElementById('d' + i.toString()).getElementsByTagName('span')[0].innerHTML = boxCounters[i]
-        document.getElementById('d' + i.toString()).getElementsByTagName('span')[1].innerHTML = boxMissCounters[i]
+    if (levelNum > 2)
+    {
+        for (let i = 0; i < solution.length; i++) {
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = boxCounters[i]
+            if (levelNum > 3) {
+                document.getElementById('p' + i.toString()).getElementsByTagName('span')[1].innerHTML = boxMissCounters[i]
+            }
+        }
     }
 
     range = topCounter - bottomCounter
@@ -454,12 +467,12 @@ function updateColor(type) {
 }
 
 // button holding function
-let holdit = (btn, action, start, speedup, limit) => {
+let holdit = (btn, start, speedup, limit) => {
     let t;
     let startValue = start;
 
     let repeat = () => {
-        action();
+        advancedGenerate();
         t = setTimeout(repeat, startValue);
         (startValue > limit) ? startValue /= speedup: startValue = limit;
     }
@@ -498,7 +511,7 @@ function basicGenerate() {
 
 // flash genSol on screen
 function genFlash(genSolution) {
-    if (!document.getElementById('p0').classList.contains("hidden")) {
+    if (!document.getElementById('p0').classList.contains("d-none")) {
         toggleCounters()
     }
 
@@ -542,7 +555,9 @@ function genFlash(genSolution) {
         }
 
         for (let i=0; i < solution.length; i++) { 
-            document.getElementById('di' + i.toString()).classList.remove("hidden", backgroundColors[(genSolution[i] + 1) % 2], borderColors[(genSolution[i] + 1) % 2])
+            document.getElementById('di' + i.toString()).classList.remove("d-none", backgroundColors[(genSolution[i] + 1) % 2], borderColors[(genSolution[i] + 1) % 2])
+            document.getElementById('reliable').classList.remove("d-none")
+            document.getElementById('p' + i.toString()).classList.add('d-none')
             document.getElementById('di' + i.toString()).classList.add("animate__animated", "animate__fadeIn", backgroundColors[genSolution[i]], borderColors[genSolution[i]])
         }
         
@@ -556,9 +571,9 @@ function genFlash(genSolution) {
         setTimeout(() => {
             for (let i=0; i < solution.length; i++) { 
                 document.getElementById('di' + i.toString()).classList.remove("animate__animated", "animate__fadeIn", "animate__fadeOut", backgroundColors[genSolution[i]], borderColors[genSolution[i]])
-                document.getElementById('di' + i.toString()).classList.add("hidden")
-                document.getElementById('reliable').classList.add("hidden")
-                if (document.getElementById('p0').classList.contains("hidden") && TCState == 0) {
+                document.getElementById('di' + i.toString()).classList.add("d-none")
+                document.getElementById('reliable').classList.add("d-none")
+                if (document.getElementById('p0').classList.contains("d-none") && TCState == 0) {
                     toggleCounters()
                 }
             }
@@ -567,8 +582,8 @@ function genFlash(genSolution) {
 }
 
 // Adjust border colors based on generated solution if it is more than a certain amount accurate to the main solution
-if (hold) {
-    holdit(document.getElementById('guess'), advancedGenerate(), 1000, 4, holdSpeed)
+if (levelNum > 4) {
+    holdit(document.getElementById('guess'), holdDelay, 4, holdSpeed)
 }
 
 function removeGlow() {
@@ -579,74 +594,78 @@ function removeGlow() {
 }
 
 function advancedGenerate() {
-    if (document.getElementById('tolerance').value == -2) {
-        tolerance = 0
-    }
-    else if (document.getElementById('tolerance').value > -1) {
-        tolerance = document.getElementById('tolerance').value / 100
-    }
-    else {
-        tolerance = (52 + ((1 / solRatio)) ** 1.2) / 100
-    }
-
-    if (totalGuessCount == hintThreshold) {
-        document.getElementById('hint').classList.remove('hidden', 'd-none')
-        document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
-    }
-    tmp = advGenSol()
-    genSolution = tmp[0]
-    genAcc = tmp[1]
-    hit = 0
-
-    // decide whether it's a hit or a miss
-    if (genAcc > tolerance) {
-        hit = 1
-        hitCount++
-    }
-    else
-    {
-        hit = 0
-        missCount++
-    }
-    // update counters
-    if (hit) {
-        if (levelNum == 4) {
-            document.getElementById('reliable').classList.remove('hidden', 'bg-maroon')
-            document.getElementById('reliable').classList.add('bg-dark-green')
-            document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is somewhat reliable.</p>'
+    if (guessCount < maxGuess) {
+        if (document.getElementById('tolerance').value == -2) {
+            tolerance = 0
         }
-        if (missBonus) {
-            updateCounter2(genSolution)
+        else if (document.getElementById('tolerance').value > -1) {
+            tolerance = (document.getElementById('tolerance').value / 50) + 0.45
+            console.log(tolerance)
         }
         else {
-            updateCounter(genSolution)
+            tolerance = (52 + ((1 / solRatio)) ** 1.2) / 100
         }
-    }
-    else {
-        updateMissCounter(genSolution)
-        if (levelNum == 4) {
-            document.getElementById('reliable').classList.remove('hidden', 'bg-dark-green')
-            document.getElementById('reliable').classList.add('bg-maroon')
-            document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is unreliable.</p>'
+
+        if (totalGuessCount == hintThreshold) {
+            document.getElementById('hint').classList.remove('hidden', 'd-none')
+            document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
         }
-    }
-    guessCount++
-    // if condense button hasn't been added yet, update immediately
-    if (levelNum < 6) {
-        updateColor('Border')
-    }
+        tmp = advGenSol()
+        genSolution = tmp[0]
+        genAcc = tmp[1]
+        hit = 0
 
-totalGuessCount++
-updateHitMiss()
+        // decide whether it's a hit or a miss
+        if (genAcc > tolerance) {
+            hit = 1
+            hitCount++
+        }
+        else
+        {
+            hit = 0
+            missCount++
+        }
+        // update counters
+        if (hit) {
+            if (levelNum == 4) {
+                document.getElementById('reliable').classList.remove('hidden', 'bg-maroon')
+                document.getElementById('reliable').classList.add('bg-dark-green')
+                document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is somewhat reliable.</p>'
+            }
+            if (levelNum > 7) {
+                updateCounter2(genSolution)
+            }
+            else {
+                updateCounter(genSolution)
+            }
+        }
+        else {
+            updateMissCounter(genSolution)
+            if (levelNum == 4) {
+                document.getElementById('reliable').classList.remove('hidden', 'bg-dark-green')
+                document.getElementById('reliable').classList.add('bg-maroon')
+                document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is unreliable.</p>'
+            }
+        }
+        // if condense button hasn't been added yet, update immediately
+        if (levelNum < 6) {
+            updateColor('Border')
+        }
 
-    if (flash) {
-        genFlash(genSolution)
-    }
+        guessCount++
+        totalGuessCount++
+        updateHitMiss()
 
-    if (!condense) {
-        updateColor('Border')
+        if (levelNum < 5) {
+            genFlash(genSolution)
+        }
+
+        if (levelNum < 6) {
+            updateColor('Border')
+        }
     }
 }
+
 
 // generate a new seed and redirect
 function new_puzzle() {
@@ -661,19 +680,22 @@ function new_puzzle() {
 
 // toggle the counters tracking how many times a box has bee guessed
 function toggleCounters(toggle) {
-    if (toggle) {
-        TCState = (TCState + 1) % 2
-    }
-
-    if (document.getElementById('p0').classList.contains("hidden"))
+    if (levelNum > 2)
     {
-        for (let i = 0; i < solution.length; i++) {
-            document.getElementById('p' + i.toString()).classList.remove("hidden")
+        if (toggle) {
+            TCState = (TCState + 1) % 2
         }
-    }
-    else {
-        for (let i = 0; i < solution.length; i++) {
-            document.getElementById('p' + i.toString()).classList.add("hidden")
+
+        if (document.getElementById('p0').classList.contains("d-none"))
+        {
+            for (let i = 0; i < solution.length; i++) {
+                document.getElementById('p' + i.toString()).classList.remove("d-none")
+            }
+        }
+        else {
+            for (let i = 0; i < solution.length; i++) {
+                document.getElementById('p' + i.toString()).classList.add("d-none")
+            }
         }
     }
 

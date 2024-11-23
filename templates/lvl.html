@@ -48,10 +48,10 @@
                 <tr>
                     {% for j in range(size) %}
                             <td class='LOBtd' id="t{{j + (size * i)}}">
-                                <div id="d{{j + (size * i)}}" class='tableBorder' onclick="colorSwitch(this)">
+                                <div id="d{{j + (size * i)}}" class='tableBorder' {% block colorSwitch %} onclick="colorSwitch(this, '{{j + (size * i)}}')" {%endblock%}>
                                     <div id="di{{j + (size * i)}}" class='
                                         genFade 
-                                        hidden 
+                                        d-none 
                                         text-center
                                         text-center-v
                                         text-dark 
@@ -59,9 +59,8 @@
                                         {% block di_none %}{% endblock %}'
                                         
                                     ></div>
-                                    <div id = "p{{j + (size * i)}}" class="overlap">
-                                        {% block box %}
-                                        {% endblock %}
+                                    <div id = "p{{j + (size * i)}}" class="ar-1 margin-auto text-center text-center-v counter z-1 t-shadow-s {%block countSize%}{%endblock%}">
+                                        {% block countInner %}<span class="text-lime">0</span><span class="text-orange ml-1"></span>{% endblock %}
                                     </div>
                                 </div>
                             </td>
@@ -144,11 +143,6 @@
     <script>
     </script>
     {% endblock %}
-    {% block maxLoops %}
-    <script>
-
-    </script>
-    {%endblock%}
     {% block maxGuess %}
     <script>
 
@@ -164,6 +158,11 @@
 
     </script>
     {% endblock %}
+    {% block holdDelay %}
+    <script>
+
+    </script>
+    {% endblock %}
     {% block condense %}
     <script>
 
@@ -174,6 +173,7 @@
 
     </script>
     {% endblock %}
+
 
     <script type="text/javascript" src="/static/LOB.js"></script>
     <script>
