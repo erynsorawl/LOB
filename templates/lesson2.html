@@ -22,19 +22,36 @@
 {%endblock%}
 
 {%block location%}
-rc-cc
+rc-c1
 {%endblock%}
 
 <!--Neuron icons created by imaginationlol - Flaticon-->
 {%block in_box_img%}/static/assets/neuron.png{%endblock%}
 
 {% block extra%}
-<img id='img' class="rc-c2 w-15 d-none animate__animated" src="/static/assets/basketball.png">
+<div id="4x4"  style="width: calc(var(--box-size) * 15);" class="rc-c2 ar-1 mt-1">
+    <img id='img'  
+    style="border-bottom-width: .15em; border-right-width: .15em;" 
+    class="w-7 animate__animated imgSquare" 
+    src="/static/assets/basketball.png"><img id='img' 
+    style="border-bottom-width: .15em; border-left-width: .15em;" 
+    class="w-7 animate__animated imgSquare" 
+    src="/static/assets/basketball.png">
+    <br>
+    <img id='img' 
+    style="border-top-width: .15em; border-right-width: .15em;"
+    class="w-7 animate__animated imgSquare" 
+    src="/static/assets/basketball.png"><img id='img' 
+    style="border-top-width: .15em; border-left-width: .15em;"
+    class="w-7 animate__animated imgSquare" 
+    src="/static/assets/basketball.png">
+    
+</div>
 {%endblock%}
 
 {%block size%}
 <script>
-    const size = 4
+    const size = 6
 </script>
 {%endblock%}
 
@@ -58,6 +75,40 @@ rc-cc
 
 {%block postscript%}
 <script>
-    
+    lessonDelayState = 0
+    board1 = [
+        0,1,0, 0,0,0,
+        1,0,0, 1,0,0,
+        0,0,0, 0,1,0,
+
+        1,0,1, 0,0,1,
+        0,1,0, 0,1,1,
+        1,0,0, 0,0,1
+    ]
+    for (i=0;i<solution.length;i++) {
+        if (board1[i] == 1) {
+            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
+        }
+        document.getElementById('t' + i.toString()).style.borderWidth = "0.15em"
+        if (i<6) {
+            document.getElementById('t' + i.toString()).style.borderTopWidth = "0.45em"
+        }
+        if(i >= 12 && i < 18) {
+            document.getElementById('t' + i.toString()).style.borderBottomWidth = "0.45em"
+        }
+        if(i>29) {
+            document.getElementById('t' + i.toString()).style.borderBottomWidth = "0.45em"
+        }
+        if(i % 6 == 0) {
+            document.getElementById('t' + i.toString()).style.borderLeftWidth = "0.45em"
+        }
+        if (i % 6 == 2) {
+            document.getElementById('t' + i.toString()).style.borderRightWidth = "0.45em"
+        }
+        if (i % 6 == 5) {
+            document.getElementById('t' + i.toString()).style.borderRightWidth = "0.45em"
+        }
+    }
+
 </script>
 {%endblock%}

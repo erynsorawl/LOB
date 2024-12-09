@@ -98,7 +98,7 @@
 {% block javascript %}
 
 <script>
-    let s = new URLSearchParams(window.location.search).get('seed')
+    let s = '0'
     const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
     const borderColors = ['border-blue', 'border-cyan']
     const textColors1 = ['text-black', 'text-lime']
@@ -118,9 +118,6 @@
 
 <script type="text/javascript" src="/static/LOB.js"></script>
 <script>
-    if (!s) {
-        new_puzzle()
-    }
 </script>
 
 {% endblock %}

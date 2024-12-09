@@ -9,13 +9,13 @@
     </div>
     <div id="bubble-1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
-            <span>Well, it just so happens that the mechanics in this game are a direct translation of some basic neuroscientific principles.
+            <span>Well, it turns out that it was actually a bunch of neuroscience lessons, simplified and turned into a game.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
     <div id="bubble0" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
-        <p class="text-center text-white">If you understood the game mechanics, you should be able to understand these ones too - they're one and the same, after all.</span><br>
+        <p class="text-center text-white">If you understood the game mechanics, then congratulations - you understand the basics of neuroscience! Now, we just need to translate them.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
@@ -79,6 +79,7 @@ rc-cc
 
 {%block postscript%}
 <script>
+    lessonDelayState = 0
     board1 = [
         0,1,0,
         1,0,0,
@@ -95,43 +96,48 @@ rc-cc
         0,1,0
     ]
     function lesson() {
-        if (!bubbleDelayState) {
-        duration = 1500
-        bubbleCycle(duration + 1000)
-        for (i=0;i<solution.length;i++) {
-            animate(document.getElementById('im' + i.toString()), 0, duration, 1)
-        }
-        setTimeout(() => {
-            document.getElementById('tableDiv').classList.remove('rc-cc')
-            document.getElementById('tableDiv').classList.add('rc-c1')
-            animate(document.getElementById('img'), 0)
+        if (!lessonDelayState) {
+            duration = 1500
+            lessonDelayState = 1
             for (i=0;i<solution.length;i++) {
-                if (board1[i] == 1) {
-                    colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
-                }
+                animate(document.getElementById('im' + i.toString()), 0, duration, 1)
             }
-        }, duration + 1000);
-    }
+            setTimeout(() => {
+                bubbleCycle(duration)
+                document.getElementById('tableDiv').classList.remove('rc-cc')
+                document.getElementById('tableDiv').classList.add('rc-c1')
+                animate(document.getElementById('img'), 0)
+                for (i=0;i<solution.length;i++) {
+                    if (board1[i] == 1) {
+                        colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
+                    }
+                }
+                lessonDelayState = 0
+            }, duration + 1000);
+      }
     }
 
     function lesson2() {
-        if (!bubbleDelayState) {
-        duration = 1000
-        animate (document.getElementById('img'), 1, duration, 1)
-        setTimeout(() => {
-            bubbleCycle(duration)
-            for (i=0;i<solution.length;i++) {
-                if (board2[i] == 1) {
-                    colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
+        if (!lessonDelayState) {
+            lessonDelayState = 1
+            duration = 1000
+            animate (document.getElementById('img'), 1, duration, 1)
+            setTimeout(() => {
+                bubbleCycle(duration)
+                for (i=0;i<solution.length;i++) {
+                    if (board2[i] == 1) {
+                        colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
+                    }
                 }
-            }
-            document.getElementById('img').src = "/static/assets/basketball2.png"
-        }, duration);
-    }
+                document.getElementById('img').src = "/static/assets/basketball2.png"
+                lessonDelayState = 0
+            }, duration);
+        }
     }
 
     function lesson3() {
-        if (!bubbleDelayState) {
+        if (!lessonDelayState) {
+            lessonDelayState = 1
             document.getElementById('sparkle-gifr').classList.remove('hidden')
             document.getElementById('sparkle-gifl').classList.remove('hidden')
             check_flash('win')
@@ -139,7 +145,8 @@ rc-cc
         setTimeout(()=>{
             document.getElementById('sparkle-gifr').classList.add('hidden')
             document.getElementById('sparkle-gifl').classList.add('hidden')
-            window.location.href = "/";
+            window.location.href = "/lesson_2";
+            lessonDelayState = 0
         }, 2000)
     }
     }

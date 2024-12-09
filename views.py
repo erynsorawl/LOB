@@ -49,7 +49,7 @@ def lvl10():
 
 @views.route('/finish')
 def finish():
-    return render_template("lesson.html", size = 3)
+    return render_template("Finish.html", size = 3)
 
 @views.route('/lesson_1')
 def lesson1():
@@ -57,6 +57,6 @@ def lesson1():
 
 @views.route('/lesson_2')
 def lesson2():
-    return render_template("lesson1.html", size = 4)
+    return render_template("lesson2.html", size = 6)
 
 

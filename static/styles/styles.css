@@ -76,6 +76,13 @@
         transform: rotateY(180deg);
     }
 
+    .imgSquare {
+        border: solid;
+        border-color: black;
+        border-width: .3rem;
+        aspect-ratio: 1/1;
+    }
+
     /*Credit: https://projects.verou.me/bubbly/*/
 
     .speech-bubble {
@@ -215,6 +222,11 @@
         width: 8rem;
     }
 
+    .w-7 {
+        width: calc(var(--box-size) * 7.3);
+
+    }
+
     .w-10 {
         width: calc(var(--box-size) * 10);
     }
@@ -257,6 +269,10 @@
 
     .h-4 {
         height: calc(var(--box-size) * 4);
+    }
+
+    .h-7 {
+        height: calc(var(--box-size) * 7);
     }
 
     .h-10 {
@@ -343,6 +359,10 @@
 
     .border-green {
         border-color: rgb(0, 255, 0);
+    }
+
+    .border-black {
+        border-color: black;
     }
 
     .border-blue {
