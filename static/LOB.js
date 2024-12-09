@@ -71,12 +71,8 @@ for (let i=0; i < solution.length; i++) {
     // populate box counters
     boxCounters[i] = 0
     boxMissCounters[i] = 0
-
-    // disable p elements if below certain level
-    if (levelNum != 4) {
-        document.getElementById('p' + i.toString()).classList.add('d-none')
-    }
 }
+
 
 // toggleCounter state
 TCState = 0
@@ -100,6 +96,9 @@ count4 = 0
 
 // array of border colors for each cell
 borderIntensity = []
+
+bubbleState = 0
+bubbleDelayState = 0
 
 // convert a hex code into a list of rgba values
 function decode_hex(rgba) {
@@ -165,19 +164,80 @@ function alter_hex(rgba, rgbaAlter)
     return nHex
 }
 
+// Cycle between a list of text boxes to flash on screen
+function bubbleCycle(delay) {
+    if (!bubbleDelayState) {
+
+        if (bubbleState <= bubbleList.length) {
+            if (bubbleList[bubbleState]) {
+                document.getElementById(bubbleList[bubbleState]).classList.add('d-none')
+            }
+            if (bubListenList[bubbleState]) {
+                if (bubListenList[bubbleState][0]) {
+                    document.getElementById(bubListenList[bubbleState][0]).removeEventListener(bubListenList[bubbleState][1], bubListenList[bubbleState][2])
+                }
+            }
+            if (bubbleList[bubbleState + 1]) {
+                    document.getElementById(bubbleList[bubbleState + 1]).classList.remove('d-none')
+                }
+            if (bubListenList[bubbleState + 1]) {
+                if (bubListenList[bubbleState + 1][0]) {
+                    document.getElementById(bubListenList[bubbleState + 1][0]).addEventListener(bubListenList[bubbleState + 1][1], bubListenList[bubbleState + 1][2])
+                }
+            }
+            bubbleState++
+            if (delay) {
+                bubbleDelayState = 1
+                setTimeout(()=>{
+                    bubbleDelayState = 0
+                }, delay)
+            }
+        }
+    }
+}
+
+
+// cycle bubbles if board is complete  
+function bubOnComplete() {
+    count = 0
+    answer = []
+    for (i=0; i < solution.length; i++) {
+        tColor = window.getComputedStyle(document.getElementById('d' + i.toString())).backgroundColor
+        boxGreen = decode_hex(tColor)[1]
+        if (boxGreen > checkRigor) {
+            answer[i] = 1
+        }
+        else {
+            answer[i] = 0
+        }
+
+        if (answer[i] == solution[i]) {
+                count++
+            }
+    }
+
+    if (count >= solution.length * closeEnough) {
+        bubbleCycle()
+    }
+}
+
 // Cycle box color when box is clicked
-function colorSwitch(element, elNum) {
+function colorSwitch(element, elNum, noP) {
     let color = window.getComputedStyle(element).backgroundColor;
     for (let i=0; i < colors.length; i++) {
-        countElement = document.getElementById('p' + elNum.toString())
-        countElement1 = countElement.getElementsByTagName('span')[0]
-        countElement2 = countElement.getElementsByTagName('span')[1]
+        if (!noP) {
+            countElement = document.getElementById('p' + elNum.toString())
+            countElement1 = countElement.getElementsByTagName('span')[0]
+            countElement2 = countElement.getElementsByTagName('span')[1]
+        }
         if (color === colors[i]) {
             element.style.background = colors[(i+1) % colors.length]
-            countElement1.classList.add(textColors1[i])
-            countElement1.classList.remove(textColors1[(i + 1) % 2])
-            countElement2.classList.add(textColors2[i])
-            countElement2.classList.remove(textColors2[(i + 1) % 2])
+            if (!noP) {
+                countElement1.classList.add(textColors1[i])
+                countElement1.classList.remove(textColors1[(i + 1) % 2])
+                countElement2.classList.add(textColors2[i])
+                countElement2.classList.remove(textColors2[(i + 1) % 2])
+            }
         }
     }
 }
@@ -232,10 +292,16 @@ function check() {
         setTimeout(() => {
             document.getElementById('sparkle-gifr').classList.add('hidden')
             document.getElementById('sparkle-gifl').classList.add('hidden')
-        }, "3000");}
+        }, "3000")
+    }
     }
     else {
-        document.getElementById('accInfo').innerHTML = 'Accuracy: ' + accuracy.toString() + '%' 
+        if (levelNum < 7) {
+            document.getElementById('accInfo').innerHTML = 'Accuracy: ' + accuracy.toString() + '%' 
+        }
+        else {
+            document.getElementById('accInfo').innerHTML = 'Clarity: ' + accuracy.toString() + '%' 
+        }
         if (!complete) {
             document.getElementById('accInfo').classList.remove('hidden')
             document.getElementById('check').classList.remove('box-glow')
@@ -260,7 +326,7 @@ function check_flash(win) {
         el.classList.add('text-green')
     }
     else {
-        el.innerHTML = "Try again!"
+        el.innerHTML = "Keep going!"
         el.classList.remove('text-green')
         el.classList.add('text-orange')
     }
@@ -311,7 +377,8 @@ function advGenSol() {
     }
 
     // define a desired genAcc
-    genAcc = (Math.random() / 4) + acc
+    genAcc = (Math.random() / 3) + .4 + acc
+
 
     // calculate number of wrong squares to get this accuracy
     wrongs = Math.round((1 - genAcc) * solution.length)
@@ -415,7 +482,7 @@ function updateColor(type) {
     if (range > 5) {
 
         for (let i=0; i < solution.length; i++) {
-            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) / (range / 320))
+            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) / (range / 270))
             if (borderIntensity[i] > 255) {
                 borderIntensity[i] = 255
             }
@@ -465,32 +532,6 @@ function updateColor(type) {
         }
     }
 }
-
-// button holding function
-let holdit = (btn, start, speedup, limit) => {
-    let t;
-    let startValue = start;
-
-    let repeat = () => {
-        advancedGenerate();
-        t = setTimeout(repeat, startValue);
-        (startValue > limit) ? startValue /= speedup: startValue = limit;
-    }
-
-    btn.onmousedown = () => {
-        repeat();
-    }
-
-    const stopActionEvents = ['mouseup', 'mouseout'];
-
-    stopActionEvents.forEach(event => {
-        btn.addEventListener(event, () => {
-            clearTimeout(t);
-            startValue = start;
-        })
-    });
-
-};
 
 // Flash a generated solution on screen
 function basicGenerate() {
@@ -577,13 +618,12 @@ function genFlash(genSolution) {
                     toggleCounters()
                 }
             }
+            if (levelNum == 4) {
+                document.getElementById('hitInfo').classList.remove('d-none')
+                document.getElementById('missInfo').classList.remove('d-none')
+            }
         }, "2500");
     }
-}
-
-// Adjust border colors based on generated solution if it is more than a certain amount accurate to the main solution
-if (levelNum > 4) {
-    holdit(document.getElementById('guess'), holdDelay, 4, holdSpeed)
 }
 
 function removeGlow() {
@@ -593,79 +633,89 @@ function removeGlow() {
     }
 }
 
-function advancedGenerate() {
-    if (guessCount < maxGuess) {
-        if (document.getElementById('tolerance').value == -2) {
-            tolerance = 0
-        }
-        else if (document.getElementById('tolerance').value > -1) {
-            tolerance = (document.getElementById('tolerance').value / 50) + 0.45
-            console.log(tolerance)
-        }
-        else {
-            tolerance = (52 + ((1 / solRatio)) ** 1.2) / 100
+function advancedGenerate(loops) {
+    for (k=0;k<loops;k++) {
+        if (levelNum == 4 && document.getElementById('di0').classList.contains('animate__animated') && totalGuessCount < bubbleList.length) {
+            return 0
         }
 
-        if (totalGuessCount == hintThreshold) {
-            document.getElementById('hint').classList.remove('hidden', 'd-none')
-            document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
-        }
-        tmp = advGenSol()
-        genSolution = tmp[0]
-        genAcc = tmp[1]
-        hit = 0
-
-        // decide whether it's a hit or a miss
-        if (genAcc > tolerance) {
-            hit = 1
-            hitCount++
-        }
-        else
-        {
-            hit = 0
-            missCount++
-        }
-        // update counters
-        if (hit) {
-            if (levelNum == 4) {
-                document.getElementById('reliable').classList.remove('hidden', 'bg-maroon')
-                document.getElementById('reliable').classList.add('bg-dark-green')
-                document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is somewhat reliable.</p>'
+        if (guessCount < maxGuess) {
+            if (document.getElementById('tolerance').value == -2) {
+                tolerance = 0
             }
-            if (levelNum > 7) {
-                updateCounter2(genSolution)
+            else if (document.getElementById('tolerance').value > -1) {
+                tolerance = ((document.getElementById('tolerance').value / 20) + .24)
             }
             else {
-                updateCounter(genSolution)
+                tolerance = (52 + ((1 / solRatio)) ** 1.2) / 100
             }
-        }
-        else {
-            updateMissCounter(genSolution)
-            if (levelNum == 4) {
-                document.getElementById('reliable').classList.remove('hidden', 'bg-dark-green')
-                document.getElementById('reliable').classList.add('bg-maroon')
-                document.getElementById('reliable').innerHTML = '<p class="text-center text-white">This guess is unreliable.</p>'
+
+            if (totalGuessCount == hintThreshold) {
+                document.getElementById('hint').classList.remove('hidden', 'd-none')
+                document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
             }
-        }
-        // if condense button hasn't been added yet, update immediately
-        if (levelNum < 6) {
-            updateColor('Border')
-        }
 
-        guessCount++
-        totalGuessCount++
-        updateHitMiss()
+            for (i=0;i<bubbleGuessPoints.length;i++) {
+                if (totalGuessCount == bubbleGuessPoints[i]) {
+                    bubbleCycle()
+                }
+            }
+            tmp = advGenSol()
+            genSolution = tmp[0]
+            genAcc = tmp[1]
+            hit = 0
 
-        if (levelNum < 5) {
-            genFlash(genSolution)
-        }
+            // decide whether it's a hit or a miss
+            if (genAcc > tolerance) {
+                hit = 1
+                hitCount++
+            }
+            else
+            {
+                hit = 0
+                missCount++
+            }
+            // update counters
+            if (hit) {
+                if (levelNum == 4) {
+                    document.getElementById('reliable').classList.remove('hidden', 'bg-maroon')
+                    document.getElementById('reliable').classList.add('bg-dark-green')
+                    document.getElementById('reliable').innerHTML = '<p class="text-center text-white">That was a good guess!</p>'
+                }
+                if (levelNum > 7) {
+                    updateCounter2(genSolution)
+                }
+                else {
+                    updateCounter(genSolution)
+                }
+            }
+            else {
+                updateMissCounter(genSolution)
+                if (levelNum == 4) {
+                    document.getElementById('reliable').classList.remove('hidden', 'bg-dark-green')
+                    document.getElementById('reliable').classList.add('bg-maroon')
+                    document.getElementById('reliable').innerHTML = "<p class='text-center text-white'>That wasn't a good guess...</p>"
+                }
+            }
+            // if condense button hasn't been added yet, update immediately
+            if (levelNum < 6) {
+                updateColor('Border')
+            }
 
-        if (levelNum < 6) {
-            updateColor('Border')
+            guessCount++
+            totalGuessCount++
+            updateHitMiss()
+
+            if (levelNum < 5) {
+                genFlash(genSolution)
+            }
+
+            if (levelNum < 6) {
+                updateColor('Border')
+            }
         }
     }
 }
-
 
 // generate a new seed and redirect
 function new_puzzle() {
@@ -708,4 +758,30 @@ function hint() {
     setTimeout(() => {
         document.getElementById('hint').classList.add('hidden', 'd-none')
     }, 1000)
+}
+
+// make a general function for animating elements
+function animate(element, type, duration, double) {
+    types = ['animate__fadeIn', 'animate__fadeOut']
+    element.classList.remove(types[(type+1)%2])
+    element.classList.add(types[type])
+    element.classList.remove('d-none')
+    if (double) {
+        setTimeout(() => {
+            element.classList.remove(types[type])
+            element.classList.add(types[(type+1)%2])
+            if (type && duration > 1000) {
+                element.classList.add('d-none')
+                setTimeout(() => {
+                    element.classList.remove('d-none')
+                }, duration - 1000)
+            }
+        }, duration)
+        setTimeout(() => {
+            element.classList.remove(types[(type+1)%2])
+            if (!type) {
+                element.classList.add('d-none')
+            }
+        }, duration + 1000)
+    }
 }

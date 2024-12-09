@@ -1,0 +1,86 @@
+{% extends 'lvl.html' %}
+
+{% block extra %}
+<a id="nextLevel" class="button rounded text-white box-glow rc-cc overlay" href="/Level1">Start</a>
+{%endblock%}
+
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+        <p class="text-center text-white">
+            Congratulations!
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+{%endblock%}
+
+<!--b1 - Congrats! - next -->
+<!--Would you like to play again, or would you like to find out how you just accidentally became a neuroscientist?-->
+<!-- step through each level again and explain mechanics and how they relate -->
+
+{% block bubbleList %}
+<script>
+    const bubbleList = ['','bubble1','bubble2']
+    bubListenList = [['guess', 'click', '']]
+</script>
+{% endblock %}
+{% block bubbleScript %}
+<script>
+    bubListenList[0][2] = bubbleCycle
+    bubbleCycle()
+</script>
+{% endblock %}
+{% block bubbleGuessPoints %}
+<script>
+    const bubbleGuessPoints = []
+</script>
+{%endblock%}
+
+{% block levelscript %}
+    <script>
+        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
+        const borderColors = ['border-blue', 'border-cyan']
+        const backgroundColors = ['bg-blue', 'bg-cyan']
+        const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
+        let s = new URLSearchParams(window.location.search).get('seed')
+    </script>
+{% endblock %}
+{% block levelNum %}
+<script>
+    const levelNum = 1
+</script>
+{% endblock %}
+{% block acc %}
+<script> 
+    const acc = 1 
+</script>
+{% endblock %}
+{% block closeEnough %}
+<script>
+    const closeEnough = 1
+</script>
+{% endblock %}
+{% block checkRigor %}
+<script>
+    const checkRigor = 100
+</script>
+{% endblock %}
+{% block size %}
+<script>
+    const size = 3
+</script>
+{% endblock %}
+{% block hold %}
+<script>
+    const hold = 0
+</script>
+{% endblock %}
+{% block counterLvl %}
+<script>
+    const counterLvl = 0
+</script>
+{% endblock %}
+{% block hintThreshold %}
+<script>
+    const hintThreshold = -1
+</script>
+{% endblock %}

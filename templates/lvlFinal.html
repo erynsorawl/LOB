@@ -10,19 +10,44 @@
     <p class="text-center counter h-1 div-center hidden"></p>
 {% endblock %}
 
-{% block hint %}
-    Hint: Go big or go home!
-{% endblock %}
+{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(20)'>Guess</button>{% endblock %}
 
-{% block hintThreshold %}
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+        <p class="text-center text-white">
+            <span>And that's all the mechanics.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble2" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+        <p class="text-center text-white">
+            <span>Now, go big or go home!.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+{%endblock%}
+
+{% block bubbleList %}
 <script>
-    const hintThreshold = 500
+    const bubbleList = ['','bubble1','bubble2']
+    bubListenList = [['guess', 'click', '']]
+</script>
+{% endblock %}
+{% block bubbleScript %}
+<script>
+    bubListenList[0][2] = bubbleCycle
+    bubbleCycle()
+</script>
+{% endblock %}
+{% block bubbleGuessPoints %}
+<script>
+    const bubbleGuessPoints = []
 </script>
 {%endblock%}
 
 {% block closeEnough %}
 <script>
-    const closeEnough = .99
+    const closeEnough = .97
 </script>
 {%endblock%}
 
@@ -34,7 +59,7 @@
 
 {% block checkRigor %}
 <script>
-    const checkRigor = 245
+    const checkRigor = 225
 </script>
 {% endblock %}
 
@@ -45,7 +70,7 @@
 {% endblock %}
 {% block maxGuess %}
 <script>
-    const maxGuess = 2000
+    const maxGuess = 400
 </script>
 {%endblock%}
 {% block holdSpeed %}

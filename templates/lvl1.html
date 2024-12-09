@@ -2,13 +2,27 @@
 
 {% block level %}: Level 1{% endblock %}
 
-{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Guess</button>{% endblock %}
-{% block button1 %}<button id='check' class="button rounded text-purple m-1" onclick="check()">Check</button>{% endblock %}
+{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Guess</button>    
+{% endblock %}
+{% block button1 %}<button id='check' class="button rounded text-purple m-1" onclick="check()">Submit</button>{% endblock %}
 {% block button2 %}<a id="nextLevel" class="button text-green rounded m-1 box-glow d-none" href="/Level{{nextLevel}}">Next Level</a>{% endblock %}
 
 {% block explanation %}
 
 {% endblock %}
+
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-3-b1">
+        <p class="text-center text-white">
+            <span>Hello, and welcome to LOB! To get started, click the <span class="text-cyan">'Guess'</span> button.</span>
+        </p>
+    </div>
+    <div id="bubble2" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg r-3-b2 d-none">
+        <p class="text-center text-white">
+            <span>When you're done, click <span class="text-purple">'Submit'</span>.</span>
+        </p>
+    </div>
+{%endblock%}
 
 {% block levelscript %}
     <script>
@@ -20,6 +34,20 @@
         const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
         let s = new URLSearchParams(window.location.search).get('seed')
     </script>
+{% endblock %}
+{% block bubbleList %}
+<script>
+    const bubbleList = ['bubble1', '', 'bubble2']
+    bubListenList = [['guess', 'click', ''], ['lobTable', 'click', ''], ['check', 'click', '']]
+</script>
+{% endblock %}
+{% block bubbleScript %}
+<script>
+    document.getElementById('guess').addEventListener('click', bubbleCycle)
+    bubListenList[0][2] = bubbleCycle
+    bubListenList[1][2] = bubOnComplete
+    bubListenList[2][2] = bubbleCycle
+</script>
 {% endblock %}
 {% block levelNum %}
 <script>
