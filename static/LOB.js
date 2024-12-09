@@ -97,8 +97,8 @@ count4 = 0
 // array of border colors for each cell
 borderIntensity = []
 
-// tracker for current bubble
 bubbleState = 0
+bubbleDelayState = 0
 
 // convert a hex code into a list of rgba values
 function decode_hex(rgba) {
@@ -165,26 +165,34 @@ function alter_hex(rgba, rgbaAlter)
 }
 
 // Cycle between a list of text boxes to flash on screen
-function bubbleCycle() {
+function bubbleCycle(delay) {
+    if (!bubbleDelayState) {
 
-    if (bubbleState <= bubbleList.length) {
-        if (bubbleList[bubbleState]) {
-            document.getElementById(bubbleList[bubbleState]).classList.add('d-none')
-        }
-        if (bubListenList[bubbleState]) {
-            if (bubListenList[bubbleState][0]) {
-                document.getElementById(bubListenList[bubbleState][0]).removeEventListener(bubListenList[bubbleState][1], bubListenList[bubbleState][2])
+        if (bubbleState <= bubbleList.length) {
+            if (bubbleList[bubbleState]) {
+                document.getElementById(bubbleList[bubbleState]).classList.add('d-none')
+            }
+            if (bubListenList[bubbleState]) {
+                if (bubListenList[bubbleState][0]) {
+                    document.getElementById(bubListenList[bubbleState][0]).removeEventListener(bubListenList[bubbleState][1], bubListenList[bubbleState][2])
+                }
+            }
+            if (bubbleList[bubbleState + 1]) {
+                    document.getElementById(bubbleList[bubbleState + 1]).classList.remove('d-none')
+                }
+            if (bubListenList[bubbleState + 1]) {
+                if (bubListenList[bubbleState + 1][0]) {
+                    document.getElementById(bubListenList[bubbleState + 1][0]).addEventListener(bubListenList[bubbleState + 1][1], bubListenList[bubbleState + 1][2])
+                }
+            }
+            bubbleState++
+            if (delay) {
+                bubbleDelayState = 1
+                setTimeout(()=>{
+                    bubbleDelayState = 0
+                }, delay)
             }
         }
-        if (bubbleList[bubbleState + 1]) {
-                document.getElementById(bubbleList[bubbleState + 1]).classList.remove('d-none')
-            }
-        if (bubListenList[bubbleState + 1]) {
-            if (bubListenList[bubbleState + 1][0]) {
-                document.getElementById(bubListenList[bubbleState + 1][0]).addEventListener(bubListenList[bubbleState + 1][1], bubListenList[bubbleState + 1][2])
-            }
-        }
-        bubbleState++
     }
 }
 
@@ -214,18 +222,22 @@ function bubOnComplete() {
 }
 
 // Cycle box color when box is clicked
-function colorSwitch(element, elNum) {
+function colorSwitch(element, elNum, noP) {
     let color = window.getComputedStyle(element).backgroundColor;
     for (let i=0; i < colors.length; i++) {
-        countElement = document.getElementById('p' + elNum.toString())
-        countElement1 = countElement.getElementsByTagName('span')[0]
-        countElement2 = countElement.getElementsByTagName('span')[1]
+        if (!noP) {
+            countElement = document.getElementById('p' + elNum.toString())
+            countElement1 = countElement.getElementsByTagName('span')[0]
+            countElement2 = countElement.getElementsByTagName('span')[1]
+        }
         if (color === colors[i]) {
             element.style.background = colors[(i+1) % colors.length]
-            countElement1.classList.add(textColors1[i])
-            countElement1.classList.remove(textColors1[(i + 1) % 2])
-            countElement2.classList.add(textColors2[i])
-            countElement2.classList.remove(textColors2[(i + 1) % 2])
+            if (!noP) {
+                countElement1.classList.add(textColors1[i])
+                countElement1.classList.remove(textColors1[(i + 1) % 2])
+                countElement2.classList.add(textColors2[i])
+                countElement2.classList.remove(textColors2[(i + 1) % 2])
+            }
         }
     }
 }
@@ -367,7 +379,6 @@ function advGenSol() {
     // define a desired genAcc
     genAcc = (Math.random() / 3) + .4 + acc
 
-    console.log(genAcc)
 
     // calculate number of wrong squares to get this accuracy
     wrongs = Math.round((1 - genAcc) * solution.length)
@@ -634,7 +645,6 @@ function advancedGenerate(loops) {
             }
             else if (document.getElementById('tolerance').value > -1) {
                 tolerance = ((document.getElementById('tolerance').value / 20) + .24)
-                console.log('Tolerance:' + tolerance)
             }
             else {
                 tolerance = (52 + ((1 / solRatio)) ** 1.2) / 100
@@ -752,7 +762,6 @@ function hint() {
 
 // make a general function for animating elements
 function animate(element, type, duration, double) {
-    console.log(element)
     types = ['animate__fadeIn', 'animate__fadeOut']
     element.classList.remove(types[(type+1)%2])
     element.classList.add(types[type])

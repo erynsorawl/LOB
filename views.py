@@ -55,3 +55,8 @@ def finish():
 def lesson1():
     return render_template("lesson1.html", size = 3)
 
+@views.route('/lesson_2')
+def lesson2():
+    return render_template("lesson1.html", size = 4)
+
+

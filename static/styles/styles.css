@@ -356,6 +356,10 @@
     .bg-blue {
         background-color: blue;
     }
+
+    .text-blue {
+        color: rgb(146, 176, 240);
+    }
     
     .bg-black {
         background-color: black;
