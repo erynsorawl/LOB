@@ -70,5 +70,7 @@ Level 5 will be the hold button and no flash demonstration.
 Change tolerance to a scale of 1 to 10, 10 being 70% and 1 being 50%. Change the name to 'On a scale of 1-10, how high are your standards?'
 Also change the 'This guess is reliable' to 'You think this guess is reliable'
 
-Change the ending to 'Congratulations, story mode complete! If you'd like to play more, click here! If you'd like to know more about how
-you accidentally just learned neuroscience, click here!
+Change the ending to 'Congratulations, game complete! If you'd like to play again, click here! If you'd like to learn how
+you accidentally just became a neuroscientist, click here!
+
+Make an explanation page and transfer everything over to streamlined client-only versions, and I'm done!

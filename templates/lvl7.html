@@ -7,9 +7,56 @@
 
 {% block navbar_extra_2 %}{%endblock%}
 
-{% block button0_1%}<button class="button rounded text-aether m-1" onclick="updateColor('Box')">Condense</button>{% endblock %}
+{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(5)'>Guess</button>{% endblock %}
 
-{% block colorSwitch %}
+{% block button0_1%}<button class="button rounded text-aether m-1" onclick="updateColor('Box')">Update</button>{% endblock %}
+
+{% block colorSwitch %}name{%endblock%}
+
+
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+        <p class="text-center text-white">
+            <span>You can no longer click tiles manually.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble1.5" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+        <p class="text-center text-white">
+            <span>Instead, you'll be judged based on how clear the board's <span class="text-cyan">coloring</span> is.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble2" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+        <p class="text-center text-white">
+            <span>To progress, you'll have to control how your <span class="text-green">'Hits'</span> and <span class="text-orange">'Misses'</span> are decided.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble3" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+        <p class="text-center text-white">
+            <span>Higher standards will reduce how many of your <span class="text-cyan">Guesses</span> are counted as <span class="text-green">'Hits'</span>, only picking the most accurate.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble3.5" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+        <p class="text-center text-white">
+            <span>This'll make it take longer, but it can increase the clarity of each guess.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble3.6" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+        <p class="text-center text-white">
+            <span>Lower-standard Guesses can also reach high clarity if you spam them long enough, though.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble4" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+        <p class="text-center text-white">
+            <span>Try to find the <span class="text-yellow">Standards</span> that get you there the fastest!</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
 {%endblock%}
 
 {% block lower_button0 %}
@@ -17,26 +64,31 @@
         <input id='tolerance' class = "text-yellow rounded w-2 pl-1 bg-dark2" type="number" max="10" min="1" step="1" value="1"></span>
 {% endblock %}
 
-{% block hint %}
-    Hint: If you can't get the details quite right, try raising your standards.
-{% endblock %}
-
-{% block explanation %}
-    Looks like we've got a pretty big change here - the squares can't be clicked anymore! Instead, the <span class="text-aether">Condense</span> 
-    button will color the board for you. <br><br>
-    This means it's gonna be a lot harder to make small adjustments. Luckily, we've also added a <span class="text-yellow">Tolerance</span> input, 
-    which will allow you to change the point where something is considered a <span class="text-green">Hit</span> or a <span class="text-blue">Miss</span> <br><br>
-    Putting a higher number in the <span class="text-yellow">Tolerance</span> field will slow things down a bit, but it'll also make the end result a lot more accurate.
-    Try fiddling around with it, and find that perfect balance between quality and speed!
-{% endblock %}
-
 {% block countSize %}text-05{%endblock%}
 
-{% block hintThreshold %}
+{% block bubbleList %}
 <script>
-    const hintThreshold = 100
+    const bubbleList = ['','bubble1','bubble1.5','bubble2','bubble3','bubble3.5','bubble3.6','bubble4']
+    bubListenList = [['guess', 'click', '']]
+</script>
+{% endblock %}
+{% block bubbleScript %}
+<script>
+    bubListenList[0][2] = bubbleCycle
+    bubbleCycle()
+</script>
+{% endblock %}
+{% block bubbleGuessPoints %}
+<script>
+    const bubbleGuessPoints = []
 </script>
 {%endblock%}
+{% block acc %}
+<script>
+    const acc = 0
+</script>
+{% endblock %}
+
 {% block levelNum %}
 <script>
     const levelNum = 7

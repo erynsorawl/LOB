@@ -45,26 +45,14 @@
 
         {# generate table based on size variable #}
         <!--Game board-->
-        <table class="align-items-center w-24 rc-cc border t-layout-fixed bg-black">
+        <table id='tableDiv' class="align-items-center w-15 {% block location %}{% endblock %} border t-layout-fixed bg-black">
             <tbody id="lobTable">
             {% for i in range(size) %}
                 <tr>
                     {% for j in range(size) %}
                             <td class='LOBtd' id="t{{j + (size * i)}}">
-                                <div id="d{{j + (size * i)}}" class='tableBorder' {% block colorSwitch %}onclick{%endblock%}="colorSwitch(this, '{{j + (size * i)}}')">
-                                    <div id="di{{j + (size * i)}}" class='
-                                        genFade 
-                                        d-none 
-                                        text-center
-                                        text-center-v
-                                        text-dark 
-                                        text-glow 
-                                        {% block di_none %}{% endblock %}'
-                                        
-                                    ></div>
-                                    <div id = "p{{j + (size * i)}}" class="ar-1 margin-auto text-center text-center-v counter z-1 t-shadow-s d-none {%block countSize%}{%endblock%}">
-                                        {% block countInner %}<span class="text-lime">0</span><span class="text-orange ml-1"></span>{% endblock %}
-                                    </div>
+                                <div id="d{{j + (size * i)}}" class='tableBorder'>
+                                    <img id="im{{j + (size * i)}}" class="w-4 shadow-lg d-none animate__animated" src="{%block in_box_img%}{%endblock%}">
                                 </div>
                             </td>
                     {% endfor %}
@@ -108,52 +96,34 @@
 {% endblock %}
 
 {% block javascript %}
-    {% block levelscript %}
-    {% endblock %}
-    {% block acc %}
-    {% endblock %}
-    {% block bubbleList %}
-    {% endblock %}
-    {% block closeEnough %}
-    {% endblock %}
-    {% block checkRigor %}
-    {% endblock %}
-    {% block size %}
-    {% endblock %}
-    {% block hold %}
-    {% endblock %}
-    {% block counterLvl %}
-    {% endblock %}
-    {% block hintThreshold %}
-    {% endblock %}
-    {% block missBonus %}
-    {% endblock %}
-    {% block maxGuess %}
-    {%endblock%}
-    {% block levelNum %}
-    {% endblock %}
-    {% block holdSpeed %}
-    {% endblock %}
-    {% block holdDelay %}
-    {% endblock %}
-    {% block condense %}
-    {% endblock %}
-    {% block flash %}
-    {% endblock %}
-    {% block bubbleGuessPoints %}
-    {%endblock%}
 
-    <script type="text/javascript" src="/static/LOB.js"></script>
-    <script>
-        if (!s) {
-            new_puzzle()
-        }
-    </script>
+<script>
+    let s = new URLSearchParams(window.location.search).get('seed')
+    const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
+    const borderColors = ['border-blue', 'border-cyan']
+    const textColors1 = ['text-black', 'text-lime']
+    const textColors2 = ['text-red', 'text-orange']
+    const backgroundColors = ['bg-blue', 'bg-cyan']
+</script>
+{% block levelNum %}
+{% endblock %}
+{%block size%}
+{%endblock%}
+{% block bubbleList %}
+{% endblock %}
+{% block bubbleScript %}
+{% endblock %}
+{% block bubbleDelay %}
+{%endblock%}
+
+<script type="text/javascript" src="/static/LOB.js"></script>
+<script>
+    if (!s) {
+        new_puzzle()
+    }
+</script>
+
 {% endblock %}
 {% block postscript %}
-{% block bubbleScript %}
-<script>
 
-</script>
-{% endblock %}
 {%endblock%}

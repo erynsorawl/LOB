@@ -76,6 +76,87 @@
         transform: rotateY(180deg);
     }
 
+    /*Credit: https://projects.verou.me/bubbly/*/
+
+    .speech-bubble {
+        position: absolute;
+        --bubble-color: #212529;
+        background: var(--bubble-color);
+        border-radius: .4em;
+    }
+
+    .speech-bubble-bottom {
+        position: absolute;
+    }
+
+    .speech-bubble-top {
+        position: absolute;
+    }
+
+    .speech-bubble-left {
+        position: absolute;
+    }
+
+    .speech-bubble-right {
+        position: absolute;
+    }
+
+    .speech-bubble-bottom::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: 1rem solid transparent;
+        border-top-color: var(--bubble-color);
+        border-bottom: 0;
+        margin-left: -1rem;
+        margin-bottom: -1rem;
+    }
+
+    .speech-bubble-top::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border: 1rem solid transparent;
+        border-bottom-color: var(--bubble-color);
+        border-top: 0;
+        margin-left: -1rem;
+        margin-top: -1rem;
+    }
+
+    .speech-bubble-left::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 1rem solid transparent;
+        border-right-color: var(--bubble-color);
+        border-left: 0;
+        margin-top: -1rem;
+        margin-left: -1rem;
+    }
+
+    .speech-bubble-right::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border: 1rem solid transparent;
+        border-left-color: var(--bubble-color);
+        border-right: 0;
+        margin-top: -1rem;
+        margin-right: -1rem;
+    }
+
     .hint {
         position: absolute;
         margin: 20% 10% auto 20%;
@@ -106,6 +187,10 @@
 
 /* width */
 
+    .w-auto {
+        width: inherit;
+    }
+
     .w-2 {
         width: calc(var(--box-size) * 2);
     }
@@ -132,6 +217,10 @@
 
     .w-10 {
         width: calc(var(--box-size) * 10);
+    }
+
+    .w-15 {
+        width: calc(var(--box-size) * 15);
     }
 
     .txtw-15 {
@@ -312,11 +401,39 @@
         transform: translate(-50%, -50%) translate(calc(var(--box-size) * -22), 0); 
     }
 
+    .r1-c1-b {
+        position: absolute;
+        top: calc((var(--box-size) * 17) + 2rem);
+        left: 50%;
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -20), 0); 
+    }
+
+    .r2-c1-b {
+        position: absolute;
+        top: calc((var(--box-size) * 26) + 2rem);
+        left: 50%;
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -20), 0); 
+    }
+
+
     .rc-cc {
         position: absolute;
         top: calc((var(--box-size) * 15) + 6rem);
         left: 50%;
         transform: translate(-50%, -50%);
+    }
+
+    .rc-c1 {
+        position: absolute;
+        top: calc((var(--box-size) * 15) + 6rem);
+        left: 50%;
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -10));
+    }
+    .rc-c2 {
+        position: absolute;
+        top: calc((var(--box-size) * 15) + 6rem);
+        left: 50%;
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * 10));
     }
 
 
@@ -341,11 +458,45 @@
         transform: translate(-50%, -50%); 
     }
 
+    .r-3-b1 {
+        position: absolute;
+        top: calc((var(--box-size) * 33) + 7rem);
+        left: 50%;
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -2)); 
+    }
+    .r-3-b2 {
+        position: absolute;
+        top: calc((var(--box-size) * 33) + 7rem);
+        left: 50%;
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * 2)); 
+    }
+
+    .r-3-b3 {
+        position: absolute;
+        top: calc((var(--box-size) * 34.5) + 7rem);
+        left: 50%;
+        transform: translate(-50%, -50%); 
+    }
+
     .r-4 {
         position: absolute;
         top: calc((var(--box-size) * 32) + 6rem);
         left: 50%;
         transform: translate(-50%, -50%); 
+    }
+
+    .r-4-b {
+        position: absolute;
+        top: calc((var(--box-size) * 38) + 6rem);
+        left: 50%;
+        transform: translate(-50%, -50%); 
+    }
+
+    .lr-c-b {
+        position: absolute;
+        top: calc((var(--box-size) * 24) + 6rem);
+        left: 50%;
+        transform: translate(-50%); 
     }
 
     .title {
@@ -454,6 +605,10 @@
 
     .underlay {
         z-index: -2;
+    }
+
+    .click-none {
+        pointer-events: none;
     }
 
     .t-layout-fixed {

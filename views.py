@@ -21,7 +21,7 @@ def lvl3():
 
 @views.route('/Level4')
 def lvl4():
-    return render_template("lvl4.html", size=5, nextLevel=5)
+    return render_template("lvl4.html", size=4, nextLevel=5)
 
 @views.route('/Level5')
 def lvl5():
@@ -46,3 +46,12 @@ def lvl9():
 @views.route('/LevelFinish')
 def lvl10():
     return render_template("lvlFinish.html")
+
+@views.route('/finish')
+def finish():
+    return render_template("lesson.html", size = 3)
+
+@views.route('/lesson_1')
+def lesson1():
+    return render_template("lesson1.html", size = 3)
+

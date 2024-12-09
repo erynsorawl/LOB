@@ -2,7 +2,7 @@
 
 {% block level %}: Level 4{% endblock %}
 
-{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="advancedGenerate()">Guess</button>{% endblock %}
+{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="advancedGenerate(1)">Guess</button>{% endblock %}
 
 {% block navbar_extra %}
     <div class="navbar-nav collapse-margin">
@@ -15,8 +15,33 @@
     </div>
 {% endblock %}
 
-{% block hint %}
-    Tip: You can enable or disable the box counters using the 'Toggle Counters' button.
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1-b d-none">
+        <p class="text-center text-white">
+            <span>With some guesses, the right squares will be actually be <span class="text-orange">less likely</span> to show up.</span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+        </p>
+    </div>
+    <div id="bubble2" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1-b d-none">
+        <p class="text-center text-white">
+            <span>Thankfully, we can tell when that happens! We'll track the normal guesses in <span class="text-green">green</span>, 
+            and the bad guesses in <span class="text-orange">orange</span>. </span> <br>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Close</button>
+        </p>
+    </div>
+{%endblock%}
+
+{% block bubbleList %}
+<script>
+    const bubbleList = ['','bubble1','bubble2']
+    bubListenList = [['guess', 'click', '']]
+</script>
+{% endblock %}
+{% block bubbleScript %}
+<script>
+    document.getElementById('guess').addEventListener('click', bubbleCycle)
+    bubListenList[0][2] = bubbleCycle
+</script>
 {% endblock %}
 
 {% block countSize %}
@@ -25,10 +50,24 @@
 {% block countInner %}<span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>{%endblock%}
 
 {% block hitMiss %}
-    <span id="hitInfo" class="text-green info">Hits: 0</span> &nbsp;
-    <span id="missInfo" class="text-orange info">Misses: 0</span>
+    <span id="hitInfo" class="text-green info d-none">Hits: 0</span> &nbsp;
+    <span id="missInfo" class="text-orange info d-none">Misses: 0</span>
 {% endblock %}
 
+{% block hint %}
+{%endblock%}
+
+{% block hintThreshold %}
+<script>
+    const hintThreshold = Number.MAX_SAFE_INTEGER
+</script>
+{%endblock%}
+
+{% block bubbleGuessPoints %}
+<script>
+    const bubbleGuessPoints = []
+</script>
+{% endblock %}
 
 {% block levelNum %}
 <script>
@@ -38,7 +77,7 @@
 
 {% block acc %}
 <script>
-    const acc = .44
+    const acc = .2
 </script>
 {% endblock %}
 {% block hold %}
@@ -53,7 +92,7 @@
 {%endblock%}
 {% block size %}
     <script>
-        const size = 5
+        const size = 4
     </script>
 {% endblock %}
 {% block missBonus %}
@@ -66,14 +105,14 @@
     const holdSpeed = 100
 </script>
 {% endblock %}
-{% block hintThreshold %}
-<script>
-    const hintThreshold = 10
-</script>
-{%endblock%}
 {% block condense %}
 <script>
     const condense = 0
+</script>
+{% endblock %}
+{% block maxGuess %}
+<script>
+    const maxGuess = Number.MAX_SAFE_INTEGER
 </script>
 {% endblock %}
 {% block flash %}
