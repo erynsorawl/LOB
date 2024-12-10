@@ -1,22 +1,31 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
         <p class="text-center text-white">
-            <span>Placeholder 1</span><br>
+            <span>To figure the solution out, your brain's main strategy is just kinda... throwing things at a wall until something sticks. 
+            </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
         <p class="text-center text-white">
-            <span>Placeholder 2</span><br>
+                <span>This is what the <span class='text-cyan'>Guess</span> button was doing
+            </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
     <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
-            <span>Placeholder 3</span><br>
+            <span>Whenever something gets close to sticking, your brain <span class=text-green>marks down</span> whatever active neurons caused the action.<br>
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
+        </p>
+    </div>
+    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+        <p class="text-center text-white">
+            <span>After doing this enough times, it'll have a pretty good idea of what the perfect pattern is.
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
         </p>
     </div>
 {%endblock%}
@@ -30,23 +39,23 @@ rc-c1
 
 {% block extra%}
 <div id="4x4"  style="width: calc(var(--box-size) * 15);" class="rc-c2 ar-1 mt-1">
-    <img id='img'  
+    <img id='img1'  
     style="border-bottom-width: .15em; border-right-width: .15em;" 
     class="w-7 animate__animated imgSquare" 
-    src="/static/assets/basketball.png"><img id='img' 
+    src="/static/assets/basketball.png"><img id='img2' 
     style="border-bottom-width: .15em; border-left-width: .15em;" 
     class="w-7 animate__animated imgSquare" 
     src="/static/assets/basketball.png">
     <br>
-    <img id='img' 
+    <img id='img3' 
     style="border-top-width: .15em; border-right-width: .15em;"
     class="w-7 animate__animated imgSquare" 
-    src="/static/assets/basketball.png"><img id='img' 
+    src="/static/assets/basketball.png"><img id='img4' 
     style="border-top-width: .15em; border-left-width: .15em;"
     class="w-7 animate__animated imgSquare" 
-    src="/static/assets/basketball.png">
-    
+    src="/static/assets/basketball3.png"> 
 </div>
+<button id='guess' class="button rounded m-1 text-cyan box-glow lr-c-b d-none">Guess</button>
 {%endblock%}
 
 {%block size%}
@@ -63,7 +72,7 @@ rc-c1
 
 {% block bubbleList %}
 <script>
-    const bubbleList = ['bubble1', 'bubble2', 'bubble3']
+    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
     bubListenList = [[]]
 </script>
 {% endblock %}
@@ -85,9 +94,32 @@ rc-c1
         0,1,0, 0,1,1,
         1,0,0, 0,0,1
     ]
+
+    board2 = [
+        0,1,0, 0,0,1,
+        1,0,0, 1,1,0,
+        0,1,0, 0,0,1,
+
+        0,0,1, 0,0,1,
+        0,1,0, 0,1,0,
+        1,0,1, 0,0,1
+    ]
+
+    count2 = [
+        0,1,0, 0,0,1,
+        1,0,0, 1,1,0,
+        0,1,0, 0,0,1,
+
+        0,0,1, 16,12,35,
+        0,1,0, 9,42,11,
+        1,0,1, 17,24,34
+    ]
+
+    board1sec4 = [23,28,29,35]
+    board2sec4 = [23,28,35]
     for (i=0;i<solution.length;i++) {
         if (board1[i] == 1) {
-            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
+            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
         }
         document.getElementById('t' + i.toString()).style.borderWidth = "0.15em"
         if (i<6) {
@@ -107,6 +139,56 @@ rc-c1
         }
         if (i % 6 == 5) {
             document.getElementById('t' + i.toString()).style.borderRightWidth = "0.45em"
+        }
+    }
+
+    function lesson() {
+        document.getElementById('guess').classList.remove('d-none')
+        bubbleCycle()
+    }
+
+    function lesson2() {
+        document.getElementById('img4').classList.add('bg-dark-green')
+        for (i=21;i<solution.length;i++) {
+            document.getElementById('p' + i.toString()).classList.remove('d-none')
+            if (i % 3 == 2) {
+                i = i + 3
+            }
+        }
+        for (i=0;i<board1sec4.length;i++) {
+            document.getElementById('p' + board1sec4[i].toString()).getElementsByTagName('span')[0].innerHTML = '1'
+        }
+        document.getElementById('guess').classList.add('d-none')
+        bubbleCycle()
+    }
+
+    function lesson3() {
+        bubbleCycle()
+        for (i=1;i<4;i++) {
+            document.getElementById('img' + i.toString()).src = 'static/assets/basketball3.png'
+        }
+        document.getElementById('img4').src = 'static/assets/basketball2.png'
+
+        for (i=0;i<solution.length;i++) {
+            document.getElementById('p' + i.toString()).classList.remove('d-none')
+
+        if (board1[i] == 1) {
+            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
+        }
+        if(board2[i] == 1) {
+            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '1'
+        }
+        else {
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '0'
+        }
+        }
+
+        for (i=21;i<solution.length;i++) {
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = count2[i].toString()
+            if (i % 3 == 2) {
+                i = i + 3
+            }
         }
     }
 

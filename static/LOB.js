@@ -222,21 +222,25 @@ function bubOnComplete() {
 }
 
 // Cycle box color when box is clicked
-function colorSwitch(element, elNum, noP) {
+function colorSwitch(element, elNum, noP, noP2) {
     let color = window.getComputedStyle(element).backgroundColor;
     for (let i=0; i < colors.length; i++) {
         if (!noP) {
             countElement = document.getElementById('p' + elNum.toString())
             countElement1 = countElement.getElementsByTagName('span')[0]
-            countElement2 = countElement.getElementsByTagName('span')[1]
+            if (!noP2) {
+                countElement2 = countElement.getElementsByTagName('span')[1]
+            }
         }
         if (color === colors[i]) {
             element.style.background = colors[(i+1) % colors.length]
             if (!noP) {
                 countElement1.classList.add(textColors1[i])
                 countElement1.classList.remove(textColors1[(i + 1) % 2])
-                countElement2.classList.add(textColors2[i])
-                countElement2.classList.remove(textColors2[(i + 1) % 2])
+                if (!noP2) {
+                    countElement2.classList.add(textColors2[i])
+                    countElement2.classList.remove(textColors2[(i + 1) % 2])
+                }
             }
         }
     }

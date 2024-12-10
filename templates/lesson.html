@@ -52,7 +52,10 @@
                     {% for j in range(size) %}
                             <td class='LOBtd' id="t{{j + (size * i)}}">
                                 <div id="d{{j + (size * i)}}" class='tableBorder'>
-                                    <img id="im{{j + (size * i)}}" class="w-4 shadow-lg d-none animate__animated" src="{%block in_box_img%}{%endblock%}">
+                                    <!--Neuron icons created by imaginationlol - Flaticon-->
+                                    <img id="im{{j + (size * i)}}" class="w-4 shadow-lg d-none animate__animated" src="/static/assets/neuron.png">
+                                    <div id = "p{{j + (size * i)}}" class="text-center t-shadow-s h-1 d-none {%block countSize%}{%endblock%}">
+                                        {% block countInner %}<span class="text-lime h-1">0</span>{%endblock%}
                                 </div>
                             </td>
                     {% endfor %}

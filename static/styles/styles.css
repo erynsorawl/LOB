@@ -251,6 +251,10 @@
         width: calc(var(--box-size) * 40);
     }
 
+    .h-05 {
+        height: calc(var(--box-size) * 0.5);
+    }
+
     .h-1 {
         height: calc(var(--box-size) * 1);
     }
@@ -519,6 +523,13 @@
     .lr-c-b {
         position: absolute;
         top: calc((var(--box-size) * 24) + 6rem);
+        left: 50%;
+        transform: translate(-50%); 
+    }
+
+    .lr2-c-b {
+        position: absolute;
+        top: calc((var(--box-size) * 26) + 8rem);
         left: 50%;
         transform: translate(-50%); 
     }
