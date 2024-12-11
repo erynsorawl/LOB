@@ -3,45 +3,57 @@
 {% block bubbles %}
     <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
         <p class="text-center text-white">
-            <span>This process (and your learning speed) is heavily influenced by a few other factors. 
+            <span>This process (and your learning speed) is heavily affected by a few other factors. 
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
     <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
         <p class="text-center text-white">
-                Doing all this in real-time takes a lot of energy, so for efficiency's sake it'll just focus on marking things down during the day.
-                Most of the actual learning happens when you're asleep.
+                Doing all this in real-time is a bit too intense, so to save energy it'll focus on tracking 
+                <span class="text-cyan">guesses</span>
+                 during the day,
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
         <p class="text-center text-white">
-            This is what the <span class="text-aether">Condense</span> button represents.
+                and <span class="text-aether">update</span> your usable skills when you're asleep.
+            </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
         </p>
     </div>
     <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
-            <span>If you're not getting enough sleep (not condensing enough), some of those marks will get lost, so think twice about pulling another
-                all-nighter!
+            <span>If you're not getting enough sleep, some of those marks will get lost, so be careful about all-nighters!
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
+            <button class="button rounded bg-secondary m-1" onclick="window.location.href = '/lesson_4'">Next</button>
         </p>
     </div>
 {%endblock%}
 
 {%block location%}
-rc-c1
+rc-cc
 {%endblock%}
 
 {% block extra%}
+<img id='img1'   
+class="w-15 animate__animated rc-cc p-1 d-none" 
+src="/static/assets/Board1.png">
+<img id='img2'   
+class="w-15 animate__animated rc-cc p-1 d-none" 
+src="/static/assets/Board2.png">
+
+<div id="under1" class=""></div>
+<div id="under2" class=""></div>
+<button id='guess' class="button rounded m-1 text-cyan box-glow lr-c-b d-none">&#127774; Guess</button>
+<button id="update" class="button rounded w-6 text-aether box-glow m-1 lr-c-b d-none">&#127771; Update</button>
 {%endblock%}
 
 {%block size%}
 <script>
-    const size = 6
+    const size = 3
 </script>
 {%endblock%}
 
@@ -65,6 +77,38 @@ rc-c1
 
 {%block postscript%}
 <script>
+    const board1 = [
+        0,1,0,
+        1,0,1,
+        0,1,0
+    ]
+    function lesson() {
+        bubbleCycle()
+        show('guess')
+        for (i=0;i<solution.length;i++) {
+            document.getElementById('d' + i.toString()).style.backgroundColor = 'rgb(50,50,150)'
+            document.getElementById('p' + i.toString()).classList.remove('d-none')
+            document.getElementById('p' + i.toString()).classList.add('mt-3')
 
+
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].classList.remove('text-lime')
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].classList.add('text-transparent-gray', 'text-2')
+            if (board1[i] == 1) {
+                document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '1'
+            }
+        }
+    }
+
+    function lesson2() {
+        bubbleCycle()
+        hide('tableDiv', 'guess')
+        show('img1', 'update')
+    }
+
+    function lesson3() {
+        bubbleCycle() 
+        hide('img1', 'update')
+        show('img2')
+    }
 </script>
 {%endblock%}

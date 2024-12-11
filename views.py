@@ -59,4 +59,20 @@ def lesson1():
 def lesson2():
     return render_template("lesson2.html", size = 6)
 
+@views.route('/lesson_3')
+def lesson3():
+    return render_template("lesson3.html", size = 3)
+
+@views.route('/lesson_4')
+def lesson4():
+    return render_template("lesson4.html", size = 3)
+
+@views.route('/lesson_5')
+def lesson5():
+    return render_template("lesson5.html", size = 3)
+
+@views.route('/lesson_6')
+def lesson6():
+    return render_template("lesson6.html", size = 3)
+
 

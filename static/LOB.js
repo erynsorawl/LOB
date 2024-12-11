@@ -166,6 +166,9 @@ function alter_hex(rgba, rgbaAlter)
 
 // Cycle between a list of text boxes to flash on screen
 function bubbleCycle(delay) {
+    if (!delay) {
+        delay = 0
+    }
     if (!bubbleDelayState) {
 
         if (bubbleState <= bubbleList.length) {
@@ -474,7 +477,7 @@ function updateColor(type) {
     {
         for (let i = 0; i < solution.length; i++) {
             document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = boxCounters[i]
-            if (levelNum > 3) {
+            if (levelNum > 3 && levelNum < 5) {
                 document.getElementById('p' + i.toString()).getElementsByTagName('span')[1].innerHTML = boxMissCounters[i]
             }
         }
@@ -787,5 +790,19 @@ function animate(element, type, duration, double) {
                 element.classList.add('d-none')
             }
         }, duration + 1000)
+    }
+}
+
+// general functions to show or hide elements
+
+function hide(/**/) {
+    for (i=0;i<arguments.length;i++) {
+        document.getElementById(arguments[i]).classList.add('d-none')
+    }
+}
+
+function show(/**/) {
+    for (i=0;i<arguments.length;i++) {
+        document.getElementById(arguments[i]).classList.remove('d-none')
     }
 }

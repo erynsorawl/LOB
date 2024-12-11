@@ -329,6 +329,10 @@
         color: black;
     }
 
+    .text-transparent-gray {
+        color: rgba(200,200,200,.5)
+    }
+
     .text-red {
         color: red;
     }
@@ -518,6 +522,13 @@
         top: calc((var(--box-size) * 38) + 6rem);
         left: 50%;
         transform: translate(-50%, -50%); 
+    }
+
+    .ls-1 {
+        position: absolute;
+        top: calc((var(--box-size) * 15) + 6rem);
+        left: 50%;
+        transform: translate(-50%) translate(calc(var(--box-size) * -15)); 
     }
 
     .lr-c-b {

@@ -1,9 +1,9 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b">
         <p class="text-center text-white">
-            <span>The standards you set for yourself also have a big effect on your learning ability. (standards field)
+            <span>The <span class="text-yellow">standards</span> you set for yourself also have a big impact on your learning ability.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
@@ -41,22 +41,29 @@
 {%endblock%}
 
 {%block location%}
-rc-c1
+rc-cc
 {%endblock%}
 
 
 {% block extra%}
+<span class="button text-yellow rounded pr-1 h-2-5 lr-c-b">On a scale of 1 to 10, how high are your standards?
+    <input id='tolerance' class = "text-yellow rounded w-2 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
+{%endblock%}
+
+{%block hitMiss %}
+<span id="hitInfo" class="text-green info">Hits: 0</span> &nbsp;
+<span id="missInfo" class="text-orange info">Misses: 0</span>
 {%endblock%}
 
 {%block size%}
 <script>
-    const size = 6
+    const size = 3
 </script>
 {%endblock%}
 
 {%block levelNum%}
 <script>
-    const levelNum = 1
+    const levelNum = 5
 </script>
 {%endblock%}
 
@@ -72,8 +79,43 @@ rc-c1
 </script>
 {%endblock%}
 
+{% block guess %}
+<script>
+    const maxGuess = Number.MAX_SAFE_INTEGER
+    const hintThreshold = Number.MAX_SAFE_INTEGER
+    const bubbleGuessPoints = Number.MAX_SAFE_INTEGER
+    const acc = 0
+</script>
+{%endblock%}
+
 {%block postscript%}
 <script>
+    lessonDelayState = 0
+    solution = [
+        0,0,0,
+        0,0,0,
+        0,0,0
+    ]
+    function lesson() {
+        delay = 2600
+        if (!lessonDelayState) {
+            lessonDelayState = 1
+            bubbleCycle()
+            genLoop(0)
+            setTimeout(()=>{
+                lessonDelayState = 0
+            })
+        }
+    }
 
+    function genLoop(l) {
+        advancedGenerate(15)
+        l = l + 1
+        setTimeout(()=>{
+            if (l < 10) {
+            genLoop(l)
+        }
+        }, 250)
+    }
 </script>
 {%endblock%}
