@@ -1,0 +1,59 @@
+{% extends 'lesson.html' %}
+
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+        <p class="text-center text-white">
+            <span>We couldn't quite fit this into the game, but it's also a good idea to take things slow once in a while, and take
+                a really close look at the problem.
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
+        </p>
+    </div>
+    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+                Your standards of 'hit' and 'miss' are based on what you can see, so if you're missing imporant information, things could
+                go wonky.
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+
+{%endblock%}
+
+{%block location%}
+rc-c1
+{%endblock%}
+
+
+{% block extra%}
+{%endblock%}
+
+{%block size%}
+<script>
+    const size = 6
+</script>
+{%endblock%}
+
+{%block levelNum%}
+<script>
+    const levelNum = 1
+</script>
+{%endblock%}
+
+{% block bubbleList %}
+<script>
+    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
+    bubListenList = [[]]
+</script>
+{% endblock %}
+{% block bubbleDelay %}
+<script>
+    const bubbleDelay = 0
+</script>
+{%endblock%}
+
+{%block postscript%}
+<script>
+
+</script>
+{%endblock%}
