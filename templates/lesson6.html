@@ -1,0 +1,96 @@
+{% extends 'lesson.html' %}
+
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+        <p class="text-center text-white">
+            <span>And that's all, folks! The word 'Neuroscience' may seem pretty scary - and at the higher levels, it kind of is.
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
+        </p>
+    </div>
+    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+                But if it's just the basics (which are all you really need to know in day-to-day life), it's not <i>that</i> scary, is it?
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+
+    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+                Next time you want to learn something, just remember the strategies you learned here:
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+
+    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+                Set good standards,
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+
+    <div id="bubble5" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+            Get good sleep,
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+
+    <div id="bubble6" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+            And most importantly,
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+
+    <div id="bubble7" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+            Try, try again!
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+
+{%endblock%}
+
+{%block location%}
+rc-c1
+{%endblock%}
+
+{% block extra%}
+{%endblock%}
+
+{%block size%}
+<script>
+    const size = 6
+</script>
+{%endblock%}
+
+{%block levelNum%}
+<script>
+    const levelNum = 1
+</script>
+{%endblock%}
+
+{% block bubbleList %}
+<script>
+    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
+    bubListenList = [[]]
+</script>
+{% endblock %}
+{% block bubbleDelay %}
+<script>
+    const bubbleDelay = 0
+</script>
+{%endblock%}
+
+{%block postscript%}
+<script>
+
+</script>
+{%endblock%}

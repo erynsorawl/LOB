@@ -1,0 +1,70 @@
+{% extends 'lesson.html' %}
+
+{% block bubbles %}
+    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+        <p class="text-center text-white">
+            <span>This process (and your learning speed) is heavily influenced by a few other factors. 
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
+        </p>
+    </div>
+    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+        <p class="text-center text-white">
+                Doing all this in real-time takes a lot of energy, so for efficiency's sake it'll just focus on marking things down during the day.
+                Most of the actual learning happens when you're asleep.
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+        </p>
+    </div>
+    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+        <p class="text-center text-white">
+            This is what the <span class="text-aether">Condense</span> button represents.
+            <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
+        </p>
+    </div>
+    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+        <p class="text-center text-white">
+            <span>If you're not getting enough sleep (not condensing enough), some of those marks will get lost, so think twice about pulling another
+                all-nighter!
+            </span><br>
+            <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
+        </p>
+    </div>
+{%endblock%}
+
+{%block location%}
+rc-c1
+{%endblock%}
+
+{% block extra%}
+{%endblock%}
+
+{%block size%}
+<script>
+    const size = 6
+</script>
+{%endblock%}
+
+{%block levelNum%}
+<script>
+    const levelNum = 1
+</script>
+{%endblock%}
+
+{% block bubbleList %}
+<script>
+    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
+    bubListenList = [[]]
+</script>
+{% endblock %}
+{% block bubbleDelay %}
+<script>
+    const bubbleDelay = 0
+</script>
+{%endblock%}
+
+{%block postscript%}
+<script>
+
+</script>
+{%endblock%}
