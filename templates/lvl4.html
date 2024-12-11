@@ -50,8 +50,8 @@
 {% block countInner %}<span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>{%endblock%}
 
 {% block hitMiss %}
-    <span id="hitInfo" class="text-green info d-none">Hits: 0</span> &nbsp;
-    <span id="missInfo" class="text-orange info d-none">Misses: 0</span>
+    <span id="hitInfo" class="text-green info">Hits: 0</span> &nbsp;
+    <span id="missInfo" class="text-orange info">Misses: 0</span>
 {% endblock %}
 
 {% block hint %}
@@ -77,7 +77,7 @@
 
 {% block acc %}
 <script>
-    const acc = .2
+    const acc = 0
 </script>
 {% endblock %}
 {% block hold %}
