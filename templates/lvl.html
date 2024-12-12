@@ -45,7 +45,7 @@
 
         {# generate table based on size variable #}
         <!--Game board-->
-        <table class="align-items-center w-24 rc-cc border t-layout-fixed bg-black">
+        <table class="align-items-center {% block tableSize %}w-24{%endblock%} rc-cc border t-layout-fixed bg-black">
             <tbody id="lobTable">
             {% for i in range(size) %}
                 <tr>

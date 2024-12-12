@@ -75,4 +75,8 @@ def lesson5():
 def lesson6():
     return render_template("lesson6.html", size = 3)
 
+@views.route('/imgmake')
+def imgmake():
+    return render_template("imgmake.html", size = 3)
+
 

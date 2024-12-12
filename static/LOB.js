@@ -796,13 +796,32 @@ function animate(element, type, duration, double) {
 // general functions to show or hide elements
 
 function hide(/**/) {
-    for (i=0;i<arguments.length;i++) {
+    for (hideI=0;hideI<arguments.length;hideI++) {
         document.getElementById(arguments[i]).classList.add('d-none')
     }
 }
 
 function show(/**/) {
-    for (i=0;i<arguments.length;i++) {
-        document.getElementById(arguments[i]).classList.remove('d-none')
+    for (showI=0;showI<arguments.length;showI++) {
+        document.getElementById(arguments[showI]).classList.remove('d-none')
     }
+}
+
+function boardClear() {
+    for (i=0;i<solution.length;i++) {
+        boxCounters[i] = 0
+        borderIntensity[i] = 0
+    }
+    hitCount = 0
+    missCount = 0
+    cleanCount = 0
+    topCounter = 0
+    bottomCounter = 0
+    range = 0
+    lastMiss = 0
+    lastHit = 0
+    guessCount = 0
+    totalGuessCount = 0
+    updateColor('Border')
+    updateHitMiss()
 }

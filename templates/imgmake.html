@@ -1,0 +1,81 @@
+{% extends 'lvl7.html' %}
+
+{% block level %}: Level 8{% endblock %}
+
+{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(10)'>Guess</button>{% endblock %}
+
+{% block bubbles %}
+{%endblock%}
+
+{% block hitMiss %}
+    <span id="hitInfo" class="text-green info">Hits: 0</span> &nbsp;
+    <span id="missInfo" class="text-orange info">Misses: 0</span>
+{% endblock %}
+
+{% block colorSwitch %}onclick{%endblock%}
+
+{% block tableSize %}w-7{%endblock%}
+
+{% block countSize %} text-1-5 {%endblock%}
+
+{% block countInner %}<span class="text-lime">0</span><span class="text-orange ml-1 d-none"></span>{%endblock%}
+
+{% block bubbleList %}
+<script>
+
+    const bubbleList = []
+    bubListenList = []
+</script>
+{% endblock %}
+{% block bubbleScript %}
+<script>
+    bubbleCycle()
+</script>
+{% endblock %}
+{% block bubbleGuessPoints %}
+<script>
+    const bubbleGuessPoints = []
+</script>
+{%endblock%}
+
+{% block levelNum %}
+<script>
+    const levelNum = 8
+</script>
+{% endblock %}
+
+{% block checkRigor %}
+<script>
+    const checkRigor = 215
+</script>
+{% endblock %}
+
+{% block size %}
+<script>
+    const size = 3
+</script>
+{% endblock %}
+{% block maxLoops %}
+<script>
+    const maxLoops = 100
+</script>
+{%endblock%}
+
+{% block maxGuess %}
+<script>
+    const maxGuess = 200
+</script>
+{%endblock%}
+{% block holdSpeed %}
+<script>
+    const holdSpeed = 15
+</script>
+{% endblock %}
+
+{% block postscript %}
+<script>
+    for (i=0;i<solution.length;i++) {
+        show('p' + i.toString())
+    }
+</script>
+{%endblock%}
