@@ -531,11 +531,47 @@
         transform: translate(-50%) translate(calc(var(--box-size) * -15)); 
     }
 
+    .lt-2 {
+        position: absolute;
+        top: calc((var(--box-size) * 6) + 4rem);
+        left: 50%;
+        transform: translate(-50%) translate(calc(var(--box-size) * 10)); 
+    }
+
+    .lt-1 {
+        position: absolute;
+        top: calc((var(--box-size) * 6) + 4rem);
+        left: 50%;
+        transform: translate(-50%) translate(calc(var(--box-size) * -10)); 
+    }
+
+
     .lr-c-b {
         position: absolute;
         top: calc((var(--box-size) * 24) + 6rem);
         left: 50%;
         transform: translate(-50%); 
+    }
+
+    .lr-l-b {
+        position: absolute;
+        top: calc((var(--box-size) * 24) + 6rem);
+        left: 50%;
+        transform: translate(-50%) translate(calc(var(--box-size) * -10)); 
+    }
+
+    .lr-r-b {
+        position: absolute;
+        top: calc((var(--box-size) * 24) + 6rem);
+        left: 50%;
+        transform: translate(-50%) translate(calc(var(--box-size) * 10));; 
+    }
+
+    .lr2-r-b {
+        position: absolute;
+        top: calc((var(--box-size) * 26) + 8rem);
+        left: 50%;
+        transform: translate(-50%) translate(calc(var(--box-size) * 10));; 
     }
 
     .lr2-c-b {

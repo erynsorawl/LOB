@@ -797,7 +797,7 @@ function animate(element, type, duration, double) {
 
 function hide(/**/) {
     for (hideI=0;hideI<arguments.length;hideI++) {
-        document.getElementById(arguments[i]).classList.add('d-none')
+        document.getElementById(arguments[hideI]).classList.add('d-none')
     }
 }
 

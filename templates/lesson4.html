@@ -21,21 +21,21 @@
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
         </p>
     </div>
-    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
         <p class="text-center text-white">
             <span>
-                Your brain also has a little trick to make things go faster: when your standards are higher, it'll give
-                your Hits a boost to make up for them not appearing as often.
+                Your brain also has a little trick to make things go faster: when your standards are <span class="text-yellow">higher</span>, it'll give
+                your Hits a <span class="text-cyan">boost</span> to make up for how uncommon they are.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
         </p>
     </div>
-    <div id="bubble5" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble5" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-r-b d-none">
         <p class="text-center text-white">
             <span>
                 A loss rate of around 80-90% is where this trick tends to hit peak effectiveness.
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
+            <button class="button rounded bg-secondary m-1" onclick="window.location.href = '/lesson_5'">Next</button>
         </p>
     </div>
 {%endblock%}
@@ -46,8 +46,21 @@ rc-cc
 
 
 {% block extra%}
-<span class="button text-yellow rounded pr-1 h-2-5 lr-c-b">On a scale of 1 to 10, how high are your standards?
+<span id='tolerance1' class="button text-yellow rounded pr-1 h-2-5 lr-c-b">On a scale of 1 to 10, how high are your standards?
     <input id='tolerance' class = "text-yellow rounded w-2 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
+    <span id='extol1' class="button rounded h-2-5 text-yellow lr-l-b d-none"> Standards:
+        <input class = "text-yellow rounded w-2 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="3"></span>
+    <span id='extol2' class="button rounded h-2-5 text-yellow lr-r-b d-none"> Standards:
+        <input class = "text-yellow rounded w-2 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
+        <span id="exHit1" class="text-green info lt-1 text-center w-4 txtw-8 text-1-5 d-none">Hits: 1</span>
+        <span id="exHit2" class="text-green info lt-2 text-center w-4 txtw-8 text-1-5 d-none">Hits: 1</span>
+    
+        <img id='img1'   
+    class="w-15 animate__animated rc-c1 p-1 d-none" 
+    src="/static/assets/toleranceBoard1.png">
+    <img id='img2'   
+    class="w-15 animate__animated rc-c2 p-1 d-none" 
+    src="/static/assets/toleranceBoard2.png">
 {%endblock%}
 
 {%block hitMiss %}
@@ -69,7 +82,7 @@ rc-cc
 
 {% block bubbleList %}
 <script>
-    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
+    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4', 'bubble5']
     bubListenList = [[]]
 </script>
 {% endblock %}
@@ -127,6 +140,18 @@ rc-cc
             loopEnd = 0
             genLoop(1)
         }, 255)
+    }
+
+    function lesson3() {
+        loopEnd = 1
+        bubbleCycle()
+        hide('tableDiv', 'tolerance1', 'hitInfo', 'missInfo')
+        show('img1', 'img2', 'extol1', 'extol2', 'exHit1', 'exHit2')
+    }
+
+    function lesson4() {
+        bubbleCycle()
+        document.getElementById('extol2').classList.add('box-glow')
     }
 </script>
 {%endblock%}

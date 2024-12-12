@@ -2,7 +2,7 @@
 
 {% block level %}: Level 8{% endblock %}
 
-{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(10)'>Guess</button>{% endblock %}
+{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='test()'>Guess</button>{% endblock %}
 
 {% block bubbles %}
 {%endblock%}
@@ -14,9 +14,9 @@
 
 {% block colorSwitch %}onclick{%endblock%}
 
-{% block tableSize %}w-7{%endblock%}
+{% block tableSize %}w-15{%endblock%}
 
-{% block countSize %} text-1-5 {%endblock%}
+{% block countSize %}text-1-5{%endblock%}
 
 {% block countInner %}<span class="text-lime">0</span><span class="text-orange ml-1 d-none"></span>{%endblock%}
 
@@ -74,6 +74,14 @@
 
 {% block postscript %}
 <script>
+    function test () {
+        for (i=0;i<solution.length;i++) {
+            if (document.getElementById('d' + i.toString()).style.background == 'rgb(0, 255, 255)') {
+                document.getElementById('p' + i.toString()).children[0].innerHTML = document.getElementById('tolerance').value.toString()
+            }
+        }
+
+    }
     for (i=0;i<solution.length;i++) {
         show('p' + i.toString())
     }
