@@ -5,22 +5,22 @@
         <p class="text-center text-white">
             <span>And that's all, folks! The word 'Neuroscience' may seem pretty scary - and at the higher levels, it kind of is.
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
                 But if it's just the basics (which are all you really need to know in day-to-day life), it's not <i>that</i> scary, is it?
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
 
-    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
-                Next time you want to learn something, just remember the strategies you learned here:
+                So next time you want to learn something, just remember the strategies you learned here:
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+            <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
 
@@ -34,40 +34,48 @@
 
     <div id="bubble5" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
         <p class="text-center text-white">
-            Get good sleep,
+                Get good sleep,
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+            <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
         </p>
     </div>
 
-    <div id="bubble6" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble6" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
-            And most importantly,
+                And most importantly,
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+            <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
         </p>
     </div>
 
-    <div id="bubble7" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble7" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
-            Try, try again!
+                Try, try again!
             </span><br>
-            <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+            <button class="button rounded bg-secondary m-1">Next</button>
         </p>
     </div>
 
 {%endblock%}
 
 {%block location%}
-rc-c1
+rc-cc
 {%endblock%}
 
 {% block extra%}
+<span id='tolerance' class="button rounded h-2-5 text-yellow lr-c-b d-none"> Standards:
+    <input class = "text-yellow rounded w-2-5 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
+    <button id="update" class="button rounded w-6 text-aether box-glow m-1 lr-c-b d-none">Update</button>
+
+    <div id="info3" style="font-size: calc(var(--box_size) * 1.5);"  class="text-center emw-8 rc-cc h-4 lh-4 d-block d-none">
+        <span id="hitInfo" class="text-green info">Hits: 0</span>
+        <span id="missInfo" class="text-orange info">Misses: 0</span>
+    </div>
 {%endblock%}
 
 {%block size%}
 <script>
-    const size = 6
+    const size = 3
 </script>
 {%endblock%}
 
@@ -79,7 +87,7 @@ rc-c1
 
 {% block bubbleList %}
 <script>
-    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
+    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4', 'bubble5' , 'bubble6', 'bubble7']
     bubListenList = [[]]
 </script>
 {% endblock %}
@@ -91,6 +99,51 @@ rc-c1
 
 {%block postscript%}
 <script>
+    hits = 0
+    misses = 0
+
+    function lesson() {
+        bubbleCycle()
+        show('tolerance')
+    }
+
+    function lesson2() {
+        bubbleCycle()
+        hide('tolerance')
+        show('update')
+    }
+
+    function lesson3() {
+        bubbleCycle()
+        hide('update')
+    }
+
+    function lesson4() {
+        bubbleCycle()
+        hide('tableDiv')
+        show('info3')
+        slowRise(0)
+    }
+
+    function slowRise(l) {
+        if (l < 500) {
+            setTimeout(() => {
+                if (Math.random() > .7) {
+                    hits++
+                }
+                else {
+                    misses++
+                }
+                change_text('hitInfo', 'Hits: ' + hits.toString())
+                change_text('missInfo', 'Misses: ' + misses.toString())
+                document.getElementById('info3').style.fontSize = (1.5 + (l/1000)).toString() + 'rem'
+                slowRise(l + 1)
+            }, 10)
+        }
+        else {
+            window.location.href = '/'
+        }
+    }
 
 </script>
 {%endblock%}

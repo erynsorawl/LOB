@@ -9,7 +9,7 @@
 {% block countSize %}text-1-5{%endblock%}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1">
         <p class="text-center text-white">
             <span>We don't know which squares are right anymore, but we do know they'll show up more often than the wrong ones!</span><br>
             
@@ -27,14 +27,8 @@
 
 {% block bubbleList %}
 <script>
-    const bubbleList = ['','bubble1','bubble2']
-    bubListenList = [['guess', 'click', '']]
-</script>
-{% endblock %}
-{% block bubbleScript %}
-<script>
-    document.getElementById('guess').addEventListener('click', bubbleCycle)
-    bubListenList[0][2] = bubbleCycle
+    const bubbleList = ['bubble1','bubble2']
+    bubListenList = []
 </script>
 {% endblock %}
 

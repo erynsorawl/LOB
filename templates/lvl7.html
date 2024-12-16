@@ -17,43 +17,38 @@
 {% block bubbles %}
     <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
         <p class="text-center text-white">
-            <span>You can no longer click tiles manually.</span> <br>
+            <span>Boxes are no longer clickable.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
     <div id="bubble1.5" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
         <p class="text-center text-white">
-            <span>Instead, you'll be judged based on how clear the board's <span class="text-cyan">coloring</span> is.</span> <br>
+            <span>Instead, you'll be judged based on how strong the board's <span class="text-cyan">coloring pattern</span> is.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
     <div id="bubble2" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
         <p class="text-center text-white">
-            <span>To progress, you'll have to control how your <span class="text-green">'Hits'</span> and <span class="text-orange">'Misses'</span> are decided.</span> <br>
+            <span>To progress, you'll have to change how your <span class="text-green">'Hits'</span> and <span class="text-orange">'Misses'</span> are decided.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
     <div id="bubble3" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
         <p class="text-center text-white">
-            <span>Higher standards will reduce how many of your <span class="text-cyan">Guesses</span> are counted as <span class="text-green">'Hits'</span>, only picking the most accurate.</span> <br>
+            <span>Higher standards will <span class="text-green">increase</span> how accurate a guess has to be to be counted as a
+            Hit, giving you a <span class="text-cyan">stronger</span> board, but <span class="text-orange">reducing</span> how many hits you get.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
     <div id="bubble3.5" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
         <p class="text-center text-white">
-            <span>This'll make it take longer, but it can increase the clarity of each guess.</span> <br>
-            <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
-        </p>
-    </div>
-    <div id="bubble3.6" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
-        <p class="text-center text-white">
-            <span>Lower-standard Guesses can also reach high clarity if you spam them long enough, though.</span> <br>
+            <span>Lower-standard <span class="text-cyan">guesses</span> can also get pretty strong if you spam them long enough, though, as long as it's not <i>too</i> low.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
     <div id="bubble4" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
         <p class="text-center text-white">
-            <span>Try to find the <span class="text-yellow">Standards</span> that get you there the fastest!</span> <br>
+            <span>Try to find the <span class="text-yellow">Standards</span> that get you to the end the fastest!</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
@@ -61,14 +56,14 @@
 
 {% block lower_button0 %}
     <span class="button text-yellow rounded pr-1 h-2-5">On a scale of 1 to 10, how high are your standards?
-        <input id='tolerance' class = "text-yellow rounded w-2 pl-1 bg-dark2" type="number" max="10" min="1" step="1" value="1"></span>
+        <input id='tolerance' class = "text-yellow rounded w-2-5 pl-1 bg-dark2" type="number" max="10" min="1" step="1" value="1"></span>
 {% endblock %}
 
 {% block countSize %}text-05{%endblock%}
 
 {% block bubbleList %}
 <script>
-    const bubbleList = ['','bubble1','bubble1.5','bubble2','bubble3','bubble3.5','bubble3.6','bubble4']
+    const bubbleList = ['','bubble1','bubble1.5','bubble2','bubble3','bubble3.5','bubble4']
     bubListenList = [['guess', 'click', '']]
 </script>
 {% endblock %}
@@ -108,7 +103,7 @@
 
 {% block maxGuess %}
 <script>
-    const maxGuess = 300
+    const maxGuess = 400
 </script>
 {%endblock%}
 {% block holdSpeed %}

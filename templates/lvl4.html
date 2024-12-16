@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1-b d-none">
+    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1-b">
         <p class="text-center text-white">
             <span>With some guesses, the right squares will be actually be <span class="text-orange">less likely</span> to show up.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
@@ -33,14 +33,8 @@
 
 {% block bubbleList %}
 <script>
-    const bubbleList = ['','bubble1','bubble2']
-    bubListenList = [['guess', 'click', '']]
-</script>
-{% endblock %}
-{% block bubbleScript %}
-<script>
-    document.getElementById('guess').addEventListener('click', bubbleCycle)
-    bubListenList[0][2] = bubbleCycle
+    const bubbleList = ['bubble1','bubble2']
+    bubListenList = []
 </script>
 {% endblock %}
 
@@ -50,7 +44,7 @@
 {% block countInner %}<span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>{%endblock%}
 
 {% block hitMiss %}
-    <span id="hitInfo" class="text-green info">Hits: 0</span> &nbsp;
+    <span id="hitInfo" class="text-green info">Hits: 0</span>
     <span id="missInfo" class="text-orange info">Misses: 0</span>
 {% endblock %}
 

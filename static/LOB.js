@@ -268,10 +268,18 @@ function check() {
             }
     }
 
+    finishMessage = ''
+    if (levelNum > 6) {
+        finishMessage = 'Strength: '
+    }
+    else {
+        finishMessage = 'Accuracy: '
+    }
+
     accuracy = Math.round((count / solution.length) * 100)
 
     if (count == solution.length) {
-        document.getElementById('accInfo').innerHTML = 'Accuracy: ' + accuracy.toString() + '%'
+        document.getElementById('accInfo').innerHTML = finishMessage + accuracy.toString() + '%'
         document.getElementById('accInfo').classList.remove('hidden')
         document.getElementById('sparkle-gifr').classList.remove('hidden')
         document.getElementById('sparkle-gifl').classList.remove('hidden')
@@ -286,7 +294,7 @@ function check() {
         }, "3000");
     }
     else if (count >= solution.length * closeEnough) {
-        document.getElementById('accInfo').innerHTML = 'Accuracy: ' + accuracy.toString() + '%' 
+        document.getElementById('accInfo').innerHTML = finishMessage + accuracy.toString() + '%' 
         if (!complete) {
         document.getElementById('accInfo').classList.remove('hidden')
         document.getElementById('sparkle-gifr').classList.remove('hidden')
@@ -303,12 +311,7 @@ function check() {
     }
     }
     else {
-        if (levelNum < 7) {
-            document.getElementById('accInfo').innerHTML = 'Accuracy: ' + accuracy.toString() + '%' 
-        }
-        else {
-            document.getElementById('accInfo').innerHTML = 'Clarity: ' + accuracy.toString() + '%' 
-        }
+        document.getElementById('accInfo').innerHTML = finishMessage + accuracy.toString() + '%' 
         if (!complete) {
             document.getElementById('accInfo').classList.remove('hidden')
             document.getElementById('check').classList.remove('box-glow')
@@ -824,4 +827,13 @@ function boardClear() {
     totalGuessCount = 0
     updateColor('Border')
     updateHitMiss()
+}
+
+function replace_class(elID, removeClass, addClass) {
+    document.getElementById(elID).classList.remove(removeClass)
+    document.getElementById(elID).classList.add(addClass)
+}
+
+function change_text(elID, text) {
+    document.getElementById(elID).innerHTML = text
 }

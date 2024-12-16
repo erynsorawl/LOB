@@ -7,15 +7,16 @@
 {% block button0_1 %}<button class="button rounded text-aether m-1" onclick="updateColor('Border')">Update</button>{% endblock %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-3-b3 d-none">
+    <div id="bubble1" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-3-b3">
         <p class="text-center text-white">
-            <span>From now on, the board will only color itself once you click the <span class="text-aether">Update</span> button.</span> <br>
+            <span>From now on, your <span class="text-cyan">guesses</span> won't show you what they've been working until you click the
+            <span class="text-aether">Update</span> button.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
     <div id="bubble2" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-3-b3 d-none">
         <p class="text-center text-white">
-            <span>You'll also stop making progress if you go too long without <span class="text-cyan">Updating</span>.</span> <br>
+            <span>They'll also stop making progress if you go too long without <span class="text-cyan">Updating</span>.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
@@ -29,13 +30,8 @@
 
 {% block bubbleList %}
 <script>
-    const bubbleList = ['','bubble1','bubble2','bubble3']
-    bubListenList = [['guess', 'click', '']]
-</script>
-{% endblock %}
-{% block bubbleScript %}
-<script>
-    bubListenList[0][2] = bubbleCycle
+    const bubbleList = ['bubble1','bubble2','bubble3']
+    bubListenList = []
 </script>
 {% endblock %}
 {% block bubbleGuessPoints %}

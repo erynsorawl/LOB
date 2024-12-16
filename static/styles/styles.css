@@ -222,6 +222,22 @@
         width: 8rem;
     }
 
+    .emw-2 {
+        width: 2em
+    }
+    
+    .emw-3 {
+        width: 3em
+    }
+
+    .emw-4 {
+        width: 4em
+    }
+
+    .emw-8 {
+        width: 8em
+    }
+
     .w-7 {
         width: calc(var(--box-size) * 7.3);
 
@@ -365,6 +381,10 @@
         background-color: rgb(68, 69, 80);
     }
 
+    .bg-purple {
+        background-color: rgb(218, 161, 255)
+    }
+
     .border-green {
         border-color: rgb(0, 255, 0);
     }
@@ -423,12 +443,12 @@
         position: absolute;
         top: calc((var(--box-size) * 9.2) + 6rem);
         left: 50%;
-        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -20), 0);  
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -22), 0);  
     }
 
     .r2-c1 {
         position: absolute;
-        top: calc((var(--box-size) * 17) + 2rem);
+        top: calc((var(--box-size) * 18) + 2rem);
         left: 50%;
         transform: translate(-50%, -50%) translate(calc(var(--box-size) * -22), 0); 
     }
@@ -444,13 +464,20 @@
         position: absolute;
         top: calc((var(--box-size) * 26) + 2rem);
         left: 50%;
-        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -20), 0); 
+        transform: translate(-50%, -50%) translate(calc(var(--box-size) * -22), 0); 
     }
 
 
     .rc-cc {
         position: absolute;
         top: calc((var(--box-size) * 15) + 6rem);
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .r0-cc {
+        position: absolute;
+        top: calc((var(--box-size) * 12) + 4rem);
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -519,14 +546,14 @@
 
     .r-4-b {
         position: absolute;
-        top: calc((var(--box-size) * 38) + 6rem);
+        top: calc((var(--box-size) * 34) + 6rem);
         left: 50%;
-        transform: translate(-50%, -50%); 
+        transform: translate(-50%); 
     }
 
     .ls-1 {
         position: absolute;
-        top: calc((var(--box-size) * 15) + 6rem);
+        top: calc((var(--box-size) * 13) + 6rem);
         left: 50%;
         transform: translate(-50%) translate(calc(var(--box-size) * -15)); 
     }
