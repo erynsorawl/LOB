@@ -97,108 +97,47 @@ count4 = 0
 // array of border colors for each cell
 borderIntensity = []
 
+// current bubble
 bubbleState = 0
-bubbleDelayState = 0
 
-// convert a hex code into a list of rgba values
-function decode_hex(rgba) {
-    // convert rgba string into a list of rgba values
-    rgba = rgba.split(/,| |\(|\)/)
-    max = 0
-
-    // if it's an rgb value, set a to max
-    if (!rgba[7]) {
-        rgba[7] = '1'
-    }
-    indicies = [1, 3, 5]
-    rgbaVal=['', '', '', '']
-    for (ck = 0; ck < indicies.length; ck++) {
-        rgbaVal[ck] = Math.floor(parseInt(rgba[indicies[ck]]))
-    }
-    rgbaVal[3] = Math.floor(rgba[7] * 255) 
-    return rgbaVal
-}
-
-// take an rgba value and an array of 4 integers,  adjust the rgba value based on these integers, and return the adjusted rgba value
-function alter_hex(rgba, rgbaAlter)
-{
-    rgbaVal = decode_hex(rgba)
-
-    // if a is higher than the highest rgb value, set it equal instead
-    max = 0
-    for (pk = 0; pk < 3; pk++) {
-        if (rgbaVal[pk] > max) {
-            max = rgbaVal[pk]
-        }
-    }
-
-    if (rgbaVal[3] > max) {
-        rgbaVal[3] = max
-    }
-
-    // alter rgba values based on inputs, with a maximum of 255 and a minimum of 0.
-
-    for (pk=0; pk<4; pk++) {
-        rgbaVal[pk] = rgbaVal[pk] + rgbaAlter[pk]
-        if (rgbaVal[pk] > 255){
-            rgbaVal[pk] = 255
-        }
-        if (rgbaVal[pk] < 0) {
-            rgbaVal[pk] = 0
-        }
-    }
+// boolean tracker of whether animation delays are active
+bubbleDelayState = false
+genFlashDelayState = false
 
 
-    // convert rgba values into a hex code, and return it.
-    nHex = ''
-    for (pk = 0; pk < 4; pk++) {
-        hexlet = rgbaVal[pk].toString(16)
-        if (hexlet.length < 2) {
-            nHex = nHex + '0' + hexlet
-        }
-        else {
-            nHex = nHex + hexlet
-        }
-    }
-    nHex = '#' + nHex
-    return nHex
-}
 
 // Cycle between a list of text boxes to flash on screen
 function bubbleCycle(delay) {
     if (!delay) {
         delay = 0
     }
+    
+    // prevent cycling if previous cycle's delay is ongoing
     if (!bubbleDelayState) {
 
         if (bubbleState <= bubbleList.length) {
+
+            // if there's currently an active bubble, hide it.
             if (bubbleList[bubbleState]) {
-                document.getElementById(bubbleList[bubbleState]).classList.add('d-none')
+                hide_element(bubbleList[bubbleState])
             }
-            if (bubListenList[bubbleState]) {
-                if (bubListenList[bubbleState][0]) {
-                    document.getElementById(bubListenList[bubbleState][0]).removeEventListener(bubListenList[bubbleState][1], bubListenList[bubbleState][2])
-                }
-            }
+
+            // if the next bubble exists, show it.
             if (bubbleList[bubbleState + 1]) {
                     document.getElementById(bubbleList[bubbleState + 1]).classList.remove('d-none')
                 }
-            if (bubListenList[bubbleState + 1]) {
-                if (bubListenList[bubbleState + 1][0]) {
-                    document.getElementById(bubListenList[bubbleState + 1][0]).addEventListener(bubListenList[bubbleState + 1][1], bubListenList[bubbleState + 1][2])
-                }
-            }
+
+            // move tracker to next bubble
             bubbleState++
             if (delay) {
-                bubbleDelayState = 1
+                bubbleDelayState = true
                 setTimeout(()=>{
-                    bubbleDelayState = 0
+                    bubbleDelayState = false
                 }, delay)
             }
         }
     }
 }
-
 
 // cycle bubbles if board is complete  
 function bubOnComplete() {
@@ -225,11 +164,11 @@ function bubOnComplete() {
 }
 
 // Cycle box color when box is clicked
-function colorSwitch(element, elNum, noP, noP2) {
-    let color = window.getComputedStyle(element).backgroundColor;
-    for (let i=0; i < colors.length; i++) {
-        if (!noP) {
-            countElement = document.getElementById('p' + elNum.toString())
+function colorSwitch(element, elNum, noNum1, noNum2) {
+    color = window.getComputedStyle(element).backgroundColor;
+    for (i=0; i < colors.length; i++) {
+        if (!noNum1) {
+            countElement = 'p' + elNum.toString()
             countElement1 = countElement.getElementsByTagName('span')[0]
             if (!noP2) {
                 countElement2 = countElement.getElementsByTagName('span')[1]
@@ -237,13 +176,11 @@ function colorSwitch(element, elNum, noP, noP2) {
         }
         if (color === colors[i]) {
             element.style.background = colors[(i+1) % colors.length]
-            if (!noP) {
+            if (!noNum2) {
                 countElement1.classList.add(textColors1[i])
                 countElement1.classList.remove(textColors1[(i + 1) % 2])
-                if (!noP2) {
-                    countElement2.classList.add(textColors2[i])
-                    countElement2.classList.remove(textColors2[(i + 1) % 2])
-                }
+                countElement2.classList.add(textColors2[i])
+                countElement2.classList.remove(textColors2[(i + 1) % 2])
             }
         }
     }
@@ -251,113 +188,75 @@ function colorSwitch(element, elNum, noP, noP2) {
 
 // Check whether the board colors match the solution
 function check() {
-    count = 0
+    correctCount = 0
     answer = []
+
+    // count how many boxes are correct
     for (i=0; i < solution.length; i++) {
         tColor = window.getComputedStyle(document.getElementById('d' + i.toString())).backgroundColor
         boxGreen = decode_hex(tColor)[1]
-        if (boxGreen > checkRigor) {
-            answer[i] = 1
-        }
-        else {
-            answer[i] = 0
-        }
-
-        if (answer[i] == solution[i]) {
-                count++
-            }
+        if (boxGreen > checkRigor) {answer[i] = 1}
+        else {answer[i] = 0}
+        if (answer[i] == solution[i]) {correctCount++}
     }
 
-    finishMessage = ''
-    if (levelNum > 6) {
-        finishMessage = 'Strength: '
-    }
-    else {
-        finishMessage = 'Accuracy: '
-    }
+    // the metric the board is graded by
+    gradeMessage = ''
+    if (levelNum > 6) {finishMessage = 'Strength: '}
+    else {finishMessage = 'Accuracy: '}
 
+    // calculate how accurate the answer is
     accuracy = Math.round((count / solution.length) * 100)
 
+
+    // perfect
     if (count == solution.length) {
-        document.getElementById('accInfo').innerHTML = finishMessage + accuracy.toString() + '%'
-        document.getElementById('accInfo').classList.remove('hidden')
-        document.getElementById('sparkle-gifr').classList.remove('hidden')
-        document.getElementById('sparkle-gifl').classList.remove('hidden')
-        document.getElementById('nextLevel').classList.remove('d-none')
+        change_html('accInfo', gradeMessage + accuracy.toString() + '%')
+        show_element('accInfo', 'sparkle-gifr', 'sparkle-gifl', 'nextLevel')
         check_flash('perfect')
-        document.getElementById('guess').classList.remove('box-glow')
-        document.getElementById('check').classList.remove('box-glow')
+        change_class(['guess', 'check'], 'box-glow')
         complete = 1
         setTimeout(() => {
-            document.getElementById('sparkle-gifr').classList.add('hidden')
-            document.getElementById('sparkle-gifl').classList.add('hidden')
+            hide_element('sparkle-gifr', 'sparkle-gifl')
         }, "3000");
     }
+
+    // good enough
     else if (count >= solution.length * closeEnough) {
-        document.getElementById('accInfo').innerHTML = finishMessage + accuracy.toString() + '%' 
+        change_html('accInfo', gradeMessage + accuracy.toString() + '%')
         if (!complete) {
-        document.getElementById('accInfo').classList.remove('hidden')
-        document.getElementById('sparkle-gifr').classList.remove('hidden')
-        document.getElementById('sparkle-gifl').classList.remove('hidden')
-        document.getElementById('nextLevel').classList.remove('d-none')
-        check_flash('win')
-        document.getElementById('check').classList.remove('box-glow')
-        document.getElementById('guess').classList.remove('box-glow')
-        complete = 1
-        setTimeout(() => {
-            document.getElementById('sparkle-gifr').classList.add('hidden')
-            document.getElementById('sparkle-gifl').classList.add('hidden')
-        }, "3000")
+            show_element('accInfo', 'sparkle-gifr', 'sparkle-gifl', 'nextLevel')
+            check_flash('win')
+            change_class(['guess', 'check'], 'box-glow')
+            complete = 1
+            setTimeout(() => {
+                hide_element('sparkle-gifr', 'sparkle-gifl')
+            }, "3000")
+        }
     }
-    }
+
+    // try again
     else {
-        document.getElementById('accInfo').innerHTML = finishMessage + accuracy.toString() + '%' 
+        change_html('accInfo', gradeMessage + accuracy.toString() + '%')
         if (!complete) {
-            document.getElementById('accInfo').classList.remove('hidden')
-            document.getElementById('check').classList.remove('box-glow')
-            document.getElementById('guess').classList.add('box-glow')
-            check_flash()
+            show_element('accInfo')
+            change_class(['guess', 'check'], 'box-glow')
+            check_flash('fail')
         }
     }
 }
 
 // flash a 'Well Done' or 'Try Again' message on screen
 function check_flash(win) {
-    el = document.getElementById('win-fail')
-
-    if (win == 'win') {
-        el.innerHTML = "Well done!"
-        el.classList.remove('text-orange')
-        el.classList.add('text-green')
+    elID = 'win-fail'
+    
+    for (chflshI=0;chflshI<3;chflshI++) {
+        if (['win', 'perfect', 'fail'][chflshI] == win) {
+            change_html(elID, ['Well Done!', 'Perfect!', 'Try Again!'][chflshI])
+            change_class(elID, ['text-orange', 'text-orange', 'text-green'][chflshI], ['text-green', 'text-green', 'text-orange'][chflshI])
+        }
     }
-    else if (win == 'perfect') {
-        el.innerHTML = "Perfect!"
-        el.classList.remove('text-orange')
-        el.classList.add('text-green')
-    }
-    else {
-        el.innerHTML = "Keep going!"
-        el.classList.remove('text-green')
-        el.classList.add('text-orange')
-    }
-
-    if (!el.classList.contains('animate__animated')) {
-        
-        el.classList.remove('d-none')
-        el.classList.add('animate__animated', 'animate__fadeIn')
-
-        // wait two seconds, then fade it out again
-        setTimeout(() => {
-            el.classList.remove('animate__fadeIn')
-            el.classList.add('animate__fadeOut')
-        }, 2000)
-
-        // wait one second, then set display back to none
-        setTimeout(() => {
-            el.classList.remove('animate__animated', 'animate__fadeOut')
-            el.classList.add('d-none')
-        }, 3000)
-    }
+    animate_fade(elID, 0, 2000)
 }
 
 // input an accuracy float, create an semi-inaccurate version of the solution with the inputted accuracy, 
@@ -370,8 +269,7 @@ function generateSolution() {
         }
         else {
             genSolution[i] = solution[i]
-        }
-        
+        }   
     }
     return genSolution
 }
@@ -397,8 +295,8 @@ function advGenSol() {
     for (i=0;i<wrongs;i++) {
         // select a random index from the changedIndex array
         tmpIndex = Math.floor(Math.random() * (solution.length - i))
+
         // flip that cell in the genSolution
-    
         genSolution[changedIndex[tmpIndex]] = (genSolution[changedIndex[tmpIndex]] + 1) % 2
 
         // remove that index from the array
@@ -547,26 +445,27 @@ function updateColor(type) {
 function basicGenerate() {
     genSolution = generateSolution()
     totalGuessCount++
-    document.getElementById('guess').classList.remove('box-glow')
-    document.getElementById('check').classList.add('box-glow')
+    change_class(['guess', 'check'], 'box-glow')
     if (counterLvl) {
         updateCounter(genSolution)
         updateColor('Border')
-    }
-    if (totalGuessCount == hintThreshold) {
-        document.getElementById('hint').classList.remove('hidden', 'd-none')
-        document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
     }
     genFlash(genSolution)
 }
 
 // flash genSol on screen
 function genFlash(genSolution) {
+
+//checkpoint: I'm trying to make genFlash not be such an utter mess
+
     if (!document.getElementById('p0').classList.contains("d-none")) {
         toggleCounters()
     }
 
     boxOn = []
+
+
+
     if (!document.getElementById('di0').classList.contains('animate__animated')) {
         
         for (i=0; i<solution.length; i++) {
@@ -658,11 +557,6 @@ function advancedGenerate(loops) {
             }
             else {
                 tolerance = (52 + ((1 / solRatio)) ** 1.2) / 100
-            }
-
-            if (totalGuessCount == hintThreshold) {
-                document.getElementById('hint').classList.remove('hidden', 'd-none')
-                document.getElementById('hint').classList.add('animate__animated', 'animate__fadeIn')
             }
 
             for (i=0;i<bubbleGuessPoints.length;i++) {
@@ -761,55 +655,6 @@ function toggleCounters(toggle) {
 
 }
 
-// close hints
-function hint() {
-    document.getElementById('hint').classList.remove("animate__fadeIn")
-    document.getElementById('hint').classList.add('animate__fadeOut')
-    setTimeout(() => {
-        document.getElementById('hint').classList.add('hidden', 'd-none')
-    }, 1000)
-}
-
-// make a general function for animating elements
-function animate(element, type, duration, double) {
-    types = ['animate__fadeIn', 'animate__fadeOut']
-    element.classList.remove(types[(type+1)%2])
-    element.classList.add(types[type])
-    element.classList.remove('d-none')
-    if (double) {
-        setTimeout(() => {
-            element.classList.remove(types[type])
-            element.classList.add(types[(type+1)%2])
-            if (type && duration > 1000) {
-                element.classList.add('d-none')
-                setTimeout(() => {
-                    element.classList.remove('d-none')
-                }, duration - 1000)
-            }
-        }, duration)
-        setTimeout(() => {
-            element.classList.remove(types[(type+1)%2])
-            if (!type) {
-                element.classList.add('d-none')
-            }
-        }, duration + 1000)
-    }
-}
-
-// general functions to show or hide elements
-
-function hide(/**/) {
-    for (hideI=0;hideI<arguments.length;hideI++) {
-        document.getElementById(arguments[hideI]).classList.add('d-none')
-    }
-}
-
-function show(/**/) {
-    for (showI=0;showI<arguments.length;showI++) {
-        document.getElementById(arguments[showI]).classList.remove('d-none')
-    }
-}
-
 function boardClear() {
     for (i=0;i<solution.length;i++) {
         boxCounters[i] = 0
@@ -827,13 +672,4 @@ function boardClear() {
     totalGuessCount = 0
     updateColor('Border')
     updateHitMiss()
-}
-
-function replace_class(elID, removeClass, addClass) {
-    document.getElementById(elID).classList.remove(removeClass)
-    document.getElementById(elID).classList.add(addClass)
-}
-
-function change_text(elID, text) {
-    document.getElementById(elID).innerHTML = text
 }

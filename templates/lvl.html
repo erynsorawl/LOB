@@ -3,8 +3,8 @@
 {% block content %}
 <!--Sparkle animation that plays on victory-->
 <!--Credit: https://gifer.com/en/XZ5V-->
-<img id="sparkle-gifr" class="sparkle sparkr hidden" src="/static/assets/sparkle.gif">
-<img id="sparkle-gifl" class="sparkle sparkl hidden" src="/static/assets/sparkle.gif">
+<img id="sparkle-gifr" class="sparkle sparkr d-none" src="/static/assets/sparkle.gif">
+<img id="sparkle-gifl" class="sparkle sparkl d-none" src="/static/assets/sparkle.gif">
 
 <!--Popup text that tells you how well you did-->
 <div id="win-fail" class="abs-center w-24 h-10 text-4 text-center t-shadow text-green overlay d-none click-none">Well done!</div>
@@ -17,15 +17,6 @@
                 Learn Outside The Box{% block level %}{% endblock %}
             </span>
         </div>
-    </div>
-
-    <!--Hints that appear after a certain point on some levels-->
-    <div id="hint" class="bg-dark text-white txtw-15 pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r2-c2 hidden">
-        <p class="text-center text-white">
-            {% block hint %}
-            {% endblock %} <br>
-            <button class="button rounded bg-secondary m-1" onclick="hint()">Close</button>
-        </p>
     </div>
 
     <!--Notification that tells the player how the hit and miss function works-->
@@ -59,6 +50,7 @@
                                         text-center-v
                                         text-dark 
                                         text-glow 
+                                        animate__animated
                                         {% block di_none %}{% endblock %}'
                                         
                                     ></div>
@@ -73,7 +65,7 @@
             <tbody>
         </table>
         <!--Accuracy counter-->
-        <span id="accInfo" class="text-purple info text-1-5 text-center r1-c2 hidden">Accuracy: 0%</span>
+        <span id="accInfo" class="text-purple info text-1-5 text-center r1-c2 d-none">Accuracy: 0%</span>
 
     <!--Container for buttons-->
     <div id = "buttons" class="d-flex justify-content-center r-3">
@@ -123,8 +115,6 @@
     {% block hold %}
     {% endblock %}
     {% block counterLvl %}
-    {% endblock %}
-    {% block hintThreshold %}
     {% endblock %}
     {% block missBonus %}
     {% endblock %}

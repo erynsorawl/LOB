@@ -164,15 +164,6 @@
         margin-right: -1rem;
     }
 
-    .hint {
-        position: absolute;
-        margin: 20% 10% auto 20%;
-        top: 0;
-        bottom: 0;
-        left: 1;
-        right: 0;
-    }
-
     .tableBorder {
         border: solid;
         aspect-ratio: 1/1;
