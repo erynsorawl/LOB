@@ -5,7 +5,7 @@
 {% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(10)'>Guess</button>{% endblock %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1">
         <p class="text-center text-white">
             <span>There's been a small change to the coloring mechanics.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
@@ -25,23 +25,11 @@
     </div>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['','bubble1','bubble2','bubble3']
-    bubListenList = [['guess', 'click', '']]
+    const bubbleLength = 3
 </script>
 {% endblock %}
-{% block bubbleScript %}
-<script>
-    bubListenList[0][2] = bubbleCycle
-    bubbleCycle()
-</script>
-{% endblock %}
-{% block bubbleGuessPoints %}
-<script>
-    const bubbleGuessPoints = []
-</script>
-{%endblock%}
 
 {% block levelNum %}
 <script>
@@ -60,19 +48,9 @@
     const size = 8
 </script>
 {% endblock %}
-{% block maxLoops %}
-<script>
-    const maxLoops = 100
-</script>
-{%endblock%}
 
 {% block maxGuess %}
 <script>
     const maxGuess = 600
 </script>
 {%endblock%}
-{% block holdSpeed %}
-<script>
-    const holdSpeed = 15
-</script>
-{% endblock %}

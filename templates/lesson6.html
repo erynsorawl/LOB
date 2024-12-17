@@ -63,8 +63,8 @@ rc-cc
 {%endblock%}
 
 {% block extra%}
-<span id='tolerance' class="button rounded h-2-5 text-yellow lr-c-b d-none"> Standards:
-    <input class = "text-yellow rounded w-2-5 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
+<span id='standards' class="button rounded h-2-5 text-yellow lr-c-b d-none"> Standards:
+    <input class = "text-yellow rounded emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
     <button id="update" class="button rounded w-6 text-aether box-glow m-1 lr-c-b d-none">Update</button>
 
     <div id="info3" style="font-size: calc(var(--box_size) * 1.5);"  class="text-center emw-8 rc-cc h-4 lh-4 d-block d-none">
@@ -85,17 +85,11 @@ rc-cc
 </script>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4', 'bubble5' , 'bubble6', 'bubble7']
-    bubListenList = [[]]
+    const bubbleLength = 7
 </script>
 {% endblock %}
-{% block bubbleDelay %}
-<script>
-    const bubbleDelay = 0
-</script>
-{%endblock%}
 
 {%block postscript%}
 <script>
@@ -104,12 +98,12 @@ rc-cc
 
     function lesson() {
         bubbleCycle()
-        show('tolerance')
+        show('standards')
     }
 
     function lesson2() {
         bubbleCycle()
-        hide('tolerance')
+        hide('standards')
         show('update')
     }
 

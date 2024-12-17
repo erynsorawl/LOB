@@ -28,24 +28,16 @@
     </div>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble1','bubble2','bubble3']
-    bubListenList = []
+    const bubbleLength = 3
 </script>
 {% endblock %}
-{% block bubbleGuessPoints %}
-<script>
-    const bubbleGuessPoints = [20]
-</script>
-{% endblock %}
-
 {% block levelNum %}
 <script>
     const levelNum = 6
 </script>
 {% endblock %}
-
 {% block size %}
 <script>
     const size = 6
@@ -56,13 +48,3 @@
     const maxGuess = 100
 </script>
 {%endblock%}
-{% block holdSpeed %}
-<script>
-    const holdSpeed = 50
-</script>
-{% endblock %}
-{% block holdDelay %}
-<script>
-    const holdDelay = 500
-</script>
-{% endblock %}

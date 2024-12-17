@@ -3,8 +3,8 @@
 {% block content %}
 <!--Sparkle animation that plays on victory-->
 <!--Credit: https://gifer.com/en/XZ5V-->
-<img id="sparkle-gifr" class="sparkle sparkr hidden" src="/static/assets/sparkle.gif">
-<img id="sparkle-gifl" class="sparkle sparkl hidden" src="/static/assets/sparkle.gif">
+<img id="sparkle-gif-right" class="sparkle sparkr hidden" src="/static/assets/sparkle.gif">
+<img id="sparkle-gif-left" class="sparkle sparkl hidden" src="/static/assets/sparkle.gif">
 
 <!--Popup text that tells you how well you did-->
 <div id="win-fail" class="abs-center w-24 h-10 text-4 text-center t-shadow text-green overlay d-none click-none">Well done!</div>
@@ -20,7 +20,7 @@
     </div>
 
     <!--Notification that tells the player how the hit and miss function works-->
-    <div id="reliable" class="bg-maroon text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r1-c1 hidden">
+    <div id="reliability" class="bg-maroon text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r1-c1 hidden">
         <p class="text-center text-white">
             That was a good guess!
         </p>
@@ -65,14 +65,6 @@
         {% endblock %}
         {% block button2 %}
         {% endblock %}
-        {% block button3 %}
-        {% endblock %}
-        {% block button4 %}
-        {% endblock %}
-        {% block button5 %}
-        {% endblock %}
-        {% block button6 %}
-        {% endblock %}
     </div>
 {% block bubbles %}
 {%endblock%}
@@ -101,12 +93,8 @@
 {% endblock %}
 {%block size%}
 {%endblock%}
-{% block bubbleList %}
+{% block bubbleLength %}
 {% endblock %}
-{% block bubbleScript %}
-{% endblock %}
-{% block bubbleDelay %}
-{%endblock%}
 {% block guess %}
 {%endblock%}
 

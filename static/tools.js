@@ -34,10 +34,16 @@ function alter_hex(rgba, rgbaAlter)
 }
 
 // Fade an element in or out, with the option of reverting after a certain delay 
-// syntax: element IDs, 0 (fade in) or 1 (fade out), duration (if you'd like to do the other afterwards) minimum one second,
+// syntax: element IDs, 1 (fade in) or 0 (fade out), duration (if you'd like to do the other afterwards) minimum one second,
 // be sure not to call the function again until the animation duration (plus one second) is over!
-function animate_fade(elements, type, duration, tracker) {
-    types = ['animate__fadeIn', 'animate__fadeOut']
+// Checkpoint: need to make it so you can animate a set of elements at once, doing it one at a time just doesn't work.
+function animate_fade(elements, type, duration) {
+
+    if (typeof(elements) == 'string') {
+        elements = [elements]
+    }
+
+    types = ['animate__fadeOut', 'animate__fadeIn']
 
     if (duration < 1000) {
         duration = 1000
@@ -46,30 +52,26 @@ function animate_fade(elements, type, duration, tracker) {
     if (typeof(elements) == 'string') {
         elements = [elements]
     }
-
-    for (anifadI=0;anifadI<elements.length;anifadI++) {
-        elements[anifadI].classList.remove(types[(type+1)%2])
-        elements[anifadI].classList.add(types[type])
-        elements[anifadI].classList.remove('d-none')
-        if (duration) {
-            setTimeout(() => {
-                elements[anifadI].classList.remove(types[type])
-                elements[anifadI].classList.add(types[(type+1)%2])
-                if (type && duration > 1000) {
-                    elements[anifadI].classList.add('d-none')
-                    setTimeout(() => {
-                        elements[anifadI].classList.remove('d-none')
-                    }, duration - 1000)
-                }
-            }, duration)
-            setTimeout(() => {
-                elements[anifadI].classList.remove(types[(type+1)%2])
-                if (!type) {
-                    elements[anifadI].classList.add('d-none')
-                }
-            }, duration + 1000)
-        }
+    // for all elements, remove the other fade effect and apply the correct one
+    for (afi=0;afi<elements.length;afi++) {
+        change_class(elements[afi], [types[(type+1)%2], 'd-none'], types[type])
     }
+    if (duration) {
+        setTimeout(() => {
+            for (afi=0;afi<elements.length;afi++) {
+                change_class(elements[afi], types[type], types[(type+1)%2])
+            }
+        }, duration)
+    }
+
+    setTimeout(() => {
+        for (afi=0;afi<elements.length;afi++) {
+            change_class(elements[afi], types[(type+1)%2])
+            if (type) {
+                hide_element(elements[afi])
+            }
+        }
+    }, duration + 1000)
 }
 
 // change the inner HTML of a list of elements
@@ -79,8 +81,8 @@ function change_html(elIDs, newHTML) {
         elIDs = [elIDs]
     }
 
-    for (i=0;i<elIDs.length;i++) {
-        document.getElementById(elIDs[i]).innerHTML = newHTML
+    for (chi=0;chi<elIDs.length;chi++) {
+        document.getElementById(elIDs[chi]).innerHTML = newHTML
     }
 }
 
@@ -109,40 +111,64 @@ function decode_hex(rgba) {
 // Set a list of elements to 'display-none'
 // syntax: list element IDs ('',)
 function hide_element(/**/) {
-    for (hideI=0;hideI<arguments.length;hideI++) {
-        document.getElementById(arguments[hideI]).classList.add('d-none')
+    if (typeof(arguments[0]) == 'object') {
+        hideArgs = arguments[0]
+    }
+    else {
+        hideArgs = arguments
+    }
+    for (hideI=0;hideI<hideArgs.length;hideI++) {
+        document.getElementById(hideArgs[hideI]).classList.add('d-none')
     }
 }
 
 // Add and remove classes from an element/elements
 // syntax: an element's ID, an array of classes to remove, and an array of classes to add ('', [], [])
-function change_class(elIDs, remClasses, addClasses) {
-    args = [elIDs, remClasses, addClasses]
-    for (i=0; i<arguments.length; i++) {
-        if (!arguments[i]) {
-            args[i] = []
+function change_class(/**/) {
+    args = []
+    for (cci=0; cci<3; cci++) {
+        if (!arguments[cci]) {
+            args[cci] = []
         }
-        else if (typeof(arguments[i]) == 'string') {
-            args[i] = [args[i]]
+        else if (typeof(arguments[cci]) == 'string') {
+            args[cci] = [arguments[cci]]
+        }
+        else {
+            args[cci] = arguments[cci]
         }
     }
 
-    for(i=0; i<elIDs.length;i++) {
-        for (j=0;j<remClasses.length;j++) {
-            document.getElementById(elIDs[i]).classList.remove(remClasses[j])
+    for(cci=0; cci<args[0].length;cci++) {
+        for (j=0;j<args[1].length;j++) {
+            document.getElementById(args[0][cci]).classList.remove(args[1][j])
         }
-        for(j=0;j<addClasses.length;j++) {
-            document.getElementById(elIDs[i]).classList.add(addClasses[j])
+        for(j=0;j<args[2].length;j++) {
+            document.getElementById(args[0][cci]).classList.add(args[2][j])
         }
     }
 
     return 1
 }
 
+// create a list of sequential IDs
+function id_list(name, length) {
+    list = []
+    for (ili=0;ili<length;ili++) {
+        list[ili] = name + ili
+    }
+    return list
+}
+
 // Reveal a list of 'display-none' elements
 // syntax: list element IDs ('',)
 function show_element(/**/) {
-    for (showI=0;showI<arguments.length;showI++) {
-        document.getElementById(arguments[showI]).classList.remove('d-none')
+    if (typeof(arguments[0]) == 'object') {
+        showArgs = arguments[0]
+    }
+    else {
+        showArgs = arguments
+    }
+    for (showI=0;showI<showArgs.length;showI++) {
+        document.getElementById(showArgs[showI]).classList.remove('d-none')
     }
 }

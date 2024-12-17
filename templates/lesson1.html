@@ -1,25 +1,25 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble-2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
         <p class="text-center text-white">
             <span>Thanks for hearing me out! I know that it must've seemed pretty crazy. How could this silly little box game teach you neuroscience?</span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble-1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
             <span>Well, it turns out that it was actually a bunch of neuroscience lessons, simplified and turned into a game.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble0" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">If you understood the game mechanics, then congratulations - you understand the basics of neuroscience! Now, we just need to translate them.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
             <span>To start, let's explain the board. Every box on the board represents one of the neurons in your brain, with two states: 
                 <span class="bg-cyan text-black pl-1 pr-1">on</span>&nbsp;or
@@ -28,13 +28,13 @@
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble5" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
             <span>When a bunch of them turn <span class="text-cyan">on</span> in a certain pattern, you do a <span class='text-purple'>Thing</span>. For example, let's say you're tossing a basketball.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble6" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
         <p class="text-center text-white">
             <span>The pattern that you <span class="text-purple">Submit</span> is the pattern that does the <span class='text-purple'>Thing</span> correctly - for example, landing the basketball in the hoop.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
@@ -64,17 +64,11 @@ rc-cc
 </script>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble-2','bubble-1','bubble0','bubble1', 'bubble2', 'bubble3']
-    bubListenList = [[]]
+    const bubbleLength = 6
 </script>
 {% endblock %}
-{% block bubbleDelay %}
-<script>
-    const bubbleDelay = 0
-</script>
-{%endblock%}
 
 {%block postscript%}
 <script>
@@ -103,8 +97,7 @@ rc-cc
             }
             setTimeout(() => {
                 bubbleCycle(duration)
-                document.getElementById('tableDiv').classList.remove('rc-cc')
-                document.getElementById('tableDiv').classList.add('rc-c1')
+                change_class('tableDiv', 'rc-cc', 'rc-c1')
                 animate(document.getElementById('img'), 0)
                 for (i=0;i<solution.length;i++) {
                     if (board1[i] == 1) {
@@ -120,7 +113,7 @@ rc-cc
         if (!lessonDelayState) {
             lessonDelayState = 1
             duration = 1000
-            animate (document.getElementById('img'), 1, duration, 1)
+            animate(document.getElementById('img'), 1, duration, 1)
             setTimeout(() => {
                 bubbleCycle(duration)
                 for (i=0;i<solution.length;i++) {
@@ -137,13 +130,11 @@ rc-cc
     function lesson3() {
         if (!lessonDelayState) {
             lessonDelayState = 1
-            document.getElementById('sparkle-gifr').classList.remove('hidden')
-            document.getElementById('sparkle-gifl').classList.remove('hidden')
+            show_element('sparkle-gif-right', 'sparkle-gif-left')
             check_flash('win')
 
         setTimeout(()=>{
-            document.getElementById('sparkle-gifr').classList.add('hidden')
-            document.getElementById('sparkle-gifl').classList.add('hidden')
+            hide_element('sparkle-gif-right', 'sparkle-gif-left')
             window.location.href = "/lesson_2";
             lessonDelayState = 0
         }, 2000)

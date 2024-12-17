@@ -46,8 +46,8 @@ rc-cc
 
 
 {% block extra%}
-<span id='tolerance1' class="button text-yellow rounded pr-1 h-2-5 lr-c-b">On a scale of 1 to 10, how high are your standards?
-    <input id='tolerance' class = "text-yellow rounded emw-3 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
+<span id='standards1' class="button text-yellow rounded pr-1 h-2-5 lr-c-b">On a scale of 1 to 10, how high are your standards?
+    <input id='standards' class = "text-yellow rounded emw-3 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
     <span id='extol1' class="button rounded h-2-5 text-yellow lr-l-b d-none"> Standards:
         <input class = "text-yellow rounded emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="3"></span>
     <span id='extol2' class="button rounded h-2-5 text-yellow lr-r-b d-none"> Standards:
@@ -57,10 +57,10 @@ rc-cc
     
         <img id='img1'   
     class="w-15 animate__animated rc-c1 p-1 d-none" 
-    src="/static/assets/toleranceBoard1.png">
+    src="/static/assets/standardsBoard1.png">
     <img id='img2'   
     class="w-15 animate__animated rc-c2 p-1 d-none" 
-    src="/static/assets/toleranceBoard2.png">
+    src="/static/assets/standardsBoard2.png">
 
     <div id="info3"  class="text-center emw-8 ls-1 h-4 text-1-5 lh-4 d-block">
         <span id="hitInfo" class="text-green info">Hits: 0</span>
@@ -81,24 +81,22 @@ rc-cc
 </script>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4', 'bubble5']
-    bubListenList = [[]]
+    const bubbleLength = 5
 </script>
 {% endblock %}
-{% block bubbleDelay %}
-<script>
-    const bubbleDelay = 0
-</script>
-{%endblock%}
 
 {% block guess %}
 <script>
     const maxGuess = Number.MAX_SAFE_INTEGER
-    const bubbleGuessPoints = Number.MAX_SAFE_INTEGER
-    const acc = 0
 </script>
+{%endblock%}
+
+{% block acc %}
+<script>
+    const acc = 0
+</script> 
 {%endblock%}
 
 {%block postscript%}
@@ -135,7 +133,7 @@ rc-cc
         loopEnd = 1
         bubbleCycle()
         boardClear()
-        document.getElementById('tolerance').value = 10
+        document.getElementById('standards').value = 10
         setTimeout(()=> {
             loopEnd = 0
             genLoop(1)
@@ -145,7 +143,7 @@ rc-cc
     function lesson3() {
         loopEnd = 1
         bubbleCycle()
-        hide('tableDiv', 'tolerance1', 'hitInfo', 'missInfo')
+        hide('tableDiv', 'standards1', 'hitInfo', 'missInfo')
         show('img1', 'img2', 'extol1', 'extol2', 'exHit1', 'exHit2')
     }
 

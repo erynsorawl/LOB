@@ -5,12 +5,9 @@
 {% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="advancedGenerate(1)">Guess</button>{% endblock %}
 
 {% block navbar_extra %}
-    <div class="navbar-nav collapse-margin">
-        {% block navbar_extra_2 %} <button class="btn btn-secondary w-10 collapse-margin" onclick="toggleCounters(1)">Toggle Counters</button>&nbsp;<br> {%endblock%}
-    </div>
     <div class="collapse-margin pl-2">
         {% block navbar_extra_3 %}
-        <input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-1">
+        <input id='standards' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="8">
         {% endblock %}
     </div>
 {% endblock %}
@@ -31,10 +28,9 @@
     </div>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble1','bubble2']
-    bubListenList = []
+    const bubbleLength = 2
 </script>
 {% endblock %}
 
@@ -48,12 +44,6 @@
     <span id="missInfo" class="text-orange info">Misses: 0</span>
 {% endblock %}
 
-{% block bubbleGuessPoints %}
-<script>
-    const bubbleGuessPoints = []
-</script>
-{% endblock %}
-
 {% block levelNum %}
 <script>
     const levelNum = 4
@@ -62,14 +52,9 @@
 
 {% block acc %}
 <script>
-    const acc = 0
+    const acc = .09
 </script>
 {% endblock %}
-{% block hold %}
-<script>
-    const hold = 0
-</script>
-{%endblock%}
 {% block closeEnough %}
 <script>
     const closeEnough = .9
@@ -80,28 +65,8 @@
         const size = 4
     </script>
 {% endblock %}
-{% block missBonus %}
-<script>
-    const missBonus = 0
-</script>
-{%endblock%}
-{% block holdSpeed %}
-<script>
-    const holdSpeed = 100
-</script>
-{% endblock %}
-{% block condense %}
-<script>
-    const condense = 0
-</script>
-{% endblock %}
 {% block maxGuess %}
 <script>
     const maxGuess = Number.MAX_SAFE_INTEGER
-</script>
-{% endblock %}
-{% block flash %}
-<script>
-    const flash = 1
 </script>
 {% endblock %}

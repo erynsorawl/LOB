@@ -1,5 +1,7 @@
 {% extends 'lvl7.html' %}
 
+{# template for screenshotting images #}
+
 {% block level %}: Level 8{% endblock %}
 
 {% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='test()'>Guess</button>{% endblock %}
@@ -20,23 +22,13 @@
 
 {% block countInner %}<span class="text-lime">0</span><span class="text-orange ml-1 d-none"></span>{%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
 
-    const bubbleList = []
+    const bubbleLength = []
     bubListenList = []
 </script>
 {% endblock %}
-{% block bubbleScript %}
-<script>
-    bubbleCycle()
-</script>
-{% endblock %}
-{% block bubbleGuessPoints %}
-<script>
-    const bubbleGuessPoints = []
-</script>
-{%endblock%}
 
 {% block levelNum %}
 <script>
@@ -55,29 +47,19 @@
     const size = 3
 </script>
 {% endblock %}
-{% block maxLoops %}
-<script>
-    const maxLoops = 100
-</script>
-{%endblock%}
 
 {% block maxGuess %}
 <script>
     const maxGuess = 200
 </script>
 {%endblock%}
-{% block holdSpeed %}
-<script>
-    const holdSpeed = 15
-</script>
-{% endblock %}
 
 {% block postscript %}
 <script>
     function test () {
         for (i=0;i<solution.length;i++) {
             if (document.getElementById('d' + i.toString()).style.background == 'rgb(0, 255, 255)') {
-                document.getElementById('p' + i.toString()).children[0].innerHTML = document.getElementById('tolerance').value.toString()
+                document.getElementById('p' + i.toString()).children[0].innerHTML = document.getElementById('standards').value.toString()
             }
         }
 

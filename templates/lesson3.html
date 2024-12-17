@@ -63,17 +63,12 @@ src="/static/assets/Board2.png">
 </script>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
+    const bubbleLength = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
     bubListenList = [[]]
 </script>
 {% endblock %}
-{% block bubbleDelay %}
-<script>
-    const bubbleDelay = 0
-</script>
-{%endblock%}
 
 {%block postscript%}
 <script>
@@ -87,10 +82,7 @@ src="/static/assets/Board2.png">
         show('guess')
         for (i=0;i<solution.length;i++) {
             document.getElementById('d' + i.toString()).style.backgroundColor = 'rgb(50,50,150)'
-            document.getElementById('p' + i.toString()).classList.remove('d-none')
-            document.getElementById('p' + i.toString()).classList.add('mt-3')
-
-
+            change_class('p' + i, 'd-none', 'mt-3')
             document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].classList.remove('text-lime')
             document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].classList.add('text-transparent-gray', 'text-2')
             if (board1[i] == 1) {
@@ -101,14 +93,14 @@ src="/static/assets/Board2.png">
 
     function lesson2() {
         bubbleCycle()
-        hide('tableDiv', 'guess')
-        show('img1', 'update')
+        hide_element('tableDiv', 'guess')
+        show_element('img1', 'update')
     }
 
     function lesson3() {
         bubbleCycle() 
-        hide('img1', 'update')
-        show('img2')
+        hide_element('img1', 'update')
+        show_element('img2')
     }
 </script>
 {%endblock%}

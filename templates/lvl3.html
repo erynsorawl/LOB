@@ -4,7 +4,7 @@
 
 {# change the guess button to the second version #}
 {% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Guess</button> 
-<input id='tolerance' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-1">{% endblock %}
+<input id='standards' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-1">{% endblock %}
 
 {% block countSize %}text-1-5{%endblock%}
 
@@ -25,10 +25,9 @@
     </div>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble1','bubble2']
-    bubListenList = []
+    const bubbleLength = 2
 </script>
 {% endblock %}
 
@@ -47,8 +46,3 @@
         const size = 4
     </script>
 {% endblock %}
-{% block counterLvl %}
-<script>
-    const counterLvl = 1
-</script>
-{%endblock%}

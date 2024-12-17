@@ -69,17 +69,11 @@ rc-c1
 </script>
 {%endblock%}
 
-{% block bubbleList %}
+{% block bubbleLength %}
 <script>
-    const bubbleList = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
-    bubListenList = [[]]
+    const bubbleLength = 4
 </script>
 {% endblock %}
-{% block bubbleDelay %}
-<script>
-    const bubbleDelay = 0
-</script>
-{%endblock%}
 
 {%block postscript%}
 <script>
@@ -149,7 +143,7 @@ rc-c1
     function lesson2() {
         document.getElementById('img4').classList.add('bg-dark-green')
         for (i=21;i<solution.length;i++) {
-            document.getElementById('p' + i.toString()).classList.remove('d-none')
+            show_element('p' + i)
             if (i % 3 == 2) {
                 i = i + 3
             }
@@ -157,7 +151,7 @@ rc-c1
         for (i=0;i<board1sec4.length;i++) {
             document.getElementById('p' + board1sec4[i].toString()).getElementsByTagName('span')[0].innerHTML = '1'
         }
-        document.getElementById('guess').classList.add('d-none')
+        hide_element('guess')
         bubbleCycle()
     }
 
@@ -169,22 +163,22 @@ rc-c1
         document.getElementById('img4').src = 'static/assets/basketball2.png'
 
         for (i=0;i<solution.length;i++) {
-            document.getElementById('p' + i.toString()).classList.remove('d-none')
+            show_element('p' + i)
 
-        if (board1[i] == 1) {
-            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
-        }
-        if(board2[i] == 1) {
-            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
-            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '1'
-        }
-        else {
-            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '0'
-        }
+            if (board1[i] == 1) {
+                colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
+            }
+            if(board2[i] == 1) {
+                colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
+                document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '1'
+            }
+            else {
+                document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '0'
+            }
         }
 
         for (i=21;i<solution.length;i++) {
-            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = count2[i].toString()
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = count2[i]
             if (i % 3 == 2) {
                 i = i + 3
             }
