@@ -1,0 +1,81 @@
+/* box width/height */
+
+.boxw-4 {
+    width: calc(var(--box-size) * 4);
+}
+
+.boxw-15 {
+    width: calc(var(--box-size) * 15);
+}
+
+.boxw-24 {
+    width: calc(var(--box-size) * 24);
+}
+
+.boxh-1 {
+    height: calc(var(--box-size) * 1);
+}
+
+.boxh-2 {
+    height: calc(var(--box-size) * 2);
+}
+
+.boxh-2-5 {
+    height: calc(var(--box-size) * 2.5);
+}
+
+.boxh-4 {
+    height: calc(var(--box-size) * 4);
+}
+
+.boxh-10 {
+    height: calc(var(--box-size) * 10);
+}
+
+/* rem width/height */
+
+.remw-1 {
+    width: 1rem;
+}
+
+.remw-2 {
+    width: 2rem;
+}
+
+.remw-3 {
+    width: 3rem;
+}
+
+.remw-4 {
+    width: 4rem;
+}
+
+.remw-6 {
+    width: 6rem;
+}
+
+.remw-8 {
+    width: 8rem;
+}
+
+/* em width/height */
+
+.emw-2 {
+    width: 2em
+}
+
+.emw-3 {
+    width: 3em
+}
+
+.emw-4 {
+    width: 4em
+}
+
+.emw-8 {
+    width: 8em
+}
+
+.emw-15 {
+    width: 15em;
+}

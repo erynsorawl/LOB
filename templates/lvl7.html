@@ -15,38 +15,38 @@
 
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1">
+    <div id="bubble1" class="speech-bubble speech-bubble-right lobBubble emw-15 row-2 coll-1">
         <p class="text-center text-white">
             <span>Boxes are no longer clickable.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-right lobBubble emw-15 row-2 coll-1 d-none">
         <p class="text-center text-white">
             <span>Instead, you'll be judged based on how strong the board's <span class="text-cyan">coloring pattern</span> is.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble emw-15 r-4-b d-none">
         <p class="text-center text-white">
             <span>To progress, you'll have to change how your <span class="text-green">'Hits'</span> and <span class="text-orange">'Misses'</span> are decided.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble4" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top lobBubble emw-15 r-4-b d-none">
         <p class="text-center text-white">
             <span>Higher standards will <span class="text-green">increase</span> how accurate a guess has to be to be counted as a
             Hit, giving you a <span class="text-cyan">stronger</span> board, but <span class="text-orange">reducing</span> how many hits you get.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble5" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+    <div id="bubble5" class="speech-bubble speech-bubble-top lobBubble emw-15 r-4-b d-none">
         <p class="text-center text-white">
             <span>Lower-standard <span class="text-cyan">guesses</span> can also get pretty strong if you spam them long enough, though, as long as it's not <i>too</i> low.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble6" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+    <div id="bubble6" class="speech-bubble speech-bubble-top lobBubble emw-15 r-4-b d-none">
         <p class="text-center text-white">
             <span>Try to find the <span class="text-yellow">Standards</span> that get you to the end the fastest!</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
@@ -55,7 +55,7 @@
 {%endblock%}
 
 {% block lower_button0 %}
-    <span class="button text-yellow rounded pr-1 h-2-5">On a scale of 1 to 10, how high are your standards?
+    <span class="button text-yellow rounded pr-1 boxh-2-5">On a scale of 1 to 10, how high are your standards?
         <input id='standards' class = "text-yellow rounded emw-3 pl-1 bg-dark2" type="number" max="10" min="1" step="1" value="1"></span>
 {% endblock %}
 

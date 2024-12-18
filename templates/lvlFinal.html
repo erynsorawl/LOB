@@ -5,19 +5,19 @@
 {% block counter_size %}text-05{% endblock %}
 
 {% block box %}
-    <p class="text-center counter h-1 div-center hidden"></p>
+    <p class="text-center counter boxh-1 div-center hidden"></p>
 {% endblock %}
 
 {% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(20)'>Guess</button>{% endblock %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1">
+    <div id="bubble1" class="speech-bubble speech-bubble-right lobBubble emw-15 row-2 coll-1">
         <p class="text-center text-white">
             <span>And that's all the mechanics.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1 d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-right lobBubble emw-15 row-2 coll-1 d-none">
         <p class="text-center text-white">
             <span>Now, go big or go home!.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>

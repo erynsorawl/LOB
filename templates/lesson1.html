@@ -1,25 +1,25 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top lobBubble lr-c-b">
         <p class="text-center text-white">
-            <span>Thanks for hearing me out! I know that it must've seemed pretty crazy. How could this silly little box game teach you neuroscience?</span><br>
+            <span>Thanks for hearing me out! I know that it must seem kinda crazy. How could this silly little box game teach you neuroscience?</span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
-            <span>Well, it turns out that it was actually a bunch of neuroscience lessons, simplified and turned into a game.
+            <span>Well, it turns out that it was actually just a bunch of neuroscience lessons, simplified and turned into a game.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">If you understood the game mechanics, then congratulations - you understand the basics of neuroscience! Now, we just need to translate them.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
             <span>To start, let's explain the board. Every box on the board represents one of the neurons in your brain, with two states: 
                 <span class="bg-cyan text-black pl-1 pr-1">on</span>&nbsp;or
@@ -28,13 +28,13 @@
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble5" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble5" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
             <span>When a bunch of them turn <span class="text-cyan">on</span> in a certain pattern, you do a <span class='text-purple'>Thing</span>. For example, let's say you're tossing a basketball.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
-    <div id="bubble6" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble6" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
             <span>The pattern that you <span class="text-purple">Submit</span> is the pattern that does the <span class='text-purple'>Thing</span> correctly - for example, landing the basketball in the hoop.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
@@ -43,13 +43,13 @@
 {%endblock%}
 
 {%block location%}
-rc-cc
+row-center coll-center
 {%endblock%}
 
 
 
 {% block extra%}
-<img id='img' class="rc-c2 w-15 d-none animate__animated" src="/static/assets/basketball.png">
+<img id='img' class="row-center coll-2 boxw-15 d-none animate__animated" src="/static/assets/basketball.png">
 {%endblock%}
 
 {%block size%}
@@ -95,7 +95,7 @@ rc-cc
             animate_fade(id_list('im', solution.length), 1, duration)
             setTimeout(() => {
                 bubbleCycle(duration)
-                change_class('tableDiv', 'rc-cc', 'rc-c1')
+                change_class('tableDiv', 'row-center coll-center', 'row-center coll-1')
                 animate_fade('img', 1)
                 for (i=0;i<solution.length;i++) {
                     if (board1[i] == 1) {

@@ -5,19 +5,19 @@
 {% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(10)'>Guess</button>{% endblock %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1">
+    <div id="bubble1" class="speech-bubble speech-bubble-right lobBubble emw-15 row-2 coll-1">
         <p class="text-center text-white">
             <span>There's been a small change to the coloring mechanics.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r2-c1-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble emw-15 row-2-bottom coll-1 d-none">
         <p class="text-center text-white">
             <span>One high-standard <span class="text-green">Hit</span> counts towards the board strength as much as <span class="text-green">multiple</span> low-standard Hits.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top text-white txtw-15 p-2 pb-01 mt-3 rounded text-wrap shadow-lg r-4-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble emw-15 r-4-b d-none">
         <p class="text-center text-white">
             <span>You'll want to mess around a bit to find what works best.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>

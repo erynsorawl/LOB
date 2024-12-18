@@ -1,14 +1,14 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top lobBubble lr-c-b">
         <p class="text-center text-white">
             <span>And that's all, folks! The word 'Neuroscience' may seem pretty scary - and at the higher levels, it kind of is.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
                 But if it's just the basics (which are all you really need to know in day-to-day life), it's not <i>that</i> scary, is it?
             </span><br>
@@ -16,7 +16,7 @@
         </p>
     </div>
 
-    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
                 So next time you want to learn something, just remember the strategies you learned here:
             </span><br>
@@ -24,7 +24,7 @@
         </p>
     </div>
 
-    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
         <p class="text-center text-white">
                 Set good standards,
             </span><br>
@@ -32,7 +32,7 @@
         </p>
     </div>
 
-    <div id="bubble5" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble5" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
         <p class="text-center text-white">
                 Get good sleep,
             </span><br>
@@ -40,7 +40,7 @@
         </p>
     </div>
 
-    <div id="bubble6" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble6" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
                 And most importantly,
             </span><br>
@@ -48,7 +48,7 @@
         </p>
     </div>
 
-    <div id="bubble7" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble7" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
                 Try, try again!
             </span><br>
@@ -59,15 +59,15 @@
 {%endblock%}
 
 {%block location%}
-rc-cc
+row-center coll-center
 {%endblock%}
 
 {% block extra%}
-<span id='standards' class="button rounded h-2-5 text-yellow lr-c-b d-none"> Standards:
+<span id='standards' class="button rounded boxh-2-5 text-yellow lr-c-b d-none"> Standards:
     <input class = "text-yellow rounded emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
     <button id="update" class="button rounded w-6 text-aether box-glow m-1 lr-c-b d-none">Update</button>
 
-    <div id="info3" style="font-size: calc(var(--box_size) * 1.5);"  class="text-center emw-8 rc-cc h-4 lh-4 d-block d-none">
+    <div id="info3" style="font-size: calc(var(--box_size) * 1.5);"  class="text-center emw-8 row-center coll-center boxh-4 lh-4 d-block d-none">
         <span id="hitInfo" class="text-green info">Hits: 0</span>
         <span id="missInfo" class="text-orange info">Misses: 0</span>
     </div>

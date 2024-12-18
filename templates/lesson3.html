@@ -1,14 +1,14 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top lobBubble lr-c-b">
         <p class="text-center text-white">
             <span>This process (and your learning speed) is heavily affected by a few other factors. 
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
         <p class="text-center text-white">
                 Doing all this in real-time is a bit too intense, so to save energy it'll focus on tracking 
                 <span class="text-cyan">guesses</span>
@@ -17,14 +17,14 @@
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr2-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
         <p class="text-center text-white">
                 and <span class="text-aether">update</span> your skills when you're asleep.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
         </p>
     </div>
-    <div id="bubble4" class="speech-bubble speech-bubble-top w-24 text-white txtw-15 p-2 pb-01 mt-1 rounded text-wrap shadow-lg lr-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
         <p class="text-center text-white">
             <span>If you're not getting enough sleep, some of those marks will get lost, so be careful about all-nighters!
             </span><br>
@@ -34,15 +34,15 @@
 {%endblock%}
 
 {%block location%}
-rc-cc
+row-center coll-center
 {%endblock%}
 
 {% block extra%}
 <img id='img1'   
-class="w-15 animate__animated rc-cc p-1 d-none" 
+class="boxw-15 animate__animated row-center coll-center p-1 d-none" 
 src="/static/assets/Board1.png">
 <img id='img2'   
-class="w-15 animate__animated rc-cc p-1 d-none" 
+class="boxw-15 animate__animated row-center coll-center p-1 d-none" 
 src="/static/assets/Board2.png">
 
 <div id="under1" class=""></div>

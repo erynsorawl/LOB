@@ -3,38 +3,38 @@
 {% block content %}
 <!--Sparkle animation that plays on victory-->
 <!--Credit: https://gifer.com/en/XZ5V-->
-<img id="sparkle-gif-right" class="sparkle sparkr d-none" src="/static/assets/sparkle.gif">
-<img id="sparkle-gif-left" class="sparkle sparkl d-none" src="/static/assets/sparkle.gif">
+<img id="sparkle-gif-right" class="sparkle sparkle-right d-none" src="/static/assets/sparkle.gif">
+<img id="sparkle-gif-left" class="sparkle sparkle-left d-none" src="/static/assets/sparkle.gif">
 
 <!--Popup text that tells you how well you did-->
-<div id="win-fail" class="animate__animated abs-center w-24 h-10 text-4 text-center t-shadow text-green overlay d-none click-none">Well done!</div>
+<div id="win-fail" class="animate__animated abs-center boxw-24 boxh-10 text-4 text-center text-shadow text-green overlay d-none click-none">Well done!</div>
 
 
     <!--Level Title-->
     <div class="d-flex justify-content-center m-3 title">
         <div class="bg-dark rounded shadow-lg p-1 pb-2">
-            <span class = 'text-center text-white ml-2 mr-2 t-shadow-s'>
+            <span class = 'text-center text-white ml-2 mr-2 text-shadow-s'>
                 Learn Outside The Box{% block level %}{% endblock %}
             </span>
         </div>
     </div>
 
     <!--Notification that tells the player how the hit and miss function works-->
-    <div id="reliability" class="bg-maroon text-white pt-3 pb-01 pl-2 pr-2 rounded text-wrap shadow-lg r1-c1 hidden">
+    <div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 hidden">
         <p class="text-center text-white">
             That was a good guess!
         </p>
     </div>
 
     <!--Hit and miss counters-->
-        <div id="info1" class="text-center r2-c1 w-4 txtw-8 text-1-5 h-4 lh-4 d-block">
+        <div id="info1" class="text-center row-center coll-1 boxw- remw-8 text-1-5 boxh-4 lh-4 d-block">
             {% block hitMiss %}
             {% endblock %}
         </div>
 
         {# generate table based on size variable #}
         <!--Game board-->
-        <table class="align-items-center {% block tableSize %}w-24{%endblock%} rc-cc border t-layout-fixed bg-black">
+        <table class="align-items-center {% block tableSize %}boxw-24{%endblock%} row-center coll-center position-absolute border t-layout-fixed bg-black">
             <tbody id="lobTable">
             {% for i in range(size) %}
                 <tr>
@@ -52,7 +52,7 @@
                                         {% block di_none %}{% endblock %}'
                                         
                                     ></div>
-                                    <div id = "p{{j + (size * i)}}" class="ar-1 margin-auto text-center text-center-v counter z-1 t-shadow-s d-none {%block countSize%}{%endblock%}">
+                                    <div id = "p{{j + (size * i)}}" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none {%block countSize%}{%endblock%}">
                                         {% block countInner %}<span class="text-lime">0</span><span class="text-orange ml-1"></span>{% endblock %}
                                     </div>
                                 </div>
@@ -63,10 +63,10 @@
             <tbody>
         </table>
         <!--Accuracy counter-->
-        <span id="accInfo" class="text-purple info text-1-5 text-center r1-c2 d-none">Accuracy: 0%</span>
+        <span id="accInfo" class="text-purple info text-1-5 text-center row-1 coll-2 d-none">Accuracy: 0%</span>
 
     <!--Container for buttons-->
-    <div id = "buttons" class="d-flex justify-content-center r-3">
+    <div id = "buttons" class="d-flex justify-content-center row-3 coll-center">
         {% block button0 %}
         {% endblock %}
         {% block button0_1 %}
