@@ -46,7 +46,7 @@ rc-cc
 
 
 {% block extra%}
-<span id='standards1' class="button text-yellow rounded pr-1 h-2-5 lr-c-b">On a scale of 1 to 10, how high are your standards?
+<span id='standards1' class="button text-yellow rounded pr-1 h-4 lr-c-b">On a scale of 1 to 10, <br> how high are your standards?
     <input id='standards' class = "text-yellow rounded emw-3 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
     <span id='extol1' class="button rounded h-2-5 text-yellow lr-l-b d-none"> Standards:
         <input class = "text-yellow rounded emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="3"></span>
@@ -143,8 +143,8 @@ rc-cc
     function lesson3() {
         loopEnd = 1
         bubbleCycle()
-        hide('tableDiv', 'standards1', 'hitInfo', 'missInfo')
-        show('img1', 'img2', 'extol1', 'extol2', 'exHit1', 'exHit2')
+        hide_element('tableDiv', 'standards1', 'hitInfo', 'missInfo')
+        show_element('img1', 'img2', 'extol1', 'extol2', 'exHit1', 'exHit2')
     }
 
     function lesson4() {

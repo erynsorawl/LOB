@@ -72,7 +72,7 @@ rc-cc
 
 {%block postscript%}
 <script>
-    lessonDelayState = 0
+    lessonDelayState = false
     board1 = [
         0,1,0,
         1,0,0,
@@ -91,29 +91,27 @@ rc-cc
     function lesson() {
         if (!lessonDelayState) {
             duration = 1500
-            lessonDelayState = 1
-            for (i=0;i<solution.length;i++) {
-                animate(document.getElementById('im' + i.toString()), 0, duration, 1)
-            }
+            lessonDelayState = true
+            animate_fade(id_list('im', solution.length), 1, duration)
             setTimeout(() => {
                 bubbleCycle(duration)
                 change_class('tableDiv', 'rc-cc', 'rc-c1')
-                animate(document.getElementById('img'), 0)
+                animate_fade('img', 1)
                 for (i=0;i<solution.length;i++) {
                     if (board1[i] == 1) {
                         colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
                     }
                 }
-                lessonDelayState = 0
+                lessonDelayState = false
             }, duration + 1000);
       }
     }
 
     function lesson2() {
         if (!lessonDelayState) {
-            lessonDelayState = 1
+            lessonDelayState = true
             duration = 1000
-            animate(document.getElementById('img'), 1, duration, 1)
+            animate_fade('img', 0, duration)
             setTimeout(() => {
                 bubbleCycle(duration)
                 for (i=0;i<solution.length;i++) {
@@ -122,7 +120,7 @@ rc-cc
                     }
                 }
                 document.getElementById('img').src = "/static/assets/basketball2.png"
-                lessonDelayState = 0
+                lessonDelayState = false
             }, duration);
         }
     }

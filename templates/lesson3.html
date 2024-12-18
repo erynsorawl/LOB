@@ -65,8 +65,7 @@ src="/static/assets/Board2.png">
 
 {% block bubbleLength %}
 <script>
-    const bubbleLength = ['bubble1', 'bubble2', 'bubble3', 'bubble4']
-    bubListenList = [[]]
+    const bubbleLength = 4
 </script>
 {% endblock %}
 
@@ -79,7 +78,7 @@ src="/static/assets/Board2.png">
     ]
     function lesson() {
         bubbleCycle()
-        show('guess')
+        show_element('guess')
         for (i=0;i<solution.length;i++) {
             document.getElementById('d' + i.toString()).style.backgroundColor = 'rgb(50,50,150)'
             change_class('p' + i, 'd-none', 'mt-3')

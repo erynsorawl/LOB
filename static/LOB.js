@@ -180,23 +180,22 @@ function bubOnComplete() {
 }
 
 // Cycle box color when box is clicked
-function colorSwitch(element, elNum, noNum1, noNum2) {
+function colorSwitch(element, elNum) {
     color = window.getComputedStyle(element).backgroundColor;
-    for (i=0; i < colors.length; i++) {
-        if (!noNum1) {
-            countElement = document.getElementById('p' + elNum.toString())
-            countElement1 = countElement.getElementsByTagName('span')[0]
-            if (reliabilityLvl) {
-                countElement2 = countElement.getElementsByTagName('span')[1]
-            }
+    for (csi=0; csi < colors.length; csi++) {
+        console.log(elNum)
+        countElement = document.getElementById('p' + elNum.toString())
+        countElement1 = countElement.getElementsByTagName('span')[0]
+        if (reliabilityLvl) {
+            countElement2 = countElement.getElementsByTagName('span')[1]
         }
-        if (color === colors[i]) {
-            element.style.background = colors[(i+1) % colors.length]
-            countElement1.classList.add(textColors1[i])
-            countElement1.classList.remove(textColors1[(i + 1) % 2])
+        if (color === colors[csi]) {
+            element.style.background = colors[(csi+1) % colors.length]
+            countElement1.classList.add(textColors1[csi])
+            countElement1.classList.remove(textColors1[(csi + 1) % 2])
             if (reliabilityLvl) {
-                countElement2.classList.add(textColors2[i])
-                countElement2.classList.remove(textColors2[(i + 1) % 2])
+                countElement2.classList.add(textColors2[csi])
+                countElement2.classList.remove(textColors2[(csi + 1) % 2])
             }
         }
     }
@@ -208,12 +207,12 @@ function check() {
     answer = []
 
     // count how many boxes are correct
-    for (i=0; i < solution.length; i++) {
-        tColor = window.getComputedStyle(document.getElementById('d' + i)).backgroundColor
+    for (ci=0; ci < solution.length; ci++) {
+        tColor = window.getComputedStyle(document.getElementById('d' + ci)).backgroundColor
         boxGreen = decode_hex(tColor)[1]
-        if (boxGreen > checkRigor) {answer[i] = 1}
-        else {answer[i] = 0}
-        if (answer[i] == solution[i]) {correctCount++}
+        if (boxGreen > checkRigor) {answer[ci] = 1}
+        else {answer[ci] = 0}
+        if (answer[ci] == solution[ci]) {correctCount++}
     }
 
     // the metric the board is graded by
@@ -279,12 +278,12 @@ function check_flash(win) {
 //and alter box border colors based on it.
 function generateSolution() {
     genSolution = []
-    for (let i=0; i < solution.length; i++) {
+    for (let ci=0; ci < solution.length; ci++) {
         if (Math.random() > acc) {
-            genSolution[i] = (solution[i] + 1) % colors.length
+            genSolution[ci] = (solution[ci] + 1) % colors.length
         }
         else {
-            genSolution[i] = solution[i]
+            genSolution[ci] = solution[ci]
         }   
     }
     return genSolution
@@ -295,9 +294,9 @@ function advGenSol() {
     genSolution=[]
     changedIndex=[]
     // track which solution indexes haven't been changed, and make genSolution match the solution
-    for (i=0; i<solution.length;i++) {
-        changedIndex[i] = i
-        genSolution[i] = solution[i]
+    for (agsi=0; agsi<solution.length;agsi++) {
+        changedIndex[agsi] = agsi
+        genSolution[agsi] = solution[agsi]
     }
 
     // define a desired genAcc
@@ -312,9 +311,9 @@ function advGenSol() {
     wrongs = Math.round((1 - genAcc) * solution.length)
 
     // alter the solution randomly to match tmpGenAcc
-    for (i=0;i<wrongs;i++) {
+    for (agsi=0;agsi<wrongs;agsi++) {
         // select a random index from the changedIndex array
-        tmpIndex = Math.floor(Math.random() * (solution.length - i))
+        tmpIndex = Math.floor(Math.random() * (solution.length - agsi))
 
         // flip that cell in the genSolution
         genSolution[changedIndex[tmpIndex]] = (genSolution[changedIndex[tmpIndex]] + 1) % 2
@@ -329,18 +328,18 @@ function advGenSol() {
 // update boxCounter array
 function updateCounter(genSolution) {
     // check for highest counter and update counter array
-    for (let i=0; i < solution.length; i++) {
-    boxCounters[i] = boxCounters[i] + genSolution[i]  
-        if (topCounter < boxCounters[i]) {
-            topCounter = boxCounters[i]
+    for (let uci=0; uci < solution.length; uci++) {
+    boxCounters[uci] = boxCounters[uci] + genSolution[uci]  
+        if (topCounter < boxCounters[uci]) {
+            topCounter = boxCounters[uci]
         }
     }
 
     // check for lowest counter
     bottomCounter = boxCounters[0]
-    for (let i=0; i < boxCounters.length; i++) {
-        if (bottomCounter > boxCounters[i]) {
-            bottomCounter = boxCounters[i]
+    for (let uci=0; uci < boxCounters.length; uci++) {
+        if (bottomCounter > boxCounters[uci]) {
+            bottomCounter = boxCounters[uci]
         }
     }
 }
@@ -360,18 +359,18 @@ function updateCounter2(genSolution) {
 
     // check for highest counter and update counter array
     // multiply counter increase by ratio of hits to misses
-    for (let i=0; i < solution.length; i++) {
-    boxCounters[i] = boxCounters[i] + Math.round((genSolution[i] * (missDiff / hitDiff)))
-        if (topCounter < boxCounters[i]) {
-            topCounter = boxCounters[i]
+    for (let uc2i=0; uc2i < solution.length; uc2i++) {
+    boxCounters[uc2i] = boxCounters[uc2i] + Math.round((genSolution[uc2i] * (missDiff / hitDiff)))
+        if (topCounter < boxCounters[uc2i]) {
+            topCounter = boxCounters[uc2i]
         }
     }
 
     // check for lowest counter
     bottomCounter = boxCounters[0]
-    for (let i=0; i < boxCounters.length; i++) {
-        if (bottomCounter > boxCounters[i]) {
-            bottomCounter = boxCounters[i]
+    for (let uc2i=0; uc2i < boxCounters.length; uc2i++) {
+        if (bottomCounter > boxCounters[uc2i]) {
+            bottomCounter = boxCounters[uc2i]
         }
     }
 }
@@ -384,9 +383,9 @@ function updateHitMiss() {
 }
 
 function updateMissCounter(genSolution) {
-    for (i=0;i<solution.length;i++) {
-        if (genSolution[i] == 0){
-            boxMissCounters[i]++
+    for (umci=0;umci<solution.length;umci++) {
+        if (genSolution[umci] == 0){
+            boxMissCounters[umci]++
         }
     }
 }
@@ -396,10 +395,10 @@ function updateColor(type) {
     guessCount = 0
     if (levelNum > 2)
     {
-        for (let i = 0; i < solution.length; i++) {
-            document.getElementById('p' + i).getElementsByTagName('span')[0].innerHTML = boxCounters[i]
+        for (let uci = 0; uci < solution.length; uci++) {
+            document.getElementById('p' + uci).getElementsByTagName('span')[0].innerHTML = boxCounters[uci]
             if (levelNum > 3 && levelNum < 5) {
-                document.getElementById('p' + i).getElementsByTagName('span')[1].innerHTML = boxMissCounters[i]
+                document.getElementById('p' + uci).getElementsByTagName('span')[1].innerHTML = boxMissCounters[uci]
             }
         }
     }
@@ -409,18 +408,18 @@ function updateColor(type) {
     // set border intensities based on range
     if (range > 5) {
 
-        for (let i=0; i < solution.length; i++) {
-            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) / (range / 270))
-            if (borderIntensity[i] > 255) {
-                borderIntensity[i] = 255
+        for (let uci=0; uci < solution.length; uci++) {
+            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) / (range / 270))
+            if (borderIntensity[uci] > 255) {
+                borderIntensity[uci] = 255
             }
         }
     }
     else {
-        for (let i=0; i < solution.length; i++) {
-            borderIntensity[i] = Math.round((boxCounters[i] - bottomCounter) * 64)
-            if (borderIntensity[i] > 255) {
-                borderIntensity[i] = 255
+        for (let uci=0; uci < solution.length; uci++) {
+            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) * 64)
+            if (borderIntensity[uci] > 255) {
+                borderIntensity[uci] = 255
             }
         }
     }
@@ -435,10 +434,10 @@ function updateColor(type) {
     }
 
     // set border colors
-    for (let i=0; i < solution.length; i++) {
-        element = document.getElementById('d' + i)
-        alter[1] = borderIntensity[i]
-        alter[3] = borderIntensity[i]
+    for (let uci=0; uci < solution.length; uci++) {
+        element = document.getElementById('d' + uci)
+        alter[1] = borderIntensity[uci]
+        alter[3] = borderIntensity[uci]
         if (alter[2] > alter[3]) {
             alter[3] = alter[2]
         }
@@ -451,10 +450,10 @@ function updateColor(type) {
             element.style.backgroundColor = rgba
         }
         // reduce font size if counters are too large
-        if (boxCounters[i] >= 100) {
+        if (boxCounters[uci] >= 100) {
             element.classList.add('text-075')
         }
-        if (boxCounters[i] >= 1000) {
+        if (boxCounters[uci] >= 1000) {
             element.classList.remove('text-075')
             element.classList.add('text-05')
         }
@@ -477,7 +476,6 @@ function basicGenerate() {
 function genFlash(genSolution) {
     // if animation isn't already running for this function
     if (!genFlashDelayState) {
-        console.log('here')
 
         boxOn = []
 
@@ -639,12 +637,12 @@ function new_puzzle() {
     else {
         window.location.replace(dir + '?seed=' + Math.floor(Math.random() * 1000000000))
     }
-}
+c}
 
 function boardClear() {
-    for (i=0;i<solution.length;i++) {
-        boxCounters[i] = 0
-        borderIntensity[i] = 0
+    for (bci=0;bci<solution.length;bci++) {
+        boxCounters[bci] = 0
+        borderIntensity[bci] = 0
     }
     hitCount = 0
     missCount = 0

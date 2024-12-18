@@ -52,7 +52,7 @@ function animate_fade(elements, type, duration) {
     if (typeof(elements) == 'string') {
         elements = [elements]
     }
-    // for all elements, remove the other fade effect and apply the correct one
+    // for all elements, remove the other fade effect, apply the correct one, and reveal
     for (afi=0;afi<elements.length;afi++) {
         change_class(elements[afi], [types[(type+1)%2], 'd-none'], types[type])
     }
@@ -62,16 +62,16 @@ function animate_fade(elements, type, duration) {
                 change_class(elements[afi], types[type], types[(type+1)%2])
             }
         }, duration)
-    }
 
-    setTimeout(() => {
-        for (afi=0;afi<elements.length;afi++) {
-            change_class(elements[afi], types[(type+1)%2])
-            if (type) {
-                hide_element(elements[afi])
+        setTimeout(() => {
+            for (afi=0;afi<elements.length;afi++) {
+                change_class(elements[afi], types[(type+1)%2])
+                if (type) {
+                    hide_element(elements[afi])
+                }
             }
-        }
-    }, duration + 1000)
+        }, duration + 1000)
+    }
 }
 
 // change the inner HTML of a list of elements
@@ -139,11 +139,11 @@ function change_class(/**/) {
     }
 
     for(cci=0; cci<args[0].length;cci++) {
-        for (j=0;j<args[1].length;j++) {
-            document.getElementById(args[0][cci]).classList.remove(args[1][j])
+        for (ccj=0;ccj<args[1].length;ccj++) {
+            document.getElementById(args[0][cci]).classList.remove(args[1][ccj])
         }
-        for(j=0;j<args[2].length;j++) {
-            document.getElementById(args[0][cci]).classList.add(args[2][j])
+        for(ccj=0;ccj<args[2].length;ccj++) {
+            document.getElementById(args[0][cci]).classList.add(args[2][ccj])
         }
     }
 

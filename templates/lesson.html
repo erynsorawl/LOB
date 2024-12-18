@@ -3,8 +3,8 @@
 {% block content %}
 <!--Sparkle animation that plays on victory-->
 <!--Credit: https://gifer.com/en/XZ5V-->
-<img id="sparkle-gif-right" class="sparkle sparkr hidden" src="/static/assets/sparkle.gif">
-<img id="sparkle-gif-left" class="sparkle sparkl hidden" src="/static/assets/sparkle.gif">
+<img id="sparkle-gif-right" class="sparkle sparkr d-none" src="/static/assets/sparkle.gif">
+<img id="sparkle-gif-left" class="sparkle sparkl d-none" src="/static/assets/sparkle.gif">
 
 <!--Popup text that tells you how well you did-->
 <div id="win-fail" class="abs-center w-24 h-10 text-4 text-center t-shadow text-green overlay d-none click-none">Well done!</div>
@@ -96,6 +96,8 @@
 {% block bubbleLength %}
 {% endblock %}
 {% block guess %}
+{%endblock%}
+{% block acc %}
 {%endblock%}
 
 <script type="text/javascript" src="/static/LOB.js"></script>

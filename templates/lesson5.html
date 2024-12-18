@@ -70,15 +70,15 @@ src="/static/assets/block4.png">
 <script>
     function lesson() {
         bubbleCycle()
-        show('img1', 'img2', 'hit?')
+        show_element('img1', 'img2', 'hit?')
     }
 
     function lesson2() {
         bubbleCycle()
-        hide('img1', 'img2')
-        show('img3', 'img4')
-        replace_class('hit?', 'text-green', 'text-orange')
-        change_text('hit?', 'Miss.')
+        hide_element('img1', 'img2')
+        show_element('img3', 'img4')
+        change_class('hit?', 'text-green', 'text-orange')
+        change_html('hit?', 'Miss.')
     }
 </script>
 {%endblock%}

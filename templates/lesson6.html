@@ -98,24 +98,24 @@ rc-cc
 
     function lesson() {
         bubbleCycle()
-        show('standards')
+        show_element('standards')
     }
 
     function lesson2() {
         bubbleCycle()
-        hide('standards')
-        show('update')
+        hide_element('standards')
+        show_element('update')
     }
 
     function lesson3() {
         bubbleCycle()
-        hide('update')
+        hide_element('update')
     }
 
     function lesson4() {
         bubbleCycle()
-        hide('tableDiv')
-        show('info3')
+        hide_element('tableDiv')
+        show_element('info3')
         slowRise(0)
     }
 
@@ -128,8 +128,8 @@ rc-cc
                 else {
                     misses++
                 }
-                change_text('hitInfo', 'Hits: ' + hits.toString())
-                change_text('missInfo', 'Misses: ' + misses.toString())
+                change_html('hitInfo', 'Hits: ' + hits.toString())
+                change_html('missInfo', 'Misses: ' + misses.toString())
                 document.getElementById('info3').style.fontSize = (1.5 + (l/1000)).toString() + 'rem'
                 slowRise(l + 1)
             }, 10)
