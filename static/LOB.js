@@ -4,9 +4,6 @@ const textColors1 = ['text-black', 'text-lime']
 const textColors2 = ['text-red', 'text-orange']
 const backgroundColors = ['bg-blue', 'bg-cyan']
 const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
-if (!noS) {
-    s = new URLSearchParams(window.location.search).get('seed')
-}
 
 size2 = size * size
 
