@@ -8,6 +8,11 @@ let s = new URLSearchParams(window.location.search).get('seed')
 
 size2 = size * size
 
+// If on a mobile device, quadruple guess count
+if (window.screen.width <= 1000) {
+    guessLoops = guessLoops * 4
+}
+
 // If seed parameter is too long, reduce to a maximum of 100 characters.
 if (s.length > 100)
 {
@@ -470,14 +475,16 @@ function updateColor(type) {
 
 // Flash a generated solution on screen
 function basicGenerate() {
-    genSolution = generateSolution()
-    totalGuessCount++
-    change_class(['guess', 'check'], 'box-glow')
-    if (counterLvl) {
-        updateCounter(genSolution)
-        updateColor('Border')
+    for (bgi=0;bgi<guessLoops;bgi++) {
+        genSolution = generateSolution()
+        totalGuessCount++
+        change_class(['guess', 'check'], 'box-glow')
+        if (counterLvl) {
+            updateCounter(genSolution)
+            updateColor('Border')
+        }
+        genFlash(genSolution)
     }
-    genFlash(genSolution)
 }
 
 // flash genSol on screen
@@ -570,10 +577,10 @@ function genFlash(genSolution) {
     }
 }
 
-function advancedGenerate(loops) {
+function advancedGenerate() {
     if (guessCount < maxGuess) {
 
-        for (agi=0;agi<loops;agi++) {
+        for (agi=0;agi<guessLoops;agi++) {
 
             if (document.getElementById('standards').value == -2) {
                 standards = 0

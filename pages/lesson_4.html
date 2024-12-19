@@ -332,7 +332,8 @@ function lesson() {
 }
 
 function genLoop(l) {
-    advancedGenerate(15)
+    guessLoops = 15
+    advancedGenerate()
     setTimeout(()=>{
         if (!loopEnd && l < 34) {
         genLoop(l + 1)

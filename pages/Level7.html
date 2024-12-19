@@ -958,7 +958,7 @@
 
 <!--Container for buttons-->
 <div id="buttons" class="d-flex justify-content-center row-3 coll-center">
-    <button id="guess" class="button rounded text-cyan m-1" onclick="advancedGenerate(5)">Guess</button>
+    <button id="guess" class="button rounded text-cyan m-1" onclick="advancedGenerate()">Guess</button>
     <button class="button rounded text-aether m-1" onclick="updateColor('Box')">Update</button>
     <button id="check" class="button text-purple button-a m-1" onclick="check()">Submit</button>
     <a id="nextLevel" class="button text-green button-a box-glow d-none" href="https://erynsorawl.github.io/LOB/pages/Level8">Next</a>
@@ -1027,37 +1027,14 @@
     
 
 <script>
-const acc = 0
-</script>
-
-
-<script>
-const bubbleLength = 6
-</script>
-
-
-<script>
-const closeEnough = .85
-</script>
-
-
-<script>
-const checkRigor = 220
-</script>
-
-
-<script>
+    const acc = 0
+    const bubbleLength = 6
+    const closeEnough = .85
+    const checkRigor = 220
     const size = 7
-</script>
-
-
-<script>
-const maxGuess = 400
-</script>
-
-
-<script>
-const levelNum = 7
+    const maxGuess = 400
+    const levelNum = 7
+    guessLoops = 5
 </script>
 
 

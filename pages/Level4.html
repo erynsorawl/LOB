@@ -402,7 +402,7 @@
 
 <!--Container for buttons-->
 <div id="buttons" class="d-flex justify-content-center row-3 coll-center">
-    <button id="guess" class="button rounded m-1 text-cyan box-glow" onclick="advancedGenerate(1)">Guess</button>
+    <button id="guess" class="button rounded m-1 text-cyan box-glow" onclick="advancedGenerate()">Guess</button>
     
     
     <button id="check" class="button text-purple button-a m-1" onclick="check()">Submit</button>
@@ -447,26 +447,11 @@
 
 <script>
 const acc = .09
-</script>
-
-
-<script>
-const bubbleLength = 2
-</script>
-
-
-<script>
-const closeEnough = .9
-</script>
-
-
-<script>
-const checkRigor = 100
-</script>
-
-
-<script>
+    const bubbleLength = 2
+    const closeEnough = .9
+    const checkRigor = 100
     const size = 4
+    guessLoops = 1
 </script>
 
 
