@@ -244,7 +244,7 @@
 
     .coll-0 {
         left: 50%;
-        transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -19), 0);  
+        transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -17), 0);  
     }
 
     .coll-1 {
