@@ -7,7 +7,7 @@
 <img id="sparkle-gif-left" class="sparkle sparkle-left d-none" src="/static/assets/sparkle.gif">
 
 <!--Popup text that tells you how well you did-->
-<div id="win-fail" class="animate__animated abs-center boxw-24 boxh-10 text-4 text-center text-shadow text-green overlay d-none click-none">Well done!</div>
+<div id="win-fail" class="animate__animated row-true-center coll-center emw-8 text-4 text-center text-shadow text-green overlay d-none click-none">Well done!</div>
 
 
     <!--Level Title-->
@@ -27,14 +27,14 @@
     </div>
 
     <!--Hit and miss counters-->
-        <div id="info1" class="text-center row-center coll-1 boxw- remw-8 text-1-5 boxh-4 lh-4 d-block">
+        <div id="info1" class="text-center row-center-a coll-0 text-1-5 boxh-4 lh-4 d-block">
             {% block hitMiss %}
             {% endblock %}
         </div>
 
         {# generate table based on size variable #}
         <!--Game board-->
-        <table class="align-items-center {% block tableSize %}boxw-24{%endblock%} row-center coll-center position-absolute border t-layout-fixed bg-black">
+        <table class="align-items-center {% block tableSize %}boxw-24{%endblock%} row-true-center coll-center position-absolute border t-layout-fixed bg-black">
             <tbody id="lobTable">
             {% for i in range(size) %}
                 <tr>
@@ -63,7 +63,7 @@
             <tbody>
         </table>
         <!--Accuracy counter-->
-        <span id="accInfo" class="text-purple info text-1-5 text-center row-1 coll-2 d-none">Accuracy: 0%</span>
+        <span id="accInfo" class="text-purple info text-1-5 text-center row-center-b coll-2 d-none">Accuracy: 0%</span>
 
     <!--Container for buttons-->
     <div id = "buttons" class="d-flex justify-content-center row-3 coll-center">
@@ -81,7 +81,7 @@
 {%endblock%}
 
     <!--Second container for buttons-->
-    <div id = "lowerButtons" class="r-4">
+    <div id = "lowerButtons" class="row-4 coll-center">
         {% block lower_button0 %}
         {% endblock %}
     </div>
@@ -91,8 +91,6 @@
 {% endblock %}
 
 {% block javascript %}
-    {% block levelscript %}
-    {% endblock %}
     {% block acc %}
     {% endblock %}
     {% block bubbleLength %}

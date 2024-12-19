@@ -1,21 +1,12 @@
 {% extends 'lvl.html' %}
 
 {% block extra %}
-<a id="nextLevel" class="button rounded text-white box-glow row-2 coll-1 boxh-4 overlay" href="/Level1">Click here if you'd <br>like to play again.</a>
-<a id="nextLevel" class="button rounded text-white box-glow row-1 coll-2 overlay" href="/lesson_1">Click here if you'd <br> like to learn how you <br>
+<a class="button rounded text-white box-glow row-center-a coll-1 boxh-4 overlay" href="/Level1">Click here if you'd <br>like to play again.</a>
+<a class="button rounded text-white emw-15 box-glow row-center-b coll-2 overlay" href="/lesson_1">Click here if you'd <br> like to learn how you <br>
     accidentally just became <br> a neuroscientist.
 </a>
+<span class="button rounded box-glow row-true-center coll-center overlay text-green text-1-5">Congratulations!</span>
 {%endblock%}
-
-{% block levelscript %}
-    <script>
-        const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
-        const borderColors = ['border-blue', 'border-cyan']
-        const backgroundColors = ['bg-blue', 'bg-cyan']
-        const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
-        let s = new URLSearchParams(window.location.search).get('seed')
-    </script>
-{% endblock %}
 {% block levelNum %}
 <script>
     const levelNum = 1
@@ -41,3 +32,11 @@
     const size = 3
 </script>
 {% endblock %}
+{% block postscript %}
+<script>
+        show_element('accInfo', 'sparkle-gif-right', 'sparkle-gif-left')
+        setTimeout(() => {
+            hide_element('sparkle-gif-right', 'sparkle-gif-left')
+        }, "3000");
+</script>
+{%endblock%}

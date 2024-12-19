@@ -1,7 +1,7 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble lobBubble row-center coll-center">
+    <div id="bubble1" class="speech-bubble row-true-center coll-center">
         <p class="text-center text-white">
             <span>We couldn't quite fit this into the game, but it's also a good idea to take things slow once in a while, and take
                 a really close look at the problem.
@@ -9,7 +9,7 @@
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top lr2-c-b d-none">
         <p class="text-center text-white">
                 Your standards of 'hit' and 'miss' are based on what you can see.
             </span><br>
@@ -17,7 +17,7 @@
         </p>
     </div>
 
-    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top lr2-c-b d-none">
         <p class="text-center text-white">
             If you're missing imporant information, things could go wonky.
             </span><br>
@@ -34,16 +34,16 @@ d-none
 
 {% block extra%}
 <img id='img1'   
-class="boxw-15 animate__animated row-center coll-2 p-1 d-none" 
+class="boxw-15 animate__animated row-true-center coll-center-right p-1 d-none" 
 src="/static/assets/block1.png">
 <img id='img2'   
-class="boxw-15 animate__animated row-center coll-1 p-1 d-none" 
+class="boxw-15 animate__animated row-true-center coll-center-left p-1 d-none" 
 src="/static/assets/block2.png">
 <img id='img3'   
-class="boxw-15 animate__animated row-center coll-1 p-1 d-none" 
+class="boxw-15 animate__animated row-true-center coll-center-left p-1 d-none" 
 src="/static/assets/block3.png">
 <img id='img4'   
-class="boxw-15 animate__animated row-center coll-2 p-1 d-none" 
+class="boxw-15 animate__animated row-true-center coll-center-right p-1 d-none" 
 src="/static/assets/block4.png">
 <span id="hit?" class="text-green info row-1 coll-center position-absolute text-center remw-8 text-1-5 d-none">Hit?</span>
 {%endblock%}

@@ -1,27 +1,27 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top lobBubble lr2-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top row-2-c coll-center-bottom">
         <p class="text-center text-white">
             <span>The <span class="text-yellow">standards</span> you set for yourself also have a big impact on your learning ability.
-            </span><br>
+            </span>
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top row-2-c coll-center-bottom d-none">
         <p class="text-center text-white">
                 If your standards are low enough that you never fail, you'll end up with chaos.
-            </span><br>
+            </span>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top row-2-c coll-center-bottom d-none">
         <p class="text-center text-white">
             And if you're such a perfectionist that you never succeed, you'll never make any progress.
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
         </p>
     </div>
-    <div id="bubble4" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top row-2-c coll-center-bottom d-none">
         <p class="text-center text-white">
             <span>
                 Your brain also has a little trick to make things go faster: when your standards are <span class="text-yellow">higher</span>, it'll give
@@ -30,7 +30,7 @@
             <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
         </p>
     </div>
-    <div id="bubble5" class="speech-bubble speech-bubble-top lobBubble lr2-r-b d-none">
+    <div id="bubble5" class="speech-bubble speech-bubble-top row-2-b coll-center-right-a-bottom d-none">
         <p class="text-center text-white">
             <span>
                 A loss rate of around 80-90% is where this trick tends to hit peak effectiveness.
@@ -41,25 +41,25 @@
 {%endblock%}
 
 {%block location%}
-row-center coll-center
+coll-center
 {%endblock%}
 
 
 {% block extra%}
-<span id='standards1' class="button text-yellow rounded pr-1 boxh-4 lr-c-b">On a scale of 1 to 10, <br> how high are your standards?
-    <input id='standards' class = "text-yellow rounded emw-3 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
-    <span id='extol1' class="button rounded boxh-2-5 text-yellow lr-l-b d-none"> Standards:
-        <input class = "text-yellow rounded emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="3"></span>
-    <span id='extol2' class="button rounded boxh-2-5 text-yellow lr-r-b d-none"> Standards:
-        <input class = "text-yellow rounded emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
-        <span id="exHit1" class="text-green info lt-1 text-center boxw-15 remw-8 text-1-5 d-none">Hits: 1</span>
-        <span id="exHit2" class="text-green info lt-2 text-center boxw-15 remw-8 text-1-5 d-none">Hits: 1</span>
+<span id='standards1' class="button text-yellow rounded pr-1 row-2-c coll-center">On a scale of 1 to 10, how high are your standards?
+    <input id='standards' class = "text-yellow rounded remh-1 emw-3 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
+    <span id='extol1' class="button rounded boxh-2-5 text-yellow row-2-b coll-center-left-a d-none"> Standards:
+        <input class = "text-yellow rounded remh-1 emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="3"></span>
+    <span id='extol2' class="button rounded boxh-2-5 text-yellow row-2-b coll-center-right-a d-none"> Standards:
+        <input class = "text-yellow rounded remh-1 emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
+        <span id="exHit1" class="text-green info row-0 coll-center-left-a text-center boxw-15 remw-8 text-1-5 d-none">Hits: 1</span>
+        <span id="exHit2" class="text-green info row-0 coll-center-right-a text-center boxw-15 remw-8 text-1-5 d-none">Hits: 1</span>
     
         <img id='img1'   
-    class="boxw-15 animate__animated row-center coll-1 p-1 d-none" 
+    class="boxw-15 animate__animated row-true-center coll-center-left p-1 d-none" 
     src="/static/assets/standardsBoard1.png">
     <img id='img2'   
-    class="boxw-15 animate__animated row-center coll-2 p-1 d-none" 
+    class="boxw-15 animate__animated row-true-center coll-center-right p-1 d-none" 
     src="/static/assets/standardsBoard2.png">
 
     <div id="info3"  class="text-center emw-8 ls-1 boxh-4 text-1-5 lh-4 d-block">

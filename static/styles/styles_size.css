@@ -1,35 +1,35 @@
 /* box width/height */
 
 .boxw-4 {
-    width: calc(var(--box-size) * 4);
+    width: calc(var(--screen-unit) * 4);
 }
 
 .boxw-15 {
-    width: calc(var(--box-size) * 15);
+    width: calc(var(--screen-unit) * 15);
 }
 
 .boxw-24 {
-    width: calc(var(--box-size) * 24);
+    width: calc(var(--screen-unit) * 24);
 }
 
 .boxh-1 {
-    height: calc(var(--box-size) * 1);
+    height: calc(var(--screen-unit) * 1);
 }
 
 .boxh-2 {
-    height: calc(var(--box-size) * 2);
+    height: calc(var(--screen-unit) * 2);
 }
 
 .boxh-2-5 {
-    height: calc(var(--box-size) * 2.5);
+    height: calc(var(--screen-unit) * 2.5);
 }
 
 .boxh-4 {
-    height: calc(var(--box-size) * 4);
+    height: calc(var(--screen-unit) * 4);
 }
 
 .boxh-10 {
-    height: calc(var(--box-size) * 10);
+    height: calc(var(--screen-unit) * 10);
 }
 
 /* rem width/height */
@@ -58,6 +58,14 @@
     width: 8rem;
 }
 
+.remh-1 {
+    height: 1.5rem;
+}
+
+.remh-2 {
+    height: 2rem;
+}
+
 /* em width/height */
 
 .emw-2 {
@@ -78,4 +86,12 @@
 
 .emw-15 {
     width: 15em;
+}
+
+.emh-2 {
+    height: 2em
+}
+
+.emh-2_5 {
+    height: 2.5em;
 }

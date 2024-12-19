@@ -1,14 +1,14 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top lobBubble lr-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom">
         <p class="text-center text-white">
-            <span>This process (and your learning speed) is heavily affected by a few other factors. 
+            <span>This process (and your learning speed) is strongly influenced by a few other things. 
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
         <p class="text-center text-white">
                 Doing all this in real-time is a bit too intense, so to save energy it'll focus on tracking 
                 <span class="text-cyan">guesses</span>
@@ -17,16 +17,16 @@
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
         <p class="text-center text-white">
                 and <span class="text-aether">update</span> your skills when you're asleep.
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
         </p>
     </div>
-    <div id="bubble4" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
         <p class="text-center text-white">
-            <span>If you're not getting enough sleep, some of those marks will get lost, so be careful about all-nighters!
+            <span>If you're not getting enough sleep, some of those marks will get lost, so you might wanna avoid pulling all-nighters!
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="window.location.href = '/lesson_4'">Next</button>
         </p>
@@ -34,21 +34,21 @@
 {%endblock%}
 
 {%block location%}
-row-center coll-center
+coll-center
 {%endblock%}
 
 {% block extra%}
 <img id='img1'   
-class="boxw-15 animate__animated row-center coll-center p-1 d-none" 
+class="boxw-15 animate__animated row-true-center coll-center p-1 d-none" 
 src="/static/assets/Board1.png">
 <img id='img2'   
-class="boxw-15 animate__animated row-center coll-center p-1 d-none" 
+class="boxw-15 animate__animated row-true-center coll-center p-1 d-none" 
 src="/static/assets/Board2.png">
 
 <div id="under1" class=""></div>
 <div id="under2" class=""></div>
-<button id='guess' class="button rounded m-1 text-cyan box-glow lr-c-b d-none">&#127774; Guess</button>
-<button id="update" class="button rounded w-6 text-aether box-glow m-1 lr-c-b d-none">&#127771; Update</button>
+<button id='guess' class="button rounded text-cyan box-glow row-2-b coll-center d-none">&#127774; Guess</button>
+<button id="update" class="button rounded w-6 text-aether box-glow row-2-b coll-center d-none">&#127771; Update</button>
 {%endblock%}
 
 {%block size%}

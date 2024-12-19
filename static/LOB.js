@@ -1,3 +1,11 @@
+const colors = ['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
+const borderColors = ['border-blue', 'border-cyan']
+const textColors1 = ['text-black', 'text-lime']
+const textColors2 = ['text-red', 'text-orange']
+const backgroundColors = ['bg-blue', 'bg-cyan']
+const cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
+let s = new URLSearchParams(window.location.search).get('seed')
+
 size2 = size * size
 
 // If seed parameter is too long, reduce to a maximum of 100 characters.
@@ -183,7 +191,6 @@ function bubOnComplete() {
 function colorSwitch(element, elNum) {
     color = window.getComputedStyle(element).backgroundColor;
     for (csi=0; csi < colors.length; csi++) {
-        console.log(elNum)
         countElement = document.getElementById('p' + elNum.toString())
         countElement1 = countElement.getElementsByTagName('span')[0]
         if (reliabilityLvl) {
@@ -250,7 +257,7 @@ function check() {
         }
     }
 
-    // try again
+    // keep going
     else {
         change_html('accInfo', gradeMessage + accuracy.toString() + '%')
         if (!complete) {
@@ -267,7 +274,7 @@ function check_flash(win) {
     
     for (cfi=0;cfi<3;cfi++) {
         if (['win', 'perfect', 'fail'][cfi] == win) {
-            change_html(elID, ['Well Done!', 'Perfect!', 'Try Again!'][cfi])
+            change_html(elID, ['Well Done!', 'Perfect!', 'Keep Going!'][cfi])
             change_class(elID, ['text-orange', 'text-orange', 'text-green'][cfi], ['text-green', 'text-green', 'text-orange'][cfi])
         }
     }
@@ -409,7 +416,7 @@ function updateColor(type) {
     if (range > 5) {
 
         for (let uci=0; uci < solution.length; uci++) {
-            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) / (range / 270))
+            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) / (range / 280))
             if (borderIntensity[uci] > 255) {
                 borderIntensity[uci] = 255
             }
@@ -549,7 +556,9 @@ function genFlash(genSolution) {
                 change_class('di' + gfi, [backgroundColors[genSolution[gfi]], borderColors[genSolution[gfi]]])
                 hide_element('reliability', 'di' + gfi)
             }
-            show_element(id_list('p', solution.length))
+            if (counterLvl) {
+                show_element(id_list('p', solution.length))
+            }
             genFlashDelayState = false
         }, 2500)
         if (reliabilityLvl) {

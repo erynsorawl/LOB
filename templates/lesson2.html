@@ -1,27 +1,27 @@
 {% extends 'lesson.html' %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-top lobBubble lr-c-b">
+    <div id="bubble1" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom">
         <p class="text-center text-white">
             <span>To figure the solution out, your brain's main strategy is just kinda... throwing things at a wall until something sticks. 
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top lobBubble lr2-c-b d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
         <p class="text-center text-white">
                 <span>This is what the <span class='text-cyan'>Guess</span> button was doing
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
         <p class="text-center text-white">
-            <span>Whenever something gets close to sticking, your brain <span class=text-green>marks down</span> whatever active <span class="text-cyan">neurons</span> caused the action.<br>
+            <span>When something gets close to sticking, your brain <span class=text-green>marks down</span> which <span class="text-cyan">neurons</span> caused the action.<br>
             <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
         </p>
     </div>
-    <div id="bubble4" class="speech-bubble speech-bubble-top lobBubble lr-c-b d-none">
+    <div id="bubble4" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
         <p class="text-center text-white">
             <span>After doing this enough times, it'll have a pretty good idea of what the <span class="text-green">best pattern</span> is.
             </span><br>
@@ -31,30 +31,30 @@
 {%endblock%}
 
 {%block location%}
-row-center coll-1
+coll-center-left
 {%endblock%}
 
 {%block in_box_img%}{%endblock%}
 
 {% block extra%}
-<div id="4x4"  style="width: calc(var(--box-size) * 15);" class="row-center coll-2 ar-1 mt-1">
+<div id="4x4"  style="width: calc(var(--screen-unit) * 15);" class="row-true-center coll-center-right ar-1 mt-1">
     <img id='img1'  
-    style="border-bottom-width: .15em; border-right-width: .15em; width: calc(var(--box-size) * 7.3);" 
+    style="border-bottom-width: .15em; border-right-width: .15em; width: calc(var(--screen-unit) * 7.3);" 
     class="boxw-7 animate__animated imgSquare" 
     src="/static/assets/basketball.png"><img id='img2' 
-    style="border-bottom-width: .15em; border-left-width: .15em; width: calc(var(--box-size) * 7.3);" 
+    style="border-bottom-width: .15em; border-left-width: .15em; width: calc(var(--screen-unit) * 7.3);" 
     class="boxw-7 animate__animated imgSquare" 
     src="/static/assets/basketball.png">
     <br>
     <img id='img3' 
-    style="border-top-width: .15em; border-right-width: .15em; width: calc(var(--box-size) * 7.3);"
+    style="border-top-width: .15em; border-right-width: .15em; width: calc(var(--screen-unit) * 7.3);"
     class="boxw-7 animate__animated imgSquare" 
     src="/static/assets/basketball.png"><img id='img4' 
-    style="border-top-width: .15em; border-left-width: .15em; width: calc(var(--box-size) * 7.3);"
+    style="border-top-width: .15em; border-left-width: .15em; width: calc(var(--screen-unit) * 7.3);"
     class="boxw-7 animate__animated imgSquare" 
     src="/static/assets/basketball3.png"> 
 </div>
-<button id='guess' class="button rounded m-1 text-cyan box-glow lr-c-b d-none">Guess</button>
+<button id='guess' class="button rounded text-cyan box-glow row-2-b coll-center d-none">Guess</button>
 {%endblock%}
 
 {%block size%}
