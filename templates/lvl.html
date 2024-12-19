@@ -3,8 +3,8 @@
 {% block content %}
 <!--Sparkle animation that plays on victory-->
 <!--Credit: https://gifer.com/en/XZ5V-->
-<img id="sparkle-gif-right" class="sparkle sparkle-right d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
-<img id="sparkle-gif-left" class="sparkle sparkle-left d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
+<img id="sparkle-gif-right" class="sparkle sparkle-right d-none" src="/static/assets/sparkle.gif">
+<img id="sparkle-gif-left" class="sparkle sparkle-left d-none" src="/static/assets/sparkle.gif">
 
 <!--Popup text that tells you how well you did-->
 <div id="win-fail" class="animate__animated row-true-center coll-center emw-8 text-4 text-center text-shadow text-green overlay d-none click-none">Well done!</div>
@@ -106,7 +106,7 @@
     {% block levelNum %}
     {% endblock %}
 
-    <script type="text/javascript" src="https://erynsorawl.github.io/LOB/static/LOB.js"></script>
+    <script type="text/javascript" src="/static/LOB.js"></script>
     <script>
         if (!s) {
             new_puzzle()
