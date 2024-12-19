@@ -1,0 +1,367 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles_color.css">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles_size.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>
+        
+    </title>
+</head>
+<body class="bg-dark2">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow z-2">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link mr-auto ml-auto" href="https://erynsorawl.github.io/LOB/">Home</a>&nbsp;&nbsp;
+            </div>
+            <div class="navbar-nav">
+                <div class="dropdown navbar-nav collapse-margin">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose a level
+                    </button>&emsp; <br>
+                    <div class="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level1">Level 1</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level2">Level 2</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level3">Level 3</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level4">Level 4</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level5">Level 5</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level6">Level 6</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level7">Level 7</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level8">Level 8</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/LevelFinal">Final Level</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <br>
+        </div>
+    </nav>
+    <!--Main content-->
+    <div>
+        
+<!--Sparkle animation that plays on victory-->
+<!--Credit: https://gifer.com/en/XZ5V-->
+<img id="sparkle-gif-right" class="sparkle sparkle-right d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
+<img id="sparkle-gif-left" class="sparkle sparkle-left d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
+
+<!--Popup text that tells you how well you did-->
+<div id="win-fail" class="abs-center boxw-24 boxh-10 text-4 text-center text-shadow text-green overlay d-none click-none">Well done!</div>
+
+
+<!--Level Title-->
+<div class="d-flex justify-content-center m-3 title">
+    <div class="bg-dark rounded shadow-lg p-1 pb-2">
+        <span class="text-center text-white ml-2 mr-2 text-shadow-s">
+            Learn Outside The Box
+        </span>
+    </div>
+</div>
+
+<!--Notification that tells the player how the hit and miss function works-->
+<div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 hidden">
+    <p class="text-center text-white">
+        That was a good guess!
+    </p>
+</div>
+
+<!--Hit and miss counters-->
+    <div id="info1" class="text-center ls-1 remw-8 text-1-5 boxh-4 lh-4 d-block">
+        
+        
+    </div>
+
+    
+    <!--Game board-->
+    <table id="tableDiv" class="align-items-center boxw-15 row-true-center 
+coll-center
+border t-layout-fixed bg-black">
+        <tbody id="lobTable">
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t0">
+                            <div id="d0" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im0" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p0" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t1">
+                            <div id="d1" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im1" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p1" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t2">
+                            <div id="d2" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im2" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p2" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t3">
+                            <div id="d3" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im3" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p3" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t4">
+                            <div id="d4" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im4" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p4" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t5">
+                            <div id="d5" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im5" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p5" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t6">
+                            <div id="d6" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im6" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p6" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t7">
+                            <div id="d7" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im7" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p7" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t8">
+                            <div id="d8" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im8" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p8" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+        </tbody><tbody>
+    </tbody></table>
+    <!--Accuracy counter-->
+    <span id="accInfo" class="text-purple info text-1-5 text-center row-1 coll-2 hidden">Accuracy: 0%</span>
+
+<!--Container for buttons-->
+<div id="buttons" class="d-flex justify-content-center row-3">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+<div id="bubble1" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom">
+    <p class="text-center text-white">
+        <span>And that's all, folks! The word 'Neuroscience' may seem pretty scary - and at the higher levels, it kind of is.
+        </span><br>
+        <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+    </p>
+</div>
+<div id="bubble2" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
+    <p class="text-center text-white">
+            But if it's just the basics (which are all you really need to know in day-to-day life), it's not <i>that</i> scary, is it?
+        <br>
+        <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+    </p>
+</div>
+
+<div id="bubble3" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
+    <p class="text-center text-white">
+            So next time you want to learn something, just remember the strategies you learned here:
+        <br>
+        <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
+    </p>
+</div>
+
+<div id="bubble4" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
+    <p class="text-center text-white">
+            Set good standards,
+        <br>
+        <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+    </p>
+</div>
+
+<div id="bubble5" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
+    <p class="text-center text-white">
+            Get good sleep,
+        <br>
+        <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
+    </p>
+</div>
+
+<div id="bubble6" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
+    <p class="text-center text-white">
+            And most importantly,
+        <br>
+        <button class="button rounded bg-secondary m-1" onclick="lesson4()">Next</button>
+    </p>
+</div>
+
+<div id="bubble7" class="speech-bubble row-2-a coll-center-bottom d-none">
+    <p class="text-center text-white">
+            Try, try again!
+        
+    </p>
+</div>
+
+
+
+<!--Second container for buttons-->
+<div id="lowerButtons" class="row-4">
+    
+    
+</div>
+
+<span id="standards" class="button rounded boxh-2-5 text-yellow row-2-b coll-center d-none"> Standards:
+<input class="text-yellow rounded remh-1 emw-3 pl-1 bg-dark2 " disabled="" type="number" max="10" min="1" step="1" value="9"></span>
+<button id="update" class="button rounded w-6 text-aether box-glow m-1 row-2-b coll-center d-none">Update</button>
+
+<div id="info3" style="font-size: calc(var(--box_size) * 1.5);" class="text-center emw-8 row-true-center coll-center boxh-4 lh-4 d-block d-none">
+    <span id="hitInfo" class="text-green info">Hits: 0</span>
+    <span id="missInfo" class="text-orange info">Misses: 0</span>
+</div>
+
+
+
+    </div>
+    <!--Javascript-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://erynsorawl.github.io/LOB/static/tools.js"></script>
+    
+
+<script>
+let s = '0'
+const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
+const borderColors = ['border-blue', 'border-cyan']
+const textColors1 = ['text-black', 'text-lime']
+const textColors2 = ['text-red', 'text-orange']
+const backgroundColors = ['bg-blue', 'bg-cyan']
+</script>
+
+<script>
+const levelNum = 1
+</script>
+
+
+<script>
+const size = 3
+</script>
+
+
+<script>
+const bubbleLength = 7
+</script>
+
+
+
+
+
+
+<script type="text/javascript" src="https://erynsorawl.github.io/LOB/static/LOB.js"></script>
+<script>
+</script>
+
+
+    
+<script>
+hits = 0
+misses = 0
+
+function lesson() {
+    bubbleCycle()
+    show_element('standards')
+}
+
+function lesson2() {
+    bubbleCycle()
+    hide_element('standards')
+    show_element('update')
+}
+
+function lesson3() {
+    bubbleCycle()
+    hide_element('update')
+}
+
+function lesson4() {
+    bubbleCycle()
+    hide_element('tableDiv')
+    show_element('info3')
+    slowRise(0)
+}
+
+function slowRise(l) {
+    if (l < 500) {
+        setTimeout(() => {
+            if (Math.random() > .7) {
+                hits++
+            }
+            else {
+                misses++
+            }
+            change_html('hitInfo', 'Hits: ' + hits.toString())
+            change_html('missInfo', 'Misses: ' + misses.toString())
+            document.getElementById('info3').style.fontSize = (1.5 + (l/1000)).toString() + 'rem'
+            slowRise(l + 1)
+        }, 10)
+    }
+    else {
+        window.location.href = '/'
+    }
+}
+
+</script>
+
+
+</body></html>

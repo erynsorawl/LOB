@@ -1,0 +1,2684 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles_color.css">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles_size.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>
+        
+    </title>
+</head>
+<body class="bg-dark2">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow z-2">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link mr-auto ml-auto" href="https://erynsorawl.github.io/LOB/">Home</a>&nbsp;&nbsp;
+            </div>
+            <div class="navbar-nav">
+                <div class="dropdown navbar-nav collapse-margin">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose a level
+                    </button>&emsp; <br>
+                    <div class="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level1">Level 1</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level2">Level 2</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level3">Level 3</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level4">Level 4</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level5">Level 5</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level6">Level 6</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level7">Level 7</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level8">Level 8</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/LevelFinal">Final Level</a>
+                    </div>
+                </div>
+            </div>
+            
+<div class="collapse-margin pl-2">
+    
+
+</div>
+
+            <br>
+        </div>
+    </nav>
+    <!--Main content-->
+    <div>
+        
+<!--Sparkle animation that plays on victory-->
+<!--Credit: https://gifer.com/en/XZ5V-->
+<img id="sparkle-gif-right" class="sparkle sparkle-right d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
+<img id="sparkle-gif-left" class="sparkle sparkle-left d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
+
+<!--Popup text that tells you how well you did-->
+<div id="win-fail" class="animate__animated row-true-center coll-center emw-8 text-4 text-center text-shadow text-green overlay d-none click-none">Well done!</div>
+
+
+<!--Level Title-->
+<div class="d-flex justify-content-center m-3 title">
+    <div class="bg-dark rounded shadow-lg p-1 pb-2">
+        <span class="text-center text-white ml-2 mr-2 text-shadow-s">
+            Learn Outside The Box: Finale
+        </span>
+    </div>
+</div>
+
+<!--Notification that tells the player how the hit and miss function works-->
+<div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 hidden">
+    <p class="text-center text-white">
+        That was a good guess!
+    </p>
+</div>
+
+<!--Hit and miss counters-->
+    <div id="info1" class="text-center row-center-a coll-0 text-1-5 boxh-4 lh-4 d-block">
+        
+<span id="hitInfo" class="text-green info">Hits: 0</span>
+<span id="missInfo" class="text-orange info">Misses: 0</span>
+
+    </div>
+
+    
+    <!--Game board-->
+    <table class="align-items-center boxw-24 row-true-center coll-center position-absolute border t-layout-fixed bg-black">
+        <tbody id="lobTable">
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t0">
+                            <div id="d0" class="tableBorder" name="colorSwitch(this, '0')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di0" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p0" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t1">
+                            <div id="d1" class="tableBorder" name="colorSwitch(this, '1')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di1" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p1" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t2">
+                            <div id="d2" class="tableBorder" name="colorSwitch(this, '2')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di2" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p2" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t3">
+                            <div id="d3" class="tableBorder" name="colorSwitch(this, '3')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di3" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p3" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t4">
+                            <div id="d4" class="tableBorder" name="colorSwitch(this, '4')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di4" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p4" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t5">
+                            <div id="d5" class="tableBorder" name="colorSwitch(this, '5')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di5" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p5" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t6">
+                            <div id="d6" class="tableBorder" name="colorSwitch(this, '6')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di6" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p6" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t7">
+                            <div id="d7" class="tableBorder" name="colorSwitch(this, '7')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di7" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p7" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t8">
+                            <div id="d8" class="tableBorder" name="colorSwitch(this, '8')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di8" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p8" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t9">
+                            <div id="d9" class="tableBorder" name="colorSwitch(this, '9')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di9" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p9" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t10">
+                            <div id="d10" class="tableBorder" name="colorSwitch(this, '10')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di10" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p10" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t11">
+                            <div id="d11" class="tableBorder" name="colorSwitch(this, '11')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di11" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p11" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t12">
+                            <div id="d12" class="tableBorder" name="colorSwitch(this, '12')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di12" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p12" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t13">
+                            <div id="d13" class="tableBorder" name="colorSwitch(this, '13')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di13" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p13" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t14">
+                            <div id="d14" class="tableBorder" name="colorSwitch(this, '14')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di14" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p14" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t15">
+                            <div id="d15" class="tableBorder" name="colorSwitch(this, '15')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di15" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p15" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t16">
+                            <div id="d16" class="tableBorder" name="colorSwitch(this, '16')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di16" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p16" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t17">
+                            <div id="d17" class="tableBorder" name="colorSwitch(this, '17')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di17" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p17" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t18">
+                            <div id="d18" class="tableBorder" name="colorSwitch(this, '18')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di18" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p18" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t19">
+                            <div id="d19" class="tableBorder" name="colorSwitch(this, '19')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di19" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p19" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t20">
+                            <div id="d20" class="tableBorder" name="colorSwitch(this, '20')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di20" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p20" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t21">
+                            <div id="d21" class="tableBorder" name="colorSwitch(this, '21')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di21" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p21" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t22">
+                            <div id="d22" class="tableBorder" name="colorSwitch(this, '22')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di22" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p22" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t23">
+                            <div id="d23" class="tableBorder" name="colorSwitch(this, '23')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di23" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p23" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t24">
+                            <div id="d24" class="tableBorder" name="colorSwitch(this, '24')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di24" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p24" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t25">
+                            <div id="d25" class="tableBorder" name="colorSwitch(this, '25')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di25" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p25" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t26">
+                            <div id="d26" class="tableBorder" name="colorSwitch(this, '26')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di26" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p26" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t27">
+                            <div id="d27" class="tableBorder" name="colorSwitch(this, '27')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di27" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p27" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t28">
+                            <div id="d28" class="tableBorder" name="colorSwitch(this, '28')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di28" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p28" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t29">
+                            <div id="d29" class="tableBorder" name="colorSwitch(this, '29')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di29" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p29" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t30">
+                            <div id="d30" class="tableBorder" name="colorSwitch(this, '30')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di30" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p30" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t31">
+                            <div id="d31" class="tableBorder" name="colorSwitch(this, '31')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di31" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p31" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t32">
+                            <div id="d32" class="tableBorder" name="colorSwitch(this, '32')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di32" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p32" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t33">
+                            <div id="d33" class="tableBorder" name="colorSwitch(this, '33')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di33" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p33" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t34">
+                            <div id="d34" class="tableBorder" name="colorSwitch(this, '34')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di34" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p34" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t35">
+                            <div id="d35" class="tableBorder" name="colorSwitch(this, '35')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di35" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p35" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t36">
+                            <div id="d36" class="tableBorder" name="colorSwitch(this, '36')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di36" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p36" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t37">
+                            <div id="d37" class="tableBorder" name="colorSwitch(this, '37')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di37" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p37" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t38">
+                            <div id="d38" class="tableBorder" name="colorSwitch(this, '38')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di38" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p38" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t39">
+                            <div id="d39" class="tableBorder" name="colorSwitch(this, '39')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di39" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p39" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t40">
+                            <div id="d40" class="tableBorder" name="colorSwitch(this, '40')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di40" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p40" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t41">
+                            <div id="d41" class="tableBorder" name="colorSwitch(this, '41')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di41" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p41" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t42">
+                            <div id="d42" class="tableBorder" name="colorSwitch(this, '42')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di42" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p42" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t43">
+                            <div id="d43" class="tableBorder" name="colorSwitch(this, '43')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di43" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p43" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t44">
+                            <div id="d44" class="tableBorder" name="colorSwitch(this, '44')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di44" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p44" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t45">
+                            <div id="d45" class="tableBorder" name="colorSwitch(this, '45')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di45" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p45" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t46">
+                            <div id="d46" class="tableBorder" name="colorSwitch(this, '46')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di46" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p46" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t47">
+                            <div id="d47" class="tableBorder" name="colorSwitch(this, '47')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di47" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p47" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t48">
+                            <div id="d48" class="tableBorder" name="colorSwitch(this, '48')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di48" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p48" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t49">
+                            <div id="d49" class="tableBorder" name="colorSwitch(this, '49')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di49" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p49" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t50">
+                            <div id="d50" class="tableBorder" name="colorSwitch(this, '50')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di50" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p50" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t51">
+                            <div id="d51" class="tableBorder" name="colorSwitch(this, '51')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di51" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p51" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t52">
+                            <div id="d52" class="tableBorder" name="colorSwitch(this, '52')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di52" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p52" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t53">
+                            <div id="d53" class="tableBorder" name="colorSwitch(this, '53')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di53" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p53" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t54">
+                            <div id="d54" class="tableBorder" name="colorSwitch(this, '54')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di54" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p54" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t55">
+                            <div id="d55" class="tableBorder" name="colorSwitch(this, '55')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di55" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p55" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t56">
+                            <div id="d56" class="tableBorder" name="colorSwitch(this, '56')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di56" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p56" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t57">
+                            <div id="d57" class="tableBorder" name="colorSwitch(this, '57')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di57" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p57" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t58">
+                            <div id="d58" class="tableBorder" name="colorSwitch(this, '58')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di58" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p58" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t59">
+                            <div id="d59" class="tableBorder" name="colorSwitch(this, '59')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di59" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p59" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t60">
+                            <div id="d60" class="tableBorder" name="colorSwitch(this, '60')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di60" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p60" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t61">
+                            <div id="d61" class="tableBorder" name="colorSwitch(this, '61')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di61" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p61" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t62">
+                            <div id="d62" class="tableBorder" name="colorSwitch(this, '62')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di62" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p62" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t63">
+                            <div id="d63" class="tableBorder" name="colorSwitch(this, '63')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di63" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p63" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t64">
+                            <div id="d64" class="tableBorder" name="colorSwitch(this, '64')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di64" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p64" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t65">
+                            <div id="d65" class="tableBorder" name="colorSwitch(this, '65')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di65" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p65" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t66">
+                            <div id="d66" class="tableBorder" name="colorSwitch(this, '66')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di66" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p66" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t67">
+                            <div id="d67" class="tableBorder" name="colorSwitch(this, '67')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di67" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p67" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t68">
+                            <div id="d68" class="tableBorder" name="colorSwitch(this, '68')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di68" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p68" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t69">
+                            <div id="d69" class="tableBorder" name="colorSwitch(this, '69')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di69" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p69" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t70">
+                            <div id="d70" class="tableBorder" name="colorSwitch(this, '70')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di70" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p70" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t71">
+                            <div id="d71" class="tableBorder" name="colorSwitch(this, '71')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di71" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p71" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t72">
+                            <div id="d72" class="tableBorder" name="colorSwitch(this, '72')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di72" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p72" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t73">
+                            <div id="d73" class="tableBorder" name="colorSwitch(this, '73')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di73" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p73" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t74">
+                            <div id="d74" class="tableBorder" name="colorSwitch(this, '74')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di74" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p74" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t75">
+                            <div id="d75" class="tableBorder" name="colorSwitch(this, '75')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di75" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p75" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t76">
+                            <div id="d76" class="tableBorder" name="colorSwitch(this, '76')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di76" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p76" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t77">
+                            <div id="d77" class="tableBorder" name="colorSwitch(this, '77')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di77" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p77" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t78">
+                            <div id="d78" class="tableBorder" name="colorSwitch(this, '78')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di78" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p78" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t79">
+                            <div id="d79" class="tableBorder" name="colorSwitch(this, '79')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di79" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p79" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t80">
+                            <div id="d80" class="tableBorder" name="colorSwitch(this, '80')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di80" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p80" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t81">
+                            <div id="d81" class="tableBorder" name="colorSwitch(this, '81')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di81" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p81" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t82">
+                            <div id="d82" class="tableBorder" name="colorSwitch(this, '82')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di82" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p82" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t83">
+                            <div id="d83" class="tableBorder" name="colorSwitch(this, '83')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di83" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p83" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t84">
+                            <div id="d84" class="tableBorder" name="colorSwitch(this, '84')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di84" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p84" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t85">
+                            <div id="d85" class="tableBorder" name="colorSwitch(this, '85')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di85" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p85" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t86">
+                            <div id="d86" class="tableBorder" name="colorSwitch(this, '86')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di86" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p86" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t87">
+                            <div id="d87" class="tableBorder" name="colorSwitch(this, '87')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di87" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p87" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t88">
+                            <div id="d88" class="tableBorder" name="colorSwitch(this, '88')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di88" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p88" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t89">
+                            <div id="d89" class="tableBorder" name="colorSwitch(this, '89')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di89" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p89" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t90">
+                            <div id="d90" class="tableBorder" name="colorSwitch(this, '90')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di90" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p90" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t91">
+                            <div id="d91" class="tableBorder" name="colorSwitch(this, '91')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di91" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p91" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t92">
+                            <div id="d92" class="tableBorder" name="colorSwitch(this, '92')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di92" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p92" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t93">
+                            <div id="d93" class="tableBorder" name="colorSwitch(this, '93')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di93" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p93" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t94">
+                            <div id="d94" class="tableBorder" name="colorSwitch(this, '94')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di94" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p94" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t95">
+                            <div id="d95" class="tableBorder" name="colorSwitch(this, '95')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di95" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p95" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t96">
+                            <div id="d96" class="tableBorder" name="colorSwitch(this, '96')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di96" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p96" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t97">
+                            <div id="d97" class="tableBorder" name="colorSwitch(this, '97')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di97" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p97" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t98">
+                            <div id="d98" class="tableBorder" name="colorSwitch(this, '98')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di98" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p98" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t99">
+                            <div id="d99" class="tableBorder" name="colorSwitch(this, '99')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di99" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p99" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t100">
+                            <div id="d100" class="tableBorder" name="colorSwitch(this, '100')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di100" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p100" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t101">
+                            <div id="d101" class="tableBorder" name="colorSwitch(this, '101')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di101" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p101" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t102">
+                            <div id="d102" class="tableBorder" name="colorSwitch(this, '102')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di102" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p102" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t103">
+                            <div id="d103" class="tableBorder" name="colorSwitch(this, '103')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di103" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p103" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t104">
+                            <div id="d104" class="tableBorder" name="colorSwitch(this, '104')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di104" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p104" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t105">
+                            <div id="d105" class="tableBorder" name="colorSwitch(this, '105')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di105" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p105" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t106">
+                            <div id="d106" class="tableBorder" name="colorSwitch(this, '106')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di106" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p106" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t107">
+                            <div id="d107" class="tableBorder" name="colorSwitch(this, '107')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di107" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p107" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t108">
+                            <div id="d108" class="tableBorder" name="colorSwitch(this, '108')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di108" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p108" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t109">
+                            <div id="d109" class="tableBorder" name="colorSwitch(this, '109')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di109" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p109" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t110">
+                            <div id="d110" class="tableBorder" name="colorSwitch(this, '110')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di110" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p110" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t111">
+                            <div id="d111" class="tableBorder" name="colorSwitch(this, '111')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di111" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p111" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t112">
+                            <div id="d112" class="tableBorder" name="colorSwitch(this, '112')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di112" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p112" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t113">
+                            <div id="d113" class="tableBorder" name="colorSwitch(this, '113')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di113" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p113" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t114">
+                            <div id="d114" class="tableBorder" name="colorSwitch(this, '114')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di114" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p114" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t115">
+                            <div id="d115" class="tableBorder" name="colorSwitch(this, '115')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di115" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p115" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t116">
+                            <div id="d116" class="tableBorder" name="colorSwitch(this, '116')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di116" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p116" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t117">
+                            <div id="d117" class="tableBorder" name="colorSwitch(this, '117')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di117" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p117" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t118">
+                            <div id="d118" class="tableBorder" name="colorSwitch(this, '118')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di118" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p118" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t119">
+                            <div id="d119" class="tableBorder" name="colorSwitch(this, '119')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di119" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p119" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t120">
+                            <div id="d120" class="tableBorder" name="colorSwitch(this, '120')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di120" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p120" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t121">
+                            <div id="d121" class="tableBorder" name="colorSwitch(this, '121')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di121" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p121" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t122">
+                            <div id="d122" class="tableBorder" name="colorSwitch(this, '122')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di122" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p122" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t123">
+                            <div id="d123" class="tableBorder" name="colorSwitch(this, '123')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di123" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p123" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t124">
+                            <div id="d124" class="tableBorder" name="colorSwitch(this, '124')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di124" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p124" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t125">
+                            <div id="d125" class="tableBorder" name="colorSwitch(this, '125')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di125" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p125" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t126">
+                            <div id="d126" class="tableBorder" name="colorSwitch(this, '126')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di126" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p126" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t127">
+                            <div id="d127" class="tableBorder" name="colorSwitch(this, '127')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di127" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p127" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t128">
+                            <div id="d128" class="tableBorder" name="colorSwitch(this, '128')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di128" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p128" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t129">
+                            <div id="d129" class="tableBorder" name="colorSwitch(this, '129')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di129" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p129" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t130">
+                            <div id="d130" class="tableBorder" name="colorSwitch(this, '130')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di130" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p130" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t131">
+                            <div id="d131" class="tableBorder" name="colorSwitch(this, '131')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di131" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p131" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t132">
+                            <div id="d132" class="tableBorder" name="colorSwitch(this, '132')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di132" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p132" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t133">
+                            <div id="d133" class="tableBorder" name="colorSwitch(this, '133')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di133" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p133" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t134">
+                            <div id="d134" class="tableBorder" name="colorSwitch(this, '134')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di134" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p134" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t135">
+                            <div id="d135" class="tableBorder" name="colorSwitch(this, '135')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di135" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p135" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t136">
+                            <div id="d136" class="tableBorder" name="colorSwitch(this, '136')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di136" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p136" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t137">
+                            <div id="d137" class="tableBorder" name="colorSwitch(this, '137')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di137" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p137" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t138">
+                            <div id="d138" class="tableBorder" name="colorSwitch(this, '138')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di138" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p138" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t139">
+                            <div id="d139" class="tableBorder" name="colorSwitch(this, '139')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di139" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p139" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t140">
+                            <div id="d140" class="tableBorder" name="colorSwitch(this, '140')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di140" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p140" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t141">
+                            <div id="d141" class="tableBorder" name="colorSwitch(this, '141')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di141" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p141" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t142">
+                            <div id="d142" class="tableBorder" name="colorSwitch(this, '142')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di142" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p142" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+                        <td class="LOBtd" id="t143">
+                            <div id="d143" class="tableBorder" name="colorSwitch(this, '143')" style="border-color: rgba(0, 0, 0, 0);">
+                                <div id="di143" class="
+                                    genFade 
+                                    d-none 
+                                    text-center
+                                    text-center-v
+                                    text-dark 
+                                    text-glow 
+                                    animate__animated
+                                    "></div>
+                                <div id="p143" class="ar-1 margin-auto text-center text-center-v counter z-1 text-shadow-s d-none text-05">
+                                    <span class="text-lime">0</span> &nbsp;<span class="text-orange">0</span>
+                                </div>
+                            </div>
+                        </td>
+                
+            </tr>
+        
+        </tbody><tbody>
+    </tbody></table>
+    <!--Accuracy counter-->
+    <span id="accInfo" class="text-purple info text-1-5 text-center row-center-b coll-2 d-none">Accuracy: 0%</span>
+
+<!--Container for buttons-->
+<div id="buttons" class="d-flex justify-content-center row-3 coll-center">
+    <button id="guess" class="button rounded text-cyan m-1" onclick="advancedGenerate(20)">Guess</button>
+    <button class="button rounded text-aether m-1" onclick="updateColor('Box')">Update</button>
+    <button id="check" class="button text-purple button-a m-1" onclick="check()">Submit</button>
+    <a id="nextLevel" class="button text-green button-a box-glow d-none" href="https://erynsorawl.github.io/LOB/pages/LevelFinish">Next Level</a>
+  
+</div>
+
+<div id="bubble1" class="speech-bubble speech-bubble-right emw-15 row-center coll-1">
+    <p class="text-center text-white">
+        <span>And that's all, folks.</span> <br>
+        <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+    </p>
+</div>
+<div id="bubble2" class="speech-bubble speech-bubble-right emw-15 row-center coll-1 d-none">
+    <p class="text-center text-white">
+        <span>Now, go big or go home!.</span> <br>
+        <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
+    </p>
+</div>
+
+
+<!--Second container for buttons-->
+<div id="lowerButtons" class="row-4 coll-center">
+    
+<span class="button text-yellow rounded pr-1 emh-2_5">On a scale of 1 to 10, how high are your standards?
+    <input id="standards" class="text-yellow rounded emw-3 pl-1 bg-dark2" type="number" max="10" min="1" step="1" value="1"></span>
+
+</div>
+
+
+
+
+    </div>
+    <!--Javascript-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://erynsorawl.github.io/LOB/static/tools.js"></script>
+    
+
+<script>
+const acc = 0
+</script>
+
+
+<script>
+const bubbleLength = 2
+</script>
+
+
+<script>
+const closeEnough = .95
+</script>
+
+
+<script>
+const checkRigor = 210
+</script>
+
+
+<script>
+const size = 12
+</script>
+
+
+<script>
+const maxGuess = 800
+</script>
+
+
+<script>
+const levelNum = 9
+</script>
+
+
+<script type="text/javascript" src="https://erynsorawl.github.io/LOB/static/LOB.js"></script>
+<script>
+    if (!s) {
+        new_puzzle()
+    }
+</script>
+
+    
+
+
+</body></html>

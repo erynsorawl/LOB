@@ -61,7 +61,7 @@
 <div class="d-flex justify-content-center m-3 title">
     <div class="bg-dark rounded shadow-lg p-1 pb-2">
         <span class="text-center text-white ml-2 mr-2 text-shadow-s">
-            Learn Outside The Box: Level 2
+            Learn Outside The Box
         </span>
     </div>
 </div>
@@ -252,25 +252,21 @@
         </tbody><tbody>
     </tbody></table>
     <!--Accuracy counter-->
-    <span id="accInfo" class="text-purple info text-1-5 text-center row-center-b coll-2 d-none">Accuracy: 0%</span>
+    <span id="accInfo" class="text-purple info text-1-5 text-center row-center-b coll-2">Accuracy: 0%</span>
 
 <!--Container for buttons-->
 <div id="buttons" class="d-flex justify-content-center row-3 coll-center">
-    <button id="guess" class="button text-cyan button-a box-glow" onclick="basicGenerate()">Guess</button>    
-
     
     
-    <button id="check" class="button text-purple button-a m-1" onclick="check()">Submit</button>
-    <a id="nextLevel" class="button text-green button-a box-glow d-none" href="https://erynsorawl.github.io/LOB/pages/Level3">Next Level</a>
+    
+    
+    
+    
+    
+    
   
 </div>
 
-<div id="bubble1" class="speech-bubble speech-bubble-right emw-15 row-center coll-1">
-    <p class="text-center text-white">
-        <span>Guesses will show a random set of squares, so it's gonna take a few tries to find everything you're looking for.</span> <br>
-        <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Close</button>
-    </p>
-</div>
 
 
 <!--Second container for buttons-->
@@ -279,6 +275,11 @@
     
 </div>
 
+<a class="button rounded text-white box-glow row-center-a coll-1 boxh-4 overlay" href="https://erynsorawl.github.io/LOB/Level1">Click here if you'd <br>like to play again.</a>
+<a class="button rounded text-white emw-15 box-glow row-center-b coll-2 overlay" href="https://erynsorawl.github.io/LOB/lesson_1">Click here if you'd <br> like to learn how you <br>
+accidentally just became <br> a neuroscientist.
+</a>
+<span class="button rounded box-glow row-true-center coll-center overlay text-green text-1-5">Congratulations!</span>
 
 
 
@@ -293,14 +294,11 @@
     <script src="https://erynsorawl.github.io/LOB/static/tools.js"></script>
     
 
-<script>
-const acc = .4
+<script> 
+const acc = 1 
 </script>
 
 
-<script>
-const bubbleLength = 1
-</script>
 
 
 <script>
@@ -321,7 +319,7 @@ const size = 3
 
 
 <script>
-const levelNum = 2
+const levelNum = 1
 </script>
 
 
@@ -333,6 +331,12 @@ const levelNum = 2
 </script>
 
     
+<script>
+    show_element('accInfo', 'sparkle-gif-right', 'sparkle-gif-left')
+    setTimeout(() => {
+        hide_element('sparkle-gif-right', 'sparkle-gif-left')
+    }, "3000");
+</script>
 
 
 </body></html>

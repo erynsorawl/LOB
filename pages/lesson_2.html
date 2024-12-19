@@ -1,0 +1,655 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles_color.css">
+    <link rel="stylesheet" type="text/css" href="https://erynsorawl.github.io/LOB/static/styles/styles_size.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>
+        
+    </title>
+</head>
+<body class="bg-dark2">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow z-2">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link mr-auto ml-auto" href="https://erynsorawl.github.io/LOB/">Home</a>&nbsp;&nbsp;
+            </div>
+            <div class="navbar-nav">
+                <div class="dropdown navbar-nav collapse-margin">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Choose a level
+                    </button>&emsp; <br>
+                    <div class="dropdown-menu bg-secondary" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level1">Level 1</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level2">Level 2</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level3">Level 3</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level4">Level 4</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level5">Level 5</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level6">Level 6</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level7">Level 7</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/Level8">Level 8</a>
+                        <a class="dropdown-item text-light" href="https://erynsorawl.github.io/LOB/pages/LevelFinal">Final Level</a>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <br>
+        </div>
+    </nav>
+    <!--Main content-->
+    <div>
+        
+<!--Sparkle animation that plays on victory-->
+<!--Credit: https://gifer.com/en/XZ5V-->
+<img id="sparkle-gif-right" class="sparkle sparkle-right d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
+<img id="sparkle-gif-left" class="sparkle sparkle-left d-none" src="https://erynsorawl.github.io/LOB/static/assets/sparkle.gif">
+
+<!--Popup text that tells you how well you did-->
+<div id="win-fail" class="abs-center boxw-24 boxh-10 text-4 text-center text-shadow text-green overlay d-none click-none">Well done!</div>
+
+
+<!--Level Title-->
+<div class="d-flex justify-content-center m-3 title">
+    <div class="bg-dark rounded shadow-lg p-1 pb-2">
+        <span class="text-center text-white ml-2 mr-2 text-shadow-s">
+            Learn Outside The Box
+        </span>
+    </div>
+</div>
+
+<!--Notification that tells the player how the hit and miss function works-->
+<div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 hidden">
+    <p class="text-center text-white">
+        That was a good guess!
+    </p>
+</div>
+
+<!--Hit and miss counters-->
+    <div id="info1" class="text-center ls-1 remw-8 text-1-5 boxh-4 lh-4 d-block">
+        
+        
+    </div>
+
+    
+    <!--Game board-->
+    <table id="tableDiv" class="align-items-center boxw-15 row-true-center 
+coll-center-left
+border t-layout-fixed bg-black">
+        <tbody id="lobTable">
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t0">
+                            <div id="d0" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im0" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p0" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t1">
+                            <div id="d1" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im1" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p1" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t2">
+                            <div id="d2" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im2" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p2" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t3">
+                            <div id="d3" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im3" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p3" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t4">
+                            <div id="d4" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im4" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p4" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t5">
+                            <div id="d5" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im5" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p5" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t6">
+                            <div id="d6" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im6" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p6" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t7">
+                            <div id="d7" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im7" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p7" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t8">
+                            <div id="d8" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im8" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p8" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t9">
+                            <div id="d9" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im9" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p9" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t10">
+                            <div id="d10" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im10" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p10" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t11">
+                            <div id="d11" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im11" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p11" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t12">
+                            <div id="d12" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im12" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p12" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t13">
+                            <div id="d13" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im13" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p13" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t14">
+                            <div id="d14" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im14" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p14" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t15">
+                            <div id="d15" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im15" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p15" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t16">
+                            <div id="d16" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im16" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p16" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t17">
+                            <div id="d17" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im17" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p17" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t18">
+                            <div id="d18" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im18" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p18" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t19">
+                            <div id="d19" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im19" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p19" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t20">
+                            <div id="d20" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im20" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p20" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t21">
+                            <div id="d21" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im21" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p21" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t22">
+                            <div id="d22" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im22" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p22" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t23">
+                            <div id="d23" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im23" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p23" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t24">
+                            <div id="d24" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im24" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p24" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t25">
+                            <div id="d25" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im25" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p25" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t26">
+                            <div id="d26" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im26" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p26" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t27">
+                            <div id="d27" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im27" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p27" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t28">
+                            <div id="d28" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im28" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p28" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t29">
+                            <div id="d29" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im29" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p29" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+            <tr>
+                
+                        <td class="LOBtd" id="t30">
+                            <div id="d30" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im30" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p30" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t31">
+                            <div id="d31" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im31" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p31" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t32">
+                            <div id="d32" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im32" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p32" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t33">
+                            <div id="d33" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im33" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p33" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t34">
+                            <div id="d34" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im34" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p34" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+                        <td class="LOBtd" id="t35">
+                            <div id="d35" class="tableBorder">
+                                <!--Neuron icons created by imaginationlol - Flaticon-->
+                                <img id="im35" style="width: calc(var(--screen-unit) * 4);" class="shadow-lg d-none animate__animated" src="https://erynsorawl.github.io/LOB/static/assets/neuron.png">
+                                <div id="p35" class="text-center text-shadow-s boxh-1 d-none ">
+                                    <span class="text-lime boxh-1">0</span>
+                            </div>
+                        </div></td>
+                
+            </tr>
+        
+        </tbody><tbody>
+    </tbody></table>
+    <!--Accuracy counter-->
+    <span id="accInfo" class="text-purple info text-1-5 text-center row-1 coll-2 hidden">Accuracy: 0%</span>
+
+<!--Container for buttons-->
+<div id="buttons" class="d-flex justify-content-center row-3">
+    
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+<div id="bubble1" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom">
+    <p class="text-center text-white">
+        <span>To figure the solution out, your brain's main strategy is just kinda... throwing things at a wall until something sticks. 
+        </span><br>
+        <button class="button rounded bg-secondary m-1" onclick="lesson()">Next</button>
+    </p>
+</div>
+<div id="bubble2" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
+    <p class="text-center text-white">
+            <span>This is what the <span class="text-cyan">Guess</span> button was doing
+        </span><br>
+        <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
+    </p>
+</div>
+<div id="bubble3" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
+    <p class="text-center text-white">
+        <span>When something gets close to sticking, your brain <span class="text-green">marks down</span> which <span class="text-cyan">neurons</span> caused the action.<br>
+        <button class="button rounded bg-secondary m-1" onclick="lesson3()">Next</button>
+    </span></p>
+</div>
+<div id="bubble4" class="speech-bubble speech-bubble-top row-2-a coll-center-bottom d-none">
+    <p class="text-center text-white">
+        <span>After doing this enough times, it'll have a pretty good idea of what the <span class="text-green">best pattern</span> is.
+        </span><br>
+        <button class="button rounded bg-secondary m-1" onclick="window.location.href='https://erynsorawl.github.io/LOB/pages/lesson_3'">Next</button>
+    </p>
+</div>
+
+
+<!--Second container for buttons-->
+<div id="lowerButtons" class="row-4">
+    
+    
+</div>
+
+<div id="4x4" style="width: calc(var(--screen-unit) * 15);" class="row-true-center coll-center-right ar-1 mt-1">
+<img id="img1" style="border-bottom-width: .15em; border-right-width: .15em; width: calc(var(--screen-unit) * 7.3);" class="boxw-7 animate__animated imgSquare" src="https://erynsorawl.github.io/LOB/static/assets/basketball.png"><img id="img2" style="border-bottom-width: .15em; border-left-width: .15em; width: calc(var(--screen-unit) * 7.3);" class="boxw-7 animate__animated imgSquare" src="https://erynsorawl.github.io/LOB/static/assets/basketball.png">
+<br>
+<img id="img3" style="border-top-width: .15em; border-right-width: .15em; width: calc(var(--screen-unit) * 7.3);" class="boxw-7 animate__animated imgSquare" src="https://erynsorawl.github.io/LOB/static/assets/basketball.png"><img id="img4" style="border-top-width: .15em; border-left-width: .15em; width: calc(var(--screen-unit) * 7.3);" class="boxw-7 animate__animated imgSquare" src="https://erynsorawl.github.io/LOB/static/assets/basketball3.png"> 
+</div>
+<button id="guess" class="button rounded text-cyan box-glow row-2-b coll-center d-none">Guess</button>
+
+
+
+    </div>
+    <!--Javascript-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://erynsorawl.github.io/LOB/static/tools.js"></script>
+    
+
+<script>
+let s = '0'
+const colors =['rgb(0, 0, 255)', 'rgb(0, 255, 255)']
+const borderColors = ['border-blue', 'border-cyan']
+const textColors1 = ['text-black', 'text-lime']
+const textColors2 = ['text-red', 'text-orange']
+const backgroundColors = ['bg-blue', 'bg-cyan']
+</script>
+
+<script>
+const levelNum = 1
+</script>
+
+
+<script>
+const size = 6
+</script>
+
+
+<script>
+const bubbleLength = 4
+</script>
+
+
+
+
+
+
+<script type="text/javascript" src="https://erynsorawl.github.io/LOB/static/LOB.js"></script>
+<script>
+</script>
+
+
+    
+<script>
+lessonDelayState = 0
+board1 = [
+    0,1,0, 0,0,0,
+    1,0,0, 1,0,0,
+    0,0,0, 0,1,0,
+
+    1,0,1, 0,0,1,
+    0,1,0, 0,1,1,
+    1,0,0, 0,0,1
+]
+
+board2 = [
+    0,1,0, 0,0,1,
+    1,0,0, 1,1,0,
+    0,1,0, 0,0,1,
+
+    0,0,1, 0,0,1,
+    0,1,0, 0,1,0,
+    1,0,1, 0,0,1
+]
+
+count2 = [
+    0,1,0, 0,0,1,
+    1,0,0, 1,1,0,
+    0,1,0, 0,0,1,
+
+    0,0,1, 16,12,35,
+    0,1,0, 9,42,11,
+    1,0,1, 17,24,34
+]
+
+board1sec4 = [23,28,29,35]
+board2sec4 = [23,28,35]
+for (i=0;i<solution.length;i++) {
+    if (board1[i] == 1) {
+        colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
+    }
+    document.getElementById('t' + i.toString()).style.borderWidth = "0.15em"
+    if (i<6) {
+        document.getElementById('t' + i.toString()).style.borderTopWidth = "0.45em"
+    }
+    if(i >= 12 && i < 18) {
+        document.getElementById('t' + i.toString()).style.borderBottomWidth = "0.45em"
+    }
+    if(i>29) {
+        document.getElementById('t' + i.toString()).style.borderBottomWidth = "0.45em"
+    }
+    if(i % 6 == 0) {
+        document.getElementById('t' + i.toString()).style.borderLeftWidth = "0.45em"
+    }
+    if (i % 6 == 2) {
+        document.getElementById('t' + i.toString()).style.borderRightWidth = "0.45em"
+    }
+    if (i % 6 == 5) {
+        document.getElementById('t' + i.toString()).style.borderRightWidth = "0.45em"
+    }
+}
+
+function lesson() {
+    show_element('guess')
+    bubbleCycle()
+}
+
+function lesson2() {
+    document.getElementById('img4').classList.add('bg-dark-green')
+    for (i=21;i<solution.length;i++) {
+        show_element('p' + i)
+        if (i % 3 == 2) {
+            i = i + 3
+        }
+    }
+    for (i=0;i<board1sec4.length;i++) {
+        document.getElementById('p' + board1sec4[i].toString()).getElementsByTagName('span')[0].innerHTML = '1'
+    }
+    hide_element('guess')
+    bubbleCycle()
+}
+
+function lesson3() {
+    bubbleCycle()
+    for (i=1;i<4;i++) {
+        document.getElementById('img' + i.toString()).src = 'static/assets/basketball3.png'
+    }
+    document.getElementById('img4').src = 'static/assets/basketball2.png'
+
+    for (i=0;i<solution.length;i++) {
+        show_element('p' + i)
+
+        if (board1[i] == 1) {
+            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
+        }
+        if(board2[i] == 1) {
+            colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 0, 1)
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '1'
+        }
+        else {
+            document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = '0'
+        }
+    }
+
+    for (i=21;i<solution.length;i++) {
+        document.getElementById('p' + i.toString()).getElementsByTagName('span')[0].innerHTML = count2[i]
+        if (i % 3 == 2) {
+            i = i + 3
+        }
+    }
+}
+
+</script>
+
+
+</body></html>
