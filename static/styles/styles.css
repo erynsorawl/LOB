@@ -542,6 +542,10 @@
         --screen-unit: 20px;
         font-size: 19px;
     }
+    
+    .title {
+        font-size: 1.2rem;
+    }
 
   }
 
@@ -559,7 +563,7 @@
     }
 
     .title {
-        font-size: 1.2rem;
+        font-size: 1.0rem;
     }
 
     .r2-c2 {
