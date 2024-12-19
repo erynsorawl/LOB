@@ -55,12 +55,12 @@ Test
 Another quick test
 
 Add a 'notes' button for all the text, so it can be toggled over the boxes instead of scrolled to. Default to having it overlaid. Check!
-Add a 'next level' or 'continue' overlay that pops up when the level is complete, after a celebration animation. If continued, add the 'next level' button to the right side.
+Add a 'Next' or 'continue' overlay that pops up when the level is complete, after a celebration animation. If continued, add the 'Next' button to the right side.
 Put the 'hit and miss' counters on the left, and the 'percent complete, try again' intfo on the right
 
 Add a "LOB" board that's just the neuroscience explanation
 
-shrink font size when text gets too long, adjust counter size based on board size
+font size when text gets too long, adjust counter size based on board size
 
 Change level 4 to demonstrate the 'hit or miss' mechanic, not the holding mechanic. Have it guess one at a time, but have a little red/green notification that tells you whether
 each guess is reliable or unreliable, and add an 'unreliable guess' counter to the center.
