@@ -646,6 +646,10 @@
         top: calc((var(--screen-unit) * 32) + 12rem);
     }
 
+    .info {
+        font-size: 1rem;
+    }
+
     .coll-1 {
         left: 50%;
         transform: translate(-50%, -2rem);  
