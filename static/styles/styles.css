@@ -454,10 +454,6 @@
         display: block;
     }
 
-    .lh-4 {
-        line-height: 1.5em;
-    }
-
     .lh-40 {
         line-height: calc(var(--screen-unit) * 1.5);
     }
