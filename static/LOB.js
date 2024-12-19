@@ -78,6 +78,7 @@ for (i=0; i < solution.length; i++) {
     solRatios[solution[i]]++
 
     // give all 'd' elements a transparent white border color
+    console.log('d' + i.toString())
     document.getElementById('d' + i.toString()).style.borderColor = "#00000000"
 
     // populate box counters
