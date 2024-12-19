@@ -73,12 +73,12 @@ for (i = 0; i < seeds.length; i++) {
 }
 
 // reduce solution numbers down to 1s and 0s
-for (let i=0; i < solution.length; i++) {
+for (i=0; i < solution.length; i++) {
     solution[i] = solution[i] % 2
     solRatios[solution[i]]++
 
     // give all 'd' elements a transparent white border color
-    document.getElementById('d'.concat(i)).style.borderColor = "#00000000"
+    document.getElementById('d' + i.toString()).style.borderColor = "#00000000"
 
     // populate box counters
     boxCounters[i] = 0
