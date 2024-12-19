@@ -535,6 +535,10 @@
         font-size: 19px;
     }
 
+    .title {
+        font-size: 1.2rem;
+    }
+
   }
 
   @media screen and (max-width: 1350px) {
@@ -553,6 +557,10 @@
     :root {
         --screen-unit: 15px;
         font-size: 16px;
+    }
+
+    .title {
+        font-size: 1.0rem;
     }
   }
 
@@ -576,7 +584,12 @@
         --screen-unit: 12px;
         font-size: 13px;
     }
+
+    .title {
+        font-size: .8rem;
+    }
   }
+  
 
   @media screen and (max-width: 900px) {
     :root {
