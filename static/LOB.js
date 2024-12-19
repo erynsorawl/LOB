@@ -424,7 +424,7 @@ function updateColor(type) {
     if (range > 5) {
 
         for (let uci=0; uci < solution.length; uci++) {
-            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) / (range / 280))
+            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) / (range / 300))
             if (borderIntensity[uci] > 255) {
                 borderIntensity[uci] = 255
             }
