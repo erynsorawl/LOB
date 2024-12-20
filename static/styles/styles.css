@@ -247,6 +247,11 @@
         transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -17), 0);  
     }
 
+    .coll-0-a {
+        left: 50%;
+        transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -4), 0);  
+    }
+
     .coll-1 {
         left: 50%;
         transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -14), 0);  
