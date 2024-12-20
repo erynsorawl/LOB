@@ -6,6 +6,8 @@ backgroundColors = ['bg-blue', 'bg-cyan']
 cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
 size2 = size * size
 s = 0
+
+
 try {
     s = new URLSearchParams(window.location.search).get('seed')
 }
@@ -13,6 +15,14 @@ catch {
     new_puzzle()
 }
 
+try {
+    if (guessLoops) {
+
+    }
+}
+catch {
+    guessLoops = 1
+}
 
 // If on a mobile device, quadruple guess count
 if (window.screen.width <= 1000) {
