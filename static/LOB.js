@@ -28,9 +28,13 @@ catch {
     guessLoops = 1
 }
 
-// If on a mobile device, quadruple guess count
+// If on a mobile device, quadruple guess count and shrink some elements
 if (window.screen.width <= 1000) {
     guessLoops = guessLoops * 4
+    try {
+        change_html(id_list('di', solution.length), '', 'shrink')
+    }
+    catch{}
 }
 
 // If seed parameter is too long, reduce to a maximum of 100 characters.

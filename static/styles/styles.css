@@ -477,6 +477,10 @@
         margin-bottom: calc(var(--screen-unit) * -10);
     }
 
+    .shrink {
+        font-size: .6rem
+    }
+
 
     .z-1 {
         z-index: 1;
