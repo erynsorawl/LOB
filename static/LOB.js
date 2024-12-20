@@ -5,7 +5,11 @@ textColors2 = ['text-red', 'text-orange']
 backgroundColors = ['bg-blue', 'bg-cyan']
 cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
 size2 = size * size
-s = URLSearchParams(window.location.search).get('seed')
+s = 0
+if (URLSearchParams(window.location.search).get('seed'))
+{
+    s = URLSearchParams(window.location.search).get('seed')
+}
 
 // If on a mobile device, quadruple guess count
 if (window.screen.width <= 1000) {
