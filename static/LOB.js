@@ -32,7 +32,7 @@ catch {
 if (window.screen.width <= 1000) {
     guessLoops = guessLoops * 4
     try {
-        change_html(id_list('d0', solution.length), '', 'shrink')
+        change_html(id_list('d', solution.length), '', 'shrink')
     }
     catch{}
 }
