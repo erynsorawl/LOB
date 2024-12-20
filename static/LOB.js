@@ -15,6 +15,7 @@ try {
     }
 }
 catch {
+    s='0'
     new_puzzle()
 }
 
