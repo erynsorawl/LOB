@@ -5,11 +5,14 @@ textColors2 = ['text-red', 'text-orange']
 backgroundColors = ['bg-blue', 'bg-cyan']
 cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
 size2 = size * size
-s = 0
+s = '0'
 
 
 try {
     s = new URLSearchParams(window.location.search).get('seed')
+    if (s.length) {
+
+    }
 }
 catch {
     new_puzzle()
