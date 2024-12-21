@@ -607,7 +607,15 @@
     }
 
     .boxh-1 {
-        font-size: .5remp
+        font-size: .5rem;
+    }
+
+    .tableBorder {
+        font-size: .6rem;
+    }
+
+    .ar-1 {
+        font-size: .5rem
     }
 
   }
