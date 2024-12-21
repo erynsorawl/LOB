@@ -30,7 +30,7 @@ catch {
 
 // If on a mobile device, quadruple guess count and shrink some elements
 if (window.screen.width <= 1000) {
-    guessLoops = guessLoops * 4
+    guessLoops = guessLoops * 3
     try {
         change_html(id_list('d', solution.length), '', 'shrink')
     }
