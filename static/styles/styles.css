@@ -605,19 +605,6 @@
     .title {
         font-size: .8rem;
     }
-
-    .boxh-1 {
-        font-size: .5rem;
-    }
-
-    .tableBorder {
-        font-size: .6rem;
-    }
-
-    .ar-1 {
-        font-size: .5rem
-    }
-
   }
 
   
@@ -704,5 +691,19 @@
         margin-left: -1rem;
         margin-top: -1rem;
     }
+
+    
+    .boxh-1 {
+        font-size: .5rem;
+    }
+
+    .tableBorder {
+        font-size: .6rem;
+    }
+
+    .ar-1 {
+        font-size: .5rem
+    }
+
 
   }
