@@ -249,7 +249,7 @@
 
     .coll-0-a {
         left: 50%;
-        transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -4), 0);  
+        transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -8), 0);  
     }
 
     .coll-1 {
@@ -633,7 +633,7 @@
         top: calc((var(--screen-unit) * 32) + 12rem);
     }
 
-    .info {
+    .infobox {
         font-size: 1rem;
     }
 

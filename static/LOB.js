@@ -119,6 +119,11 @@ for (i=0; i < solution.length; i++) {
     boxMissCounters[i] = 0
 }
 
+// make sure there's at least one 1 in the solution
+if (compare_array(make_homogenous_set(0, solution.length), solution)) {
+    solution[0] = 1
+}
+
 
 
 // ratio of 1s to 0s

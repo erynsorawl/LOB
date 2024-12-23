@@ -172,3 +172,25 @@ function show_element(/**/) {
         document.getElementById(showArgs[showI]).classList.remove('d-none')
     }
 }
+
+// make a set of a repeated element
+function make_homogenous_set(item, length) {
+    set = []
+    for (mhsi=0;mhsi<length;mhsi++) {
+        set[mhsi] = item
+    }
+    return set
+}
+
+// compare two arrays and return TRUE if they're the same
+function compare_array(array1, array2) {
+    if (array1.length != array2.length) {
+        return false
+    }
+    for (cai=0;cai<array1.length;cai++) {
+        if(array1[cai] != array2[cai]) {
+            return false
+        }
+    }
+    return true
+}
