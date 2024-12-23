@@ -32,7 +32,7 @@ catch {
 if (window.screen.width <= 780) {
     guessLoops = guessLoops * 3
     try {
-        if (levelNum < 3) {
+        if (levelNum > 2) {
             change_html(id_list('di', solution.length), '', 'shrink')
         }
         else {
