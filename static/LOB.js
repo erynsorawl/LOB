@@ -227,6 +227,7 @@ function colorSwitch(element, elNum) {
     for (csi=0; csi < colors.length; csi++) {
         countElement = document.getElementById('p' + elNum.toString())
         countElement1 = countElement.getElementsByTagName('span')[0]
+
         if (reliabilityLvl) {
             countElement2 = countElement.getElementsByTagName('span')[1]
         }
@@ -238,6 +239,17 @@ function colorSwitch(element, elNum) {
                 countElement2.classList.add(textColors2[csi])
                 countElement2.classList.remove(textColors2[(csi + 1) % 2])
             }
+        }
+    }
+    if (levelNum == 1) {
+        count = 0
+        for (csi = 0;csi<solution.length;csi++) {
+            if (window.getComputedStyle(document.getElementById('d' + csi.toString())).backgroundColor == colors[solution[csi]]) {
+                count++
+            }
+        }
+        if (count == solution.length) {
+            change_class('check', '', 'box-glow')
         }
     }
 }
