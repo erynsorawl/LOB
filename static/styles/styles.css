@@ -397,7 +397,7 @@
         top: calc((var(--screen-unit) * 3) + 2rem);
         left: 50%;
         transform: translate(-50%, -50%) translate(-1rem);  
-        font-size: 1.4em;
+        font-size: 1.8em;
         font-weight: 600;
         width: calc(var(--screen-unit) * 24)
     }
@@ -541,7 +541,7 @@
     }
 
     .title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
   }
@@ -553,7 +553,7 @@
     }
     
     .title {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
   }
@@ -565,7 +565,7 @@
     }
 
     .title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
   }
 
@@ -576,7 +576,7 @@
     }
 
     .title {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
 
     .r2-c2 {
@@ -591,7 +591,7 @@
     }
 
     .title {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
   }
   
@@ -603,7 +603,7 @@
     }
 
     .title {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
   }
 

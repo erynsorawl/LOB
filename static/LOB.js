@@ -11,8 +11,8 @@ s = '0'
 try {
     s = new URLSearchParams(window.location.search).get('seed')
     if (s.length) {
-
     }
+
 }
 catch {
     s='0'
@@ -677,7 +677,7 @@ function new_puzzle() {
     else {
         window.location.replace(dir + '?seed=' + Math.floor(Math.random() * 1000000000))
     }
-c}
+}
 
 function boardClear() {
     for (bci=0;bci<solution.length;bci++) {
