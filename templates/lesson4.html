@@ -46,11 +46,11 @@ coll-center
 
 
 {% block extra%}
-<span id='standards1' class="button text-yellow rounded pr-1 row-2-c coll-center emw-15">Standards (1-10):
+<span id='standards1' class="button text-yellow rounded pr-1 row-2-c coll-center emw-17">Scanning Standards (1-10):
     <input id='standards' class = "text-yellow rounded remh-1 emw-3 pl-1 bg-dark2" disabled type="number" max="10" min="1" step="1" value="1"></span>
-    <span id='extol1' class="button rounded boxh-2-5 text-yellow row-2-b coll-center-left-a d-none"> Standards:
+    <span id='extol1' class="button rounded boxh-2-5 text-yellow row-2-b coll-center-left-a d-none">Scanning Standards:
         <input class = "text-yellow rounded remh-1 emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="3"></span>
-    <span id='extol2' class="button rounded boxh-2-5 text-yellow row-2-b coll-center-right-a d-none"> Standards:
+    <span id='extol2' class="button rounded boxh-2-5 text-yellow row-2-b coll-center-right-a d-none">Scanning Standards:
         <input class = "text-yellow rounded remh-1 emw-3 pl-1 bg-dark2 " disabled type="number" max="10" min="1" step="1" value="9"></span>
         <span id="exHit1" class="text-green info row-0 coll-center-left-a text-center boxw-15 remw-8 text-1-5 d-none">Hits: 1</span>
         <span id="exHit2" class="text-green info row-0 coll-center-right-a text-center boxw-15 remw-8 text-1-5 d-none">Hits: 1</span>
@@ -72,7 +72,7 @@ coll-center
 {%block size%}
 <script>
     const size = 3
-    guessLoops = 1
+    scanLoops = 1
 </script>
 {%endblock%}
 
@@ -88,9 +88,9 @@ coll-center
 </script>
 {% endblock %}
 
-{% block guess %}
+{% block scan %}
 <script>
-    const maxGuess = Number.MAX_SAFE_INTEGER
+    const maxScans = Number.MAX_SAFE_INTEGER
 </script>
 {%endblock%}
 

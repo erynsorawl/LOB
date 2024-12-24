@@ -11,7 +11,7 @@
     <div id="bubble2" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
         <p class="text-center text-white">
                 Doing all this in real-time is a bit too intense, so to save energy it'll focus on tracking 
-                <span class="text-cyan">guesses</span>
+                <span class="text-cyan">scans</span>
                  during the day,
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
@@ -47,20 +47,20 @@ src="/static/assets/Board2.png">
 
 <div id="under1" class=""></div>
 <div id="under2" class=""></div>
-<button id='guess' class="button rounded text-cyan box-glow row-2-b coll-center d-none">&#127774; Guess</button>
+<button id='scan' class="button rounded text-cyan box-glow row-2-b coll-center d-none">&#127774; Scan</button>
 <button id="update" class="button rounded w-6 text-aether box-glow row-2-b coll-center d-none">&#127771; Update</button>
 {%endblock%}
 
 {%block size%}
 <script>
     const size = 3
-    guessLoops = 1
+    scanLoops = 1
 </script>
 {%endblock%}
 
 {%block levelNum%}
 <script>
-    const levelNum = 1
+    const levelNum = 2
 </script>
 {%endblock%}
 
@@ -79,7 +79,7 @@ src="/static/assets/Board2.png">
     ]
     function lesson() {
         bubbleCycle()
-        show_element('guess')
+        show_element('scan')
         for (i=0;i<solution.length;i++) {
             document.getElementById('d' + i.toString()).style.backgroundColor = 'rgb(50,50,150)'
             change_class('p' + i, 'd-none', 'mt-3')
@@ -93,7 +93,7 @@ src="/static/assets/Board2.png">
 
     function lesson2() {
         bubbleCycle()
-        hide_element('tableDiv', 'guess')
+        hide_element('tableDiv', 'scan')
         show_element('img1', 'update')
     }
 

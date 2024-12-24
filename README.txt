@@ -23,9 +23,9 @@ game's mechanics.
 As the game progresses, the grid will slowly get larger, and more and more mechanics
 will be added.
 
-The game starts out with a 3x3 grid, two buttons at the bottom of the screen ('guess' and 'submit'), 
+The game starts out with a 3x3 grid, two buttons at the bottom of the screen ('scan' and 'submit'), 
 and a speech bubble teaching the player the basics of how to play the game.
-The 'guess' button is also highlighted, drawing the user's attention to it. When clicked, a 
+The 'scan' button is also highlighted, drawing the user's attention to it. When clicked, a 
 pattern of cyan and blue squares will flash on screen, with the cyan ones saying 'Click Me!'
 For the first level, this pattern will match the hidden solution exactly. 
 When all of the 'Click Me!' squares are clicked, the 'Submit' button will be highlighted, and
@@ -33,16 +33,16 @@ will flash a success message and animation on screen, along with an 'Accuracy' s
 tells the player how many squares they got right, and a 'Next' button that takes the player to the 
 next level
 
-On the second level, the flashed pattern from the 'guess' button is now completely random, and no longer the same 
+On the second level, the flashed pattern from the 'scan' button is now completely random, and no longer the same 
 as the hidden solution. However, each square in the grid will still have a message telling the player
 whether the pattern was correct.
 
 On the third level, the squares no longer inform the player of whether they're correct or not. 
 Instead, the flashed pattern becomes somewhat more accurate to the hidden solution, and the player
 gains a set of trackers (numerical and visual) for each box in the grid, telling the player how many times it's flashed cyan.
-The more times the player uses the 'guess' button, the more statistically likely it'll be that the
+The more times the player uses the 'scan' button, the more statistically likely it'll be that the
 boxes with the highest appearance counts are cyan in the hidden solution.
-If the player is on mobile, each click of the 'guess' button will count triple, due to how difficult it is to 
+If the player is on mobile, each click of the 'scan' button will count triple, due to how difficult it is to 
 click quickly on mobile.
 
 On the fourth level, the flashed pattern becomes completely random. However, the player will be told 
@@ -51,7 +51,7 @@ Only the patterns over 50% accurate will be added to the trackers, allowing the 
 
 On the fifth level, the pattern is no longer flashed on screen, and the numerical trackers are also removed, 
 making the player rely entirely on the visual representations of the trackers instead. 
-In addition, the number of guesses per click is doubled to account for a larger board.
+In addition, the number of scans per click is doubled to account for a larger board.
 
 On the sixth level, the 'Update' mechanic is introduced, making it so all of the player's progress is invisible
 until the 'Update' button is pressed. This is an absolutely terrible decision from a game design perspective, 
@@ -82,7 +82,7 @@ but life-applicable examples, such as basketball.
 This lesson is chunked into six sections. The first section is an introduction, along with a basic explanation
 of what the grid represents.
 
-The second section explains the basic function of the 'guess' mechanic, as it appears in the third level.
+The second section explains the basic function of the 'scan' mechanic, as it appears in the third level.
 
 The third section focuses on the 'Update' mechanic, with an emphasis on real-world examples.
 

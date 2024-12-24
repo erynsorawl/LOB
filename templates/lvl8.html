@@ -2,22 +2,22 @@
 
 {% block level %}: Level 8{% endblock %}
 
-{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(10)'>Guess</button>{% endblock %}
+{% block button0 %}<button id="scan" class="button rounded text-cyan m-1" onclick ='advancedGenerate(10)'>Scan</button>{% endblock %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right emw-15 row-center coll-1">
+    <div id="bubble1" class="speech-bubble speech-bubble-right emw-17 row-center coll-1">
         <p class="text-center text-white">
             <span>There's been a small change to the coloring mechanics.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-top emw-15 row-2 coll-1-bottom d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-top emw-17 row-2 coll-1-bottom d-none">
         <p class="text-center text-white">
             <span>One high-standard <span class="text-green">Hit</span> has a <span class="text-cyan">bigger impact</span> on the board than mulitiple low-standard ones.</span><br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble3" class="speech-bubble speech-bubble-top emw-15 row-4 coll-center-bottom d-none">
+    <div id="bubble3" class="speech-bubble speech-bubble-top emw-17 row-4 coll-center-bottom d-none">
         <p class="text-center text-white">
             <span>This'll make up for their rarity and enhance their <span class="text-purple">Strength</span> bonus, so go <span class="text-yellow">high!</span></span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
@@ -55,9 +55,9 @@
 </script>
 {% endblock %}
 
-{% block maxGuess %}
+{% block maxScans %}
 <script>
-    const maxGuess = 600
-    guessLoops = 10
+    const maxScans = 600
+    scanLoops = 10
 </script>
 {%endblock%}

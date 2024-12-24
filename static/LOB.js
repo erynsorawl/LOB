@@ -20,17 +20,17 @@ catch {
 }
 
 try {
-    if (guessLoops) {
+    if (scanLoops) {
 
     }
 }
 catch {
-    guessLoops = 1
+    scanLoops = 1
 }
 
-// If on a mobile device, quadruple guess count and shrink some elements
+// If on a mobile device, quadruple scan count and shrink some elements
 if (window.screen.width <= 780) {
-    guessLoops = guessLoops * 3
+    scanLoops = scanLoops * 3
     try {
         if (levelNum > 2) {
             change_html(id_list('di', solution.length), '', 'shrink')
@@ -78,10 +78,10 @@ boxMissCounters = []
 lastMiss = 0
 lastHit = 0
 
-// number of guesses since last condense
-guessCount = 0
+// number of scans since last condense
+scanCount = 0
 
-totalGuessCount = 0
+totalscanCount = 0
 
 // bool of whether or not board has already been completed
 complete = 0
@@ -156,7 +156,7 @@ genFlashDelayState = false
 // trackers for which levels certain features are active on
 counterLvl = false 
 reliabilityLvl = false 
-guessBoostLvl = false 
+scanBoostLvl = false 
 condenseLvl = false 
 flashLvl = false
 if (levelNum > 2 && levelNum < 5) {
@@ -166,7 +166,7 @@ if (levelNum == 4) {
     reliabilityLvl = true
 }
 if (levelNum >= 8) {
-    guessBoostLvl = true
+    scanBoostLvl = true
 }
 if (levelNum >= 6) {
     condenseLvl = true
@@ -287,7 +287,7 @@ function check() {
         change_html('accInfo', gradeMessage + accuracy.toString() + '%')
         show_element('accInfo', 'sparkle-gif-right', 'sparkle-gif-left', 'nextLevel')
         check_flash('perfect')
-        change_class(['guess', 'check'], 'box-glow')
+        change_class(['scan', 'check'], 'box-glow')
         complete = 1
         setTimeout(() => {
             hide_element('sparkle-gif-right', 'sparkle-gif-left')
@@ -300,7 +300,7 @@ function check() {
         if (!complete) {
             show_element('accInfo', 'sparkle-gif-right', 'sparkle-gif-left', 'nextLevel')
             check_flash('win')
-            change_class(['guess', 'check'], 'box-glow')
+            change_class(['scan', 'check'], 'box-glow')
             complete = 1
             setTimeout(() => {
                 hide_element('sparkle-gif-right', 'sparkle-gif-left')
@@ -313,7 +313,7 @@ function check() {
         change_html('accInfo', gradeMessage + accuracy.toString() + '%')
         if (!complete) {
             show_element('accInfo')
-            change_class(['guess', 'check'], 'box-glow')
+            change_class(['scan', 'check'], 'box-glow')
             check_flash('fail')
         }
     }
@@ -450,7 +450,7 @@ function updateMissCounter(genSolution) {
 
 // update visuals for counter increases
 function updateColor(type) {
-    guessCount = 0
+    scanCount = 0
     if (levelNum > 2)
     {
         for (let uci = 0; uci < solution.length; uci++) {
@@ -520,10 +520,10 @@ function updateColor(type) {
 
 // Flash a generated solution on screen
 function basicGenerate() {
-    for (bgi=0;bgi<guessLoops;bgi++) {
+    for (bgi=0;bgi<scanLoops;bgi++) {
         genSolution = generateSolution()
-        totalGuessCount++
-        change_class(['guess', 'check'], 'box-glow')
+        totalscanCount++
+        change_class(['scan', 'check'], 'box-glow')
         if (counterLvl) {
             updateCounter(genSolution)
             updateColor('Border')
@@ -623,9 +623,9 @@ function genFlash(genSolution) {
 }
 
 function advancedGenerate() {
-    if (guessCount < maxGuess) {
+    if (scanCount < maxScans) {
 
-        for (agi=0;agi<guessLoops;agi++) {
+        for (agi=0;agi<scanLoops;agi++) {
 
             if (document.getElementById('standards').value == -2) {
                 standards = 0
@@ -656,9 +656,9 @@ function advancedGenerate() {
             if (hit) {
                 if (reliabilityLvl) {
                     change_class('reliability', ['d-none', 'bg-maroon'], 'bg-dark-green')
-                    change_html('reliability', '<p class="text-center text-white">That was a good guess!</p>')
+                    change_html('reliability', '<p class="text-center text-white">That was a good scan!</p>')
                 }
-                if (guessBoostLvl) {
+                if (scanBoostLvl) {
                     updateCounter2(genSolution)
                 }
                 else {
@@ -671,7 +671,7 @@ function advancedGenerate() {
                 updateMissCounter(genSolution)
                 if (reliabilityLvl) {
                     change_class('reliability', ['d-none', 'bg-dark-green'], 'bg-maroon')
-                    change_html('reliability', "<p class='text-center text-white'>That wasn't a good guess...</p>")
+                    change_html('reliability', "<p class='text-center text-white'>That wasn't a good scan...</p>")
                 }
             }
             // if condense button hasn't been added yet, update immediately
@@ -679,8 +679,8 @@ function advancedGenerate() {
                 updateColor('Border')
             }
 
-            guessCount++
-            totalGuessCount++
+            scanCount++
+            totalscanCount++
             updateHitMiss()
 
             if (flashLvl) {
@@ -714,8 +714,8 @@ function boardClear() {
     range = 0
     lastMiss = 0
     lastHit = 0
-    guessCount = 0
-    totalGuessCount = 0
+    scanCount = 0
+    totalscanCount = 0
     updateColor('Border')
     updateHitMiss()
 }

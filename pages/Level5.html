@@ -74,7 +74,7 @@
 <!--Notification that tells the player how the hit and miss function works-->
 <div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 hidden">
     <p class="text-center text-white">
-        That was a good guess!
+        That was a good scan!
     </p>
 </div>
 
@@ -402,7 +402,7 @@
 
 <!--Container for buttons-->
 <div id="buttons" class="d-flex justify-content-center row-3 coll-center">
-    <button id="guess" class="button rounded text-cyan m-1 box-glow" onclick="advancedGenerate()">Guess</button>
+    <button id="scan" class="button rounded text-cyan m-1 box-glow" onclick="advancedGenerate()">Scan</button>
     
     
     <button id="check" class="button text-purple button-a m-1" onclick="check()">Submit</button>
@@ -410,15 +410,15 @@
   
 </div>
 
-<div id="bubble1" class="speech-bubble speech-bubble-right emw-15 row-center coll-1">
+<div id="bubble1" class="speech-bubble speech-bubble-right emw-17 row-center coll-1">
     <p class="text-center text-white">
-        <span>We won't be flashing <span class="text-cyan">guesses</span> or showing individual <span class="text-green">numbers</span> anymore, so pay attention to the box colors!</span> <br>
+        <span>We won't be flashing <span class="text-cyan">scans</span> or showing individual <span class="text-green">numbers</span> anymore, so try to make the boxes match the borders!</span> <br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
     </p>
 </div>
-<div id="bubble2" class="speech-bubble speech-bubble-top emw-15 row-3 coll-button-1-bottom d-none">
+<div id="bubble2" class="speech-bubble speech-bubble-top emw-17 row-3 coll-button-1-bottom d-none">
     <p class="text-center text-white">
-        <span>The <span class="text-cyan">Guess</span> button also now guesses twice per click.</span> <br>
+        <span>The <span class="text-cyan">Scan</span> button also now scans twice per click.</span> <br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
     </p>
 </div>
@@ -451,12 +451,12 @@ const acc = .09
     const closeEnough = .9
     const checkRigor = 100
     const size = 4
-    guessLoops = 2
+    scanLoops = 2
 </script>
 
 
 <script>
-const maxGuess = Number.MAX_SAFE_INTEGER
+const maxScans = Number.MAX_SAFE_INTEGER
 </script>
 
 

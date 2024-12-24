@@ -10,7 +10,7 @@
     </div>
     <div id="bubble2" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
         <p class="text-center text-white">
-                <span>This is what the <span class='text-cyan'>Guess</span> button was doing
+                <span>This is what the <span class='text-cyan'>Scan</span> button was doing
             </span><br>
             <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
         </p>
@@ -54,19 +54,19 @@ coll-center-left
     class="boxw-7 animate__animated imgSquare" 
     src="/static/assets/basketball3.png"> 
 </div>
-<button id='guess' class="button rounded text-cyan box-glow row-2-b coll-center d-none">Guess</button>
+<button id='scan' class="button rounded text-cyan box-glow row-2-b coll-center d-none">Scan</button>
 {%endblock%}
 
 {%block size%}
 <script>
     const size = 6
-    guessLoops = 1
+    scanLoops = 1
 </script>
 {%endblock%}
 
 {%block levelNum%}
 <script>
-    const levelNum = 1
+    const levelNum = 2
 </script>
 {%endblock%}
 
@@ -137,7 +137,7 @@ coll-center-left
     }
 
     function lesson() {
-        show_element('guess')
+        show_element('scan')
         bubbleCycle()
     }
 
@@ -152,7 +152,7 @@ coll-center-left
         for (i=0;i<board1sec4.length;i++) {
             document.getElementById('p' + board1sec4[i].toString()).getElementsByTagName('span')[0].innerHTML = '1'
         }
-        hide_element('guess')
+        hide_element('scan')
         bubbleCycle()
     }
 

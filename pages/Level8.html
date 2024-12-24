@@ -73,7 +73,7 @@
 <!--Notification that tells the player how the hit and miss function works-->
 <div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 hidden">
     <p class="text-center text-white">
-        That was a good guess!
+        That was a good scan!
     </p>
 </div>
 
@@ -1217,26 +1217,26 @@
 
 <!--Container for buttons-->
 <div id="buttons" class="d-flex justify-content-center row-3 coll-center">
-    <button id="guess" class="button rounded text-cyan m-1" onclick="advancedGenerate()">Guess</button>
+    <button id="scan" class="button rounded text-cyan m-1" onclick="advancedGenerate()">Scan</button>
     <button class="button rounded text-aether m-1" onclick="updateColor('Box')">Update</button>
     <button id="check" class="button text-purple button-a m-1" onclick="check()">Submit</button>
     <a id="nextLevel" class="button text-green button-a box-glow d-none" href="https://erynsorawl.github.io/LOB/pages/LevelFinal">Next</a>
   
 </div>
 
-<div id="bubble1" class="speech-bubble speech-bubble-right emw-15 row-center coll-1">
+<div id="bubble1" class="speech-bubble speech-bubble-right emw-17 row-center coll-1">
     <p class="text-center text-white">
         <span>There's been a small change to the coloring mechanics.</span> <br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
     </p>
 </div>
-<div id="bubble2" class="speech-bubble speech-bubble-top emw-15 row-2 coll-1-bottom d-none">
+<div id="bubble2" class="speech-bubble speech-bubble-top emw-17 row-2 coll-1-bottom d-none">
     <p class="text-center text-white">
         <span>One high-standard <span class="text-green">Hit</span> has a <span class="text-cyan">bigger impact</span> on the board than mulitiple low-standard ones.</span><br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
     </p>
 </div>
-<div id="bubble3" class="speech-bubble speech-bubble-top emw-15 row-4 coll-center-bottom d-none">
+<div id="bubble3" class="speech-bubble speech-bubble-top emw-17 row-4 coll-center-bottom d-none">
     <p class="text-center text-white">
         <span>This'll make up for their rarity and enhance their <span class="text-purple">Strength</span> bonus, so go <span class="text-yellow">high!</span></span> <br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
@@ -1247,7 +1247,7 @@
 <!--Second container for buttons-->
 <div id="lowerButtons" class="row-4 coll-center">
     
-<span class="button text-yellow rounded pr-1 emh-2_5 emw-15">Standards (1-10):
+<span class="button text-yellow rounded pr-1 emh-2_5 emw-17">Scanning Standards (1-10):
     <input id="standards" class="text-yellow rounded emw-3 pl-1 bg-dark2" type="number" max="10" min="1" step="1" value="1"></span>
 
 </div>
@@ -1273,9 +1273,9 @@ const bubbleLength = 3
 const closeEnough = .9
 const checkRigor = 215
 const size = 8
-const maxGuess = 600
+const maxScans = 600
 const levelNum = 8
-guessLoops = 10
+scanLoops = 10
 </script>
 
 

@@ -55,13 +55,13 @@ coll-center
 {%block size%}
 <script>
     const size = 3
-    guessLoops = 1
+    scanLoops = 1
 </script>
 {%endblock%}
 
 {%block levelNum%}
 <script>
-    const levelNum = 1
+    const levelNum = 2
 </script>
 {%endblock%}
 
@@ -115,7 +115,8 @@ coll-center
             animate_fade('img', 0, duration)
             setTimeout(() => {
                 bubbleCycle(duration)
-                for (i=0;i<solution.length;i++) {
+                for (let i=0;i<solution.length;i++) {
+                    console.log(i)
                     if (board2[i] == 1) {
                         colorSwitch(document.getElementById('d' + i.toString()), i.toString(), 1)
                     }

@@ -69,7 +69,7 @@
 <!--Notification that tells the player how the hit and miss function works-->
 <div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 hidden">
     <p class="text-center text-white">
-        That was a good guess!
+        That was a good scan!
     </p>
 </div>
 
@@ -206,7 +206,7 @@ border t-layout-fixed bg-black">
 <div id="bubble2" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
     <p class="text-center text-white">
             Doing all this in real-time is a bit too intense, so to save energy it'll focus on tracking 
-            <span class="text-cyan">guesses</span>
+            <span class="text-cyan">scans</span>
              during the day,
         <br>
         <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
@@ -239,7 +239,7 @@ border t-layout-fixed bg-black">
 
 <div id="under1" class=""></div>
 <div id="under2" class=""></div>
-<button id="guess" class="button rounded text-cyan box-glow row-2-b coll-center d-none">🌞 Guess</button>
+<button id="scan" class="button rounded text-cyan box-glow row-2-b coll-center d-none">🌞 Scan</button>
 <button id="update" class="button rounded w-6 text-aether box-glow row-2-b coll-center d-none">🌛 Update</button>
 
 
@@ -257,17 +257,17 @@ border t-layout-fixed bg-black">
 
 <script>
 let s = '0'
-guessLoops = 1
+scanLoops = 1
 </script>
 
 <script>
-const levelNum = 1
+const levelNum = 2
 </script>
 
 
 <script>
 const size = 3
-guessLoops = 1
+scanLoops = 1
 </script>
 
 
@@ -294,7 +294,7 @@ const board1 = [
 ]
 function lesson() {
     bubbleCycle()
-    show_element('guess')
+    show_element('scan')
     for (i=0;i<solution.length;i++) {
         document.getElementById('d' + i.toString()).style.backgroundColor = 'rgb(50,50,150)'
         change_class('p' + i, 'd-none', 'mt-3')
@@ -308,7 +308,7 @@ function lesson() {
 
 function lesson2() {
     bubbleCycle()
-    hide_element('tableDiv', 'guess')
+    hide_element('tableDiv', 'scan')
     show_element('img1', 'update')
 }
 
