@@ -188,7 +188,7 @@ The seed is then sent through a series of mathematical processes, until it's tur
 containing binary values for every box in the game's grid, called 'solution'. This array appears in
 almost every function in the file.
 
-When the 'Guess' button is clicked, it activates either basicGenerate() or advancedGenerate(). basicGenerate()
+When the 'scan' button is clicked, it activates either basicGenerate() or advancedGenerate(). basicGenerate()
 has a few mechanics that are depreciated in later levels, while advancedGenerate() has a few mechanics
 that don't appear until later levels.
 Both of them mathematically generate a randomized pattern
