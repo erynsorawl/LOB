@@ -69,7 +69,7 @@
 <!--Notification that tells the player how the hit and miss function works-->
 <div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 d-none">
     <p class="text-center text-white">
-        That was a good guess!
+        That was a good scan!
     </p>
 </div>
 
@@ -460,7 +460,7 @@ border t-layout-fixed bg-black">
 </div>
 <div id="bubble2" class="speech-bubble speech-bubble-top row-2-b coll-center-bottom d-none">
     <p class="text-center text-white">
-            <span>This is what the <span class="text-cyan">Guess</span> button was doing
+            <span>This is what the <span class="text-cyan">Scan</span> button was doing
         </span><br>
         <button class="button rounded bg-secondary m-1" onclick="lesson2()">Next</button>
     </p>
@@ -491,7 +491,7 @@ border t-layout-fixed bg-black">
 <br>
 <img id="img3" style="border-top-width: .15em; border-right-width: .15em; width: calc(var(--screen-unit) * 7.3);" class="boxw-7 animate__animated imgSquare" src="https://erynsorawl.github.io/LOB/static/assets/basketball.png"><img id="img4" style="border-top-width: .15em; border-left-width: .15em; width: calc(var(--screen-unit) * 7.3);" class="boxw-7 animate__animated imgSquare" src="https://erynsorawl.github.io/LOB/static/assets/basketball3.png"> 
 </div>
-<button id="guess" class="button rounded text-cyan box-glow row-2-b coll-center d-none">Guess</button>
+<button id="scan" class="button rounded text-cyan box-glow row-2-b coll-center d-none">Scan</button>
 
 
 
@@ -508,17 +508,17 @@ border t-layout-fixed bg-black">
 
 <script>
 let s = '0'
-guessLoops = 1
+scanLoops = 1
 </script>
 
 <script>
-const levelNum = 1
+const levelNum = 2
 </script>
 
 
 <script>
 const size = 6
-guessLoops = 1
+scanLoops = 1
 </script>
 
 
@@ -597,7 +597,7 @@ for (i=0;i<solution.length;i++) {
 }
 
 function lesson() {
-    show_element('guess')
+    show_element('scan')
     bubbleCycle()
 }
 
@@ -612,7 +612,7 @@ function lesson2() {
     for (i=0;i<board1sec4.length;i++) {
         document.getElementById('p' + board1sec4[i].toString()).getElementsByTagName('span')[0].innerHTML = '1'
     }
-    hide_element('guess')
+    hide_element('scan')
     bubbleCycle()
 }
 

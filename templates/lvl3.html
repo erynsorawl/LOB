@@ -2,23 +2,23 @@
 
 {% block level %}: Level 3{% endblock %}
 
-{# change the guess button to the second version #}
-{% block button0 %}<button id='guess' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Guess</button> 
+{# change the scan button to the second version #}
+{% block button0 %}<button id='scan' class="button rounded m-1 text-cyan box-glow" onclick="basicGenerate()">Scan</button> 
 <input id='standards' class = "numberInput d-none" type="number" max="100" min="0" step=".1" value="-1">{% endblock %}
 
 {% block countSize %}text-1-5{%endblock%}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right emw-15 row-center coll-1">
+    <div id="bubble1" class="speech-bubble speech-bubble-right emw-17 row-center coll-1">
         <p class="text-center text-white">
             <span>We don't know which squares are right anymore, but we do know they'll show up more often than the wrong ones!</span><br>
             
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-right emw-15 row-center coll-1 d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-right emw-17 row-center coll-1 d-none">
         <p class="text-center text-white">
-            <span>These <span class="text-green">numbers</span> will keep track how often each square shows up. The more you guess, the more clear the answer becomes.</span> <br>
+            <span>These <span class="text-green">numbers</span> will keep track how often each square shows up. The more you scan, the more clear the answer becomes.</span> <br>
             
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Close</button>
         </p>

@@ -8,16 +8,16 @@
     <p class="text-center counter boxh-1 div-center d-none"></p>
 {% endblock %}
 
-{% block button0 %}<button id="guess" class="button rounded text-cyan m-1" onclick ='advancedGenerate(20)'>Guess</button>{% endblock %}
+{% block button0 %}<button id="scan" class="button rounded text-cyan m-1" onclick ='advancedGenerate(20)'>Scan</button>{% endblock %}
 
 {% block bubbles %}
-    <div id="bubble1" class="speech-bubble speech-bubble-right emw-15 row-center coll-1">
+    <div id="bubble1" class="speech-bubble speech-bubble-right emw-17 row-center coll-1">
         <p class="text-center text-white">
             <span>And that's all, folks.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
         </p>
     </div>
-    <div id="bubble2" class="speech-bubble speech-bubble-right emw-15 row-center coll-1 d-none">
+    <div id="bubble2" class="speech-bubble speech-bubble-right emw-17 row-center coll-1 d-none">
         <p class="text-center text-white">
             <span>Now, go big or go home!.</span> <br>
             <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
@@ -54,9 +54,9 @@
     const size = 12
 </script>
 {% endblock %}
-{% block maxGuess %}
+{% block maxScans %}
 <script>
-    const maxGuess = 800
-    guessLoops = 20
+    const maxScans = 800
+    scanLoops = 20
 </script>
 {%endblock%}

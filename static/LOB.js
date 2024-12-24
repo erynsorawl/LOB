@@ -22,17 +22,17 @@ catch {
 
 // If guessLoops hasn't been defined yet, define it.
 try {
-    if (guessLoops) {
+    if (scanLoops) {
 
     }
 }
 catch {
-    guessLoops = 1
+    scanLoops = 1
 }
 
-// If on a mobile device, quadruple guess count and shrink some elements
+// If on a mobile device, quadruple scan count and shrink some elements
 if (window.screen.width <= 780) {
-    guessLoops = guessLoops * 3
+    scanLoops = scanLoops * 3
     try {
         if (levelNum > 2) {
             change_html(id_list('di', solution.length), '', 'shrink')
@@ -80,10 +80,10 @@ boxMissCounters = []
 lastMiss = 0
 lastHit = 0
 
-// number of guesses since last condense
-guessCount = 0
+// number of scans since last condense
+scanCount = 0
 
-totalGuessCount = 0
+totalscanCount = 0
 
 // bool of whether or not board has already been completed
 complete = 0
@@ -158,7 +158,7 @@ genFlashDelayState = false
 // trackers for which levels certain features are active on
 counterLvl = false 
 reliabilityLvl = false 
-guessBoostLvl = false 
+scanBoostLvl = false 
 condenseLvl = false 
 flashLvl = false
 if (levelNum > 2 && levelNum < 5) {
@@ -168,7 +168,7 @@ if (levelNum == 4) {
     reliabilityLvl = true
 }
 if (levelNum >= 8) {
-    guessBoostLvl = true
+    scanBoostLvl = true
 }
 if (levelNum >= 6) {
     condenseLvl = true
@@ -257,7 +257,7 @@ if (levelNum <= 4) {
         change_html('accInfo', gradeMessage + accuracy.toString() + '%')
         show_element('accInfo', 'sparkle-gif-right', 'sparkle-gif-left', 'nextLevel')
         check_flash('perfect')
-        change_class(['guess', 'check'], 'box-glow')
+        change_class(['scan', 'check'], 'box-glow')
         complete = 1
         setTimeout(() => {
             hide_element('sparkle-gif-right', 'sparkle-gif-left')
@@ -270,7 +270,7 @@ if (levelNum <= 4) {
         if (!complete) {
             show_element('accInfo', 'sparkle-gif-right', 'sparkle-gif-left', 'nextLevel')
             check_flash('win')
-            change_class(['guess', 'check'], 'box-glow')
+            change_class(['scan', 'check'], 'box-glow')
             complete = 1
             setTimeout(() => {
                 hide_element('sparkle-gif-right', 'sparkle-gif-left')
@@ -283,7 +283,7 @@ if (levelNum <= 4) {
         change_html('accInfo', gradeMessage + accuracy.toString() + '%')
         if (!complete) {
             show_element('accInfo')
-            change_class(['guess', 'check'], 'box-glow')
+            change_class(['scan', 'check'], 'box-glow')
             check_flash('fail')
         }
     }
@@ -337,18 +337,18 @@ if (levelNum <= 4) {
         }
     }
 
-    // update visuals for counter increases
-    function updateColor(type) {
-        guessCount = 0
-        if (levelNum > 2)
-        {
-            for (let uci = 0; uci < solution.length; uci++) {
-                document.getElementById('p' + uci).getElementsByTagName('span')[0].innerHTML = boxCounters[uci]
-                if (levelNum > 3 && levelNum < 5) {
-                    document.getElementById('p' + uci).getElementsByTagName('span')[1].innerHTML = boxMissCounters[uci]
-                }
+// update visuals for counter increases
+function updateColor(type) {
+    scanCount = 0
+    if (levelNum > 2)
+    {
+        for (let uci = 0; uci < solution.length; uci++) {
+            document.getElementById('p' + uci).getElementsByTagName('span')[0].innerHTML = boxCounters[uci]
+            if (levelNum > 3 && levelNum < 5) {
+                document.getElementById('p' + uci).getElementsByTagName('span')[1].innerHTML = boxMissCounters[uci]
             }
         }
+    }
 
         range = topCounter - bottomCounter
 
@@ -407,72 +407,19 @@ if (levelNum <= 4) {
         }
     }
 
-
-// Functions that deal with generated patterns
-
-    // generate a random pattern
-    function generateSolution() {
-        genSolution = []
-        for (let i=0; i < solution.length; i++) {
-            if (Math.random() > acc) {
-                genSolution[i] = (solution[i] + 1) % colors.length
-            }
-            else {
-                genSolution[i] = solution[i]
-            }   
+// Flash a generated solution on screen
+function basicGenerate() {
+    for (bgi=0;bgi<scanLoops;bgi++) {
+        genSolution = generateSolution()
+        totalscanCount++
+        change_class(['scan', 'check'], 'box-glow')
+        if (counterLvl) {
+            updateCounter(genSolution)
+            updateColor('Border')
         }
-        return genSolution
+        genFlash(genSolution)
     }
-
-    // Generate a completely random solution, and adjust it so it has a similar on/off ratio to the main solution.
-    function advGenSol() {
-        genSolution=[]
-        changedIndex=[]
-        // track which solution indexes haven't been changed, and make genSolution match the solution
-        for (agsi=0; agsi<solution.length;agsi++) {
-            changedIndex[agsi] = agsi
-            genSolution[agsi] = solution[agsi]
-        }
-
-        // define a desired genAcc
-        genAcc = (Math.random() / 3) + .33 + acc
-
-        // debug: calculate average accuracy
-        accTotal = accTotal + genAcc
-        accCount++
-
-
-        // calculate number of wrong squares to get this accuracy
-        wrongs = Math.round((1 - genAcc) * solution.length)
-
-        // alter the solution randomly to match tmpGenAcc
-        for (agsi=0;agsi<wrongs;agsi++) {
-            // select a random index from the changedIndex array
-            tmpIndex = Math.floor(Math.random() * (solution.length - agsi))
-
-            // flip that cell in the genSolution
-            genSolution[changedIndex[tmpIndex]] = (genSolution[changedIndex[tmpIndex]] + 1) % 2
-
-            // remove that index from the array
-            changedIndex.splice(tmpIndex, 1)
-        }
-
-        return [genSolution, genAcc]
-    }
-
-    // Generate a semi-random board pattern and flash it on screen
-    function basicGenerate() {
-        for (bgi=0;bgi<guessLoops;bgi++) {
-            genSolution = generateSolution()
-            totalGuessCount++
-            change_class(['guess', 'check'], 'box-glow')
-            if (counterLvl) {
-                updateCounter(genSolution)
-                updateColor('Border')
-            }
-            genFlash(genSolution)
-        }
-    }
+}
 
     // Track or ignore a fully-random generated board pattern based on the Standards input
     function advancedGenerate() {
@@ -633,93 +580,100 @@ if (levelNum <= 4) {
         }
     }
 
-// Functions that deal with the tracking of guesses
+function advancedGenerate() {
+    if (scanCount < maxScans) {
 
-    // update boxCounter arrays
-    function updateCounter(genSolution) {
-        // check for highest counter and update counter array
-        for (let uci=0; uci < solution.length; uci++) {
-        boxCounters[uci] = boxCounters[uci] + genSolution[uci]  
-            if (topCounter < boxCounters[uci]) {
-                topCounter = boxCounters[uci]
+        for (agi=0;agi<scanLoops;agi++) {
+
+            if (document.getElementById('standards').value == -2) {
+                standards = 0
             }
-        }
+            else if (document.getElementById('standards').value > -1) {
+                standards = ((document.getElementById('standards').value / 20) + .17)
+            }
+            else {
+                standards = (47 + ((1 / solRatio)) ** 1.2) / 100
+            }
 
-        // check for lowest counter
-        bottomCounter = boxCounters[0]
-        for (let uci=0; uci < boxCounters.length; uci++) {
-            if (bottomCounter > boxCounters[uci]) {
-                bottomCounter = boxCounters[uci]
+            // retrieve values from advGenSol
+            tmp = advGenSol()
+            genSolution = tmp[0]
+            genAcc = tmp[1]
+            hit = false
+
+            // decide whether it's a hit or a miss
+            if (genAcc > standards) {
+                hit = true
+                hitCount++
+            }
+            else
+            {
+                missCount++
+            }
+            // if it's a hit, update counters
+            if (hit) {
+                if (reliabilityLvl) {
+                    change_class('reliability', ['d-none', 'bg-maroon'], 'bg-dark-green')
+                    change_html('reliability', '<p class="text-center text-white">That was a good scan!</p>')
+                }
+                if (scanBoostLvl) {
+                    updateCounter2(genSolution)
+                }
+                else {
+                    updateCounter(genSolution)
+                }
+            }
+
+            // otherwise, update miss counters and show reliability (if available)
+            else {
+                updateMissCounter(genSolution)
+                if (reliabilityLvl) {
+                    change_class('reliability', ['d-none', 'bg-dark-green'], 'bg-maroon')
+                    change_html('reliability', "<p class='text-center text-white'>That wasn't a good scan...</p>")
+                }
+            }
+            // if condense button hasn't been added yet, update immediately
+            if (!condenseLvl) {
+                updateColor('Border')
+            }
+
+            scanCount++
+            totalscanCount++
+            updateHitMiss()
+
+            if (flashLvl) {
+                genFlash(genSolution)
             }
         }
     }
-    function updateMissCounter(genSolution) {
-        for (umci=0;umci<solution.length;umci++) {
-            if (genSolution[umci] == 0){
-                boxMissCounters[umci]++
-            }
-        }
+}
+
+// generate a new seed and redirect
+function new_puzzle() {
+    dir = window.location.href
+    if (dir.split('?').length > 1) {
+        window.location.replace(dir.split('?')[0] + '?seed=' + Math.floor(Math.random() * 1000000000))
     }
-
-    // update boxCounter array, but with a bonus based on number of misses
-    function updateCounter2(genSolution) {
-        // calculate number of hits and misses since last update
-        hitDiff = hitCount - lastHit
-        missDiff = missCount - lastMiss
-        if (missDiff < 1) {
-            missDiff = 1
-        }
-        if (hitDiff > missDiff)
-        {
-            hitDiff = missDiff
-        }
-
-        // check for highest counter and update counter array
-        // multiply counter increase by ratio of hits to misses
-        for (let uc2i=0; uc2i < solution.length; uc2i++) {
-        boxCounters[uc2i] = boxCounters[uc2i] + Math.round((genSolution[uc2i] * (missDiff / hitDiff)))
-            if (topCounter < boxCounters[uc2i]) {
-                topCounter = boxCounters[uc2i]
-            }
-        }
-
-        // check for lowest counter
-        bottomCounter = boxCounters[0]
-        for (let uc2i=0; uc2i < boxCounters.length; uc2i++) {
-            if (bottomCounter > boxCounters[uc2i]) {
-                bottomCounter = boxCounters[uc2i]
-            }
-        }
+    else {
+        window.location.replace(dir + '?seed=' + Math.floor(Math.random() * 1000000000))
     }
+}
 
-// Functions that deal with resetting/reloading the page
-    // generate a new seed and redirect
-    function new_puzzle() {
-        dir = window.location.href
-        if (dir.split('?').length > 1) {
-            window.location.replace(dir.split('?')[0] + '?seed=' + Math.floor(Math.random() * 1000000000))
-        }
-        else {
-            window.location.replace(dir + '?seed=' + Math.floor(Math.random() * 1000000000))
-        }
-        }
-    
-    // set all counters to 0 and all board coloring to blue
-    function boardClear() {
-        for (bci=0;bci<solution.length;bci++) {
-            boxCounters[bci] = 0
-            borderIntensity[bci] = 0
-        }
-        hitCount = 0
-        missCount = 0
-        cleanCount = 0
-        topCounter = 0
-        bottomCounter = 0
-        range = 0
-        lastMiss = 0
-        lastHit = 0
-        guessCount = 0
-        totalGuessCount = 0
-        updateColor('Border')
-        updateHitMiss()
+function boardClear() {
+    for (bci=0;bci<solution.length;bci++) {
+        boxCounters[bci] = 0
+        borderIntensity[bci] = 0
     }
+    hitCount = 0
+    missCount = 0
+    cleanCount = 0
+    topCounter = 0
+    bottomCounter = 0
+    range = 0
+    lastMiss = 0
+    lastHit = 0
+    scanCount = 0
+    totalscanCount = 0
+    updateColor('Border')
+    updateHitMiss()
+}

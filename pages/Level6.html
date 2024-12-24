@@ -74,7 +74,7 @@
 <!--Notification that tells the player how the hit and miss function works-->
 <div id="reliability" class="bg-maroon text-white pt-3  pl-2 pr-2 rounded text-wrap shadow-lg row-1 coll-1 d-none">
     <p class="text-center text-white">
-        That was a good guess!
+        That was a good scan!
     </p>
 </div>
 
@@ -568,27 +568,27 @@
 
 <!--Container for buttons-->
 <div id="buttons" class="d-flex justify-content-center row-3 coll-center">
-    <button id="guess" class="button rounded text-cyan m-1" onclick="advancedGenerate()">Guess</button>
+    <button id="scan" class="button rounded text-cyan m-1" onclick="advancedGenerate()">Scan</button>
     <button class="button rounded text-aether m-1" onclick="updateColor('Border')">Update</button>
     <button id="check" class="button text-purple button-a m-1" onclick="check()">Submit</button>
     <a id="nextLevel" class="button text-green button-a box-glow d-none" href="https://erynsorawl.github.io/LOB/pages/Level7">Next</a>
   
 </div>
 
-<div id="bubble1" class="speech-bubble speech-bubble-top emw-15 row-3 coll-center-bottom">
+<div id="bubble1" class="speech-bubble speech-bubble-top emw-17 row-3 coll-center-bottom">
     <p class="text-center text-white">
-        <span>From now on, your <span class="text-cyan">guesses</span> won't show you what they've been working until you click the
+        <span>From now on, your <span class="text-cyan">scans</span> won't show you what they've been working until you click the
         <span class="text-aether">Update</span> button.</span> <br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
     </p>
 </div>
-<div id="bubble2" class="speech-bubble speech-bubble-top emw-15 row-3 coll-center-bottom d-none">
+<div id="bubble2" class="speech-bubble speech-bubble-top emw-17 row-3 coll-center-bottom d-none">
     <p class="text-center text-white">
         <span>They'll also stop making progress if you go too long without <span class="text-cyan">Updating</span>.</span> <br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Next</button>
     </p>
 </div>
-<div id="bubble3" class="speech-bubble speech-bubble-right emw-15 row-center coll-1 d-none">
+<div id="bubble3" class="speech-bubble speech-bubble-right emw-17 row-center coll-1 d-none">
     <p class="text-center text-white">
         <span>It seems a little pointless right now, but it'll be super important later.</span> <br>
         <button class="button rounded bg-secondary m-1" onclick="bubbleCycle()">Close</button>
@@ -623,8 +623,8 @@ const bubbleLength = 3
 const closeEnough = .9
 const checkRigor = 100
 const size = 5
-const maxGuess = 100
-guessLoops = 3
+const maxScans = 100
+scanLoops = 3
 </script>
 
 
