@@ -464,7 +464,7 @@ if (levelNum <= 4) {
     function basicGenerate() {
         for (bgi=0;bgi<scanLoops;bgi++) {
             genSolution = generateSolution()
-            totalscanCount++
+            totalScanCount++
             change_class(['scan', 'check'], 'box-glow')
             if (counterLvl) {
                 updateCounter(genSolution)
@@ -476,6 +476,7 @@ if (levelNum <= 4) {
 
     // Track or ignore a fully-random generated board pattern based on the Standards input
     function advancedGenerate() {
+        console.log('here')
         if (scanCount < maxScans) {
 
             for (agi=0;agi<scanLoops;agi++) {
@@ -607,7 +608,9 @@ if (levelNum <= 4) {
 
                 // for the generated box, remove the opposite background and border colors, add the correct ones, reveal the 'reliability' box, hide the counters
                 change_class(boxID, [backgroundColors[(genSolution[gfi] + 1) % 2], borderColors[(genSolution[gfi] + 1) % 2]], [backgroundColors[genSolution[gfi]], borderColors[genSolution[gfi]]])
-                show_element('reliability')
+                if (reliabilityLvl) {
+                    show_element('reliability')
+                }
                 hide_element('p' + gfi)
             }
 
@@ -618,7 +621,9 @@ if (levelNum <= 4) {
             setTimeout(()=>{
                 for (gfi=0;gfi<solution.length;gfi++) {
                     change_class('di' + gfi, [backgroundColors[genSolution[gfi]], borderColors[genSolution[gfi]]])
-                    hide_element('reliability', 'di' + gfi)
+                    if (reliabilityLvl) {
+                        hide_element('reliability', 'di' + gfi)
+                    }
                 }
                 if (counterLvl) {
                     show_element(id_list('p', solution.length))
@@ -634,7 +639,6 @@ if (levelNum <= 4) {
     }
 
 // Functions that deal with the tracking of scans
-
     // update boxCounter arrays
     function updateCounter(genSolution) {
         // check for highest counter and update counter array

@@ -24,7 +24,9 @@ As the game progresses, the grid will slowly get larger, and more and more mecha
 will be added.
 
 The game starts out with a 3x3 grid, two buttons at the bottom of the screen ('scan' and 'submit'), 
-and a speech bubble teaching the player the basics of how to play the game.
+and an info card teaching the player the basics of how to play the game.
+These cards often include colored words, to help prime the player for learning the essentials of each message.
+
 The 'scan' button is also highlighted, drawing the user's attention to it. When clicked, a 
 pattern of cyan and blue squares will flash on screen, with the cyan ones saying 'Click Me!'
 For the first level, this pattern will match the hidden solution exactly. 
@@ -176,7 +178,7 @@ including syntax so I don't forget how to use it.
 LOB.js has a section dedicated to various page-start processes, but the vast majority of the file is
 made of functions that are called at some point during gameplay, ordered alphabetically. I won't be 
 going into detail with every single function in the file, but I will mention some of the more prevalent
-and complicated functions.
+and/or complicated functions.
 
 On startup, the program expects a 'seed' variable to be passed via GET, and if there isn't one, it'll
 randomly generate a 10-digit seed and reload the page. This was done this way so that, if the player
@@ -191,27 +193,60 @@ almost every function in the file.
 When the 'scan' button is clicked, it activates either basicGenerate() or advancedGenerate(). basicGenerate()
 has a few mechanics that are depreciated in later levels, while advancedGenerate() has a few mechanics
 that don't appear until later levels.
-Both of them mathematically generate a randomized pattern
+Both of them mathematically generate a semi-randomized pattern, which has a similar ratio of blue:cyan
+as the hidden solution, but in a different order.
 
+Instead of starting with a random generation and deciding how it compares to the hidden solution afterwards,
+it starts by deciding how close the pattern and hidden solution will be, and generates a randomized pattern with the
+same accuracy. This lets you fine-tune how often high-accuracy and low-accuracy scans show up, for both ease of
+play and increased difficulty
 
+These functions also include many options to let them adapt to each level, such as preventing and storing
+the effects of each scan when the 'update' mechanic is active, and altering hit-miss declaration based on 'standard' inputs
 
+After scanning, and if the level includes this mechanic, the scan is then added to the game's scan trackers,
+updating a counter array. When the visual representations of the array are updated, it'll mathematically 
+work through the array, making sure that the borders of the boxes relating to the lowest values are 
+completely blue, and that the highest ~20% of values are completely cyan.
 
+When submitting an answer, it'll check the computed color values of each box, convert it into a binary
+based on whether or not the box's green values are above a certain level, and compare it to the hidden solution.
+Depending on how close it is, it'll inform the player and either continue the game, or reveal a link to the next level.
 
+As for tool.js, most of these functions revolve around either making class changes to a large number of elements
+at once, or processing information into other forms. They aren't the most complicated pieces of code, but
+they've been surprisingly helpful.
 
 
 # ROOM FOR IMPROVEMENT #
 
-* Dynamic page generation approach was horribly inefficient
+* Flask-based HTML programming approach was horribly inefficient
 * CSS classes could be condensed into fewer, more relevant classes
-* Relationships between elments could have been defined better
+* Relationships between HTML elments could have been defined better
 * Could have had more built-in error catches in Javascript, instead of trying to avoid all triggers
-* (personal) Minimal knowledge of web design 
 * Not enough comments
 * Couldn't figure out how to hide GET variables without reloading the page
-* Got rid of the 'let' in basically every variable, like an absolute buffoon. 
+* Didn't understand what 'let i = 0' did, removed the 'let', encountered constant bugs, replaced 'i'
+  with a named variable based on the function's name. Incredibly dumb mistake.
 * Could have replaced the excessive number of bubble elements with individual bubble elements and
   a function to change the inner text
+* Could have made the gameplay themed around physical phenomena and concepts, both to make it easier
+  to understand to the average player, and to better connect the lessons to the game mechanics.
 * Probably a lot of other stuff that I'm too inexperienced to notice
+
+
+# CONCLUSION #
+
+Thanks to how often I decided to rework entire mechanics and design choices, as well as how I
+remade the entire project from the ground up, multiple times, this project took far longer than it 
+probably should have. Still, every rework helped me learn something new about programming, and I'm proud
+of how far I've come since six months ago, when I first started this. If I had the time, I might try
+to rework it all again, but since the deadline's coming up I'll just make sure it works, 
+submit what I have, and make any other changes later.
+
+This project definitely has a long way to go before I'd call it a success, but I'd still say it was
+valuable transitionary project on my way to more complex programming, design, education, and neuroscientific
+endeavors. And hopefully, it might be able to teach someone a thing or two as well.
 
 
 
