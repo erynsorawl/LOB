@@ -56,24 +56,20 @@
 
 
     .sparkle {
-        z-index: -1;
         position: absolute;
-        margin: calc(var(--screen-unit) * 12) 10% auto 10%;
-        top: 0;
-        bottom: 0;
+        top: calc((var(--screen-unit) * 15) + 6rem);
         width: calc(var(--screen-unit) * 20);
         height: calc(var(--screen-unit) * 20);
     }
 
     .sparkle-right {
-        left: 1;
-        right: 0;
+        left: 50%;
+        transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * 12), 0);  
     }
 
     .sparkle-left {
-        left: 0;
-        right: 1;
-        transform: rotateY(180deg);
+        left: 50%;
+        transform: translate(-100%, -50%) translate(calc(var(--screen-unit) * -12), 0);  
     }
 
     .imgSquare {
@@ -310,7 +306,7 @@
 
     .coll-2 {
         right: 50%;
-        transform: translate(100%, -50%) translate(calc(var(--screen-unit) * 13));
+        transform: translate(100%, -50%) translate(calc(var(--screen-unit) * 14));
     }
 
     .coll-button-1 {
@@ -589,11 +585,7 @@
     .boxh-1 {
         font-size: .5rem;
     }
-
-    .tableBorder {
-        font-size: .6rem;
-    }
-
+    
     .ar-1 {
         font-size: .5rem
     }

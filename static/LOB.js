@@ -43,6 +43,12 @@ if (window.screen.width <= 780) {
     }
     catch{}
 }
+else {
+    try {
+        change_html(id_list('di', solution.length), '', 'shrink')
+    }
+    catch{}
+}
 
 // If seed parameter is too long, reduce to a maximum of 100 characters.
 if (s.length > 100)
