@@ -93,4 +93,125 @@ The fifth section takes a step back to explain some other neuroscientific mechan
 into the game itself, but could still be explained using the real-life examples used throughought the lesson.
 
 The sixth section is a conclusion, giving a quick refresher on everything that was learned during the lesson,
-before ending with a 
+before ending with a fun animation of Numbers Going Update
+
+
+# PYTHON #
+
+I started this project with the idea that I could make all of the webpages in a local Flask environment
+with no back-end processes besides template generation, then copy the generated HTML and paste it into other files
+when I was finished testing to create a fully client-side website.
+
+I have since realized that was a Mistake.
+
+While I did get this to work eventually, it was horrifically inefficient due to the differences betwenn a local
+environment and an online environment, as well as the differences between desktop and mobile browsers. It's already
+done, but if I ever make another client-side website, I'll be doing it much differently.
+
+
+# JINJA/HTML #
+
+To start, we have the Flask-typical main.py and views.py, both containing the bare essentials to generate a webpage
+and create URL links, with a few Flask variables added to help generate dynamic webpages. That's all of the python
+in this project, so let's move onto the HTML.
+
+The HTML consists of one base.html, which all other pages are built on top of. This includes things such as the
+navbar, and links to various CSS and Javascript files,
+
+Two prototypes are built on top of base.html: lvl.html and lesson.html. lvl.html focuses on universal game mechanics, 
+while lesson.html focuses on creating a more basic environment, letting you add slideshow elements with minimal clutter.
+
+The rest of the pages are built off of one of these two, either relating to a level in the game, or a section
+in the lesson. The only exceptions are index.hmtl (starting screen), lvlFinish.html (the ending choice between
+returning to the start or continuing to the lesson), and imgmake, which was an environment I used to screenshot
+various gamestates for use in the lesson that would have been difficult to program otherwise.
+In addition, each file often has a few Javascript functions specific to each page, and a few global variables
+that help calibrate the global LOB.js to that specific page's needs.
+Besides that, each file also contains a number of HTML elements, each contained in a Jinja block that will
+help slot them into the correct spots in their webpage.
+
+In the /pages folder, we have the generated results of the Flask/Jinja contained in their own files to be easily
+acessed without any need for back-end servers, with the URLs updated to match how they'd look in Github Pages.
+
+If I ever do this again, I'll probably set all URL links using Javascript instead of HTML, it would've been a much
+easier to make the change that way.
+
+Besides that, the only differences should be those that I forgot to synchronize after all the bug-testing I've been
+doing since getting them on Pages.
+
+
+# CSS #
+
+I've separated the CSS for this project into three files: one for simple color-changing classes, one for simple size-changing
+classes, and one for everything else. These contain a large number of one-line or two-line classes, letting me have more
+control over each individual HTML element. I've done my best to condense and trim as many of them after I completed the 
+project, to make the HTML more readable, but I've unfortunately run out of time, so I'll have to leave it where it is for now.
+
+Most in this site are based on absolute positioning, with relative positioning only applying to children
+of absolutely-positioned parents. To help with this, I've created a global variable called --screen-unit, to help
+me position elements regardless of font size. This also helps me adjust the ratio of elements size to font size
+on smaller viewports.
+
+In styles_colors.css, I define the names of all the colors I used in my color pallette for this website, allowing me to adjust each
+of them globally. This was meant to help me experiment with color relationships, and help the site look more pleasing overall.
+
+In styles_sizes.css, I give myself some basic sizing classes for height, width, and font size, with three defining variables:
+em, rem, and --screen-unit. These helped me to more accurately define the relationships between various elements.
+
+styles.css is split into three sections: element classes, which served as groups of style options for reocurring elements with
+many applied styles; positioning classes, which define the positioning and relationships of various elements; and media queries,
+which adjust the site based on the size of the user's screen. There's also a miscellaneous section, for elments that didn't quite
+fit into any of the other categories.
+
+
+# JAVASCRIPT #
+
+Excluding the page-specific Javascript in the HTML files, this project contains two main Javascript files: 
+LOB.js and tools.js.
+
+tools.js mostly contains functions that are simple and mostly used by various other functions, while 
+LOB.js contains more single-purpose actions. I've done my best to keep my Javascipt well-commented, 
+including syntax so I don't forget how to use it.
+
+LOB.js has a section dedicated to various page-start processes, but the vast majority of the file is
+made of functions that are called at some point during gameplay, ordered alphabetically. I won't be 
+going into detail with every single function in the file, but I will mention some of the more prevalent
+and complicated functions.
+
+On startup, the program expects a 'seed' variable to be passed via GET, and if there isn't one, it'll
+randomly generate a 10-digit seed and reload the page. This was done this way so that, if the player
+reloaded the page, they would be given the same hidden solution.
+I experimented with using POST, but the confirmation it asked for every time was a little too
+annoying. I also tried hiding the GET variables once the page was loaded, but I couldn't find anything
+that would do so without reloading the page.
+The seed is then sent through a series of mathematical processes, until it's turned into an array
+containing binary values for every box in the game's grid, called 'solution'. This array appears in
+almost every function in the file.
+
+When the 'Guess' button is clicked, it activates either basicGenerate() or advancedGenerate(). basicGenerate()
+has a few mechanics that are depreciated in later levels, while advancedGenerate() has a few mechanics
+that don't appear until later levels.
+Both of them mathematically generate a randomized pattern
+
+
+
+
+
+
+
+# ROOM FOR IMPROVEMENT #
+
+* Dynamic page generation approach was horribly inefficient
+* CSS classes could be condensed into fewer, more relevant classes
+* Relationships between elments could have been defined better
+* Could have had more built-in error catches in Javascript, instead of trying to avoid all triggers
+* (personal) Minimal knowledge of web design 
+* Not enough comments
+* Couldn't figure out how to hide GET variables without reloading the page
+* Got rid of the 'let' in basically every variable, like an absolute buffoon. 
+* Could have replaced the excessive number of bubble elements with individual bubble elements and
+  a function to change the inner text
+* Probably a lot of other stuff that I'm too inexperienced to notice
+
+
+

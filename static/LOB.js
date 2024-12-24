@@ -7,7 +7,8 @@ cases = [[0, 0, 10, 10], [0, 10, 10, 10]]
 size2 = size * size
 s = '0'
 
-
+// reload the page with a randomly generated seed if it doesn't have one yet
+// this is here so reloading the page won't change the answer
 try {
     s = new URLSearchParams(window.location.search).get('seed')
     if (s.length) {
@@ -19,6 +20,7 @@ catch {
     new_puzzle()
 }
 
+// If guessLoops hasn't been defined yet, define it.
 try {
     if (guessLoops) {
 
@@ -175,92 +177,60 @@ if (levelNum <= 4) {
     flashLvl = true
 }
 
+// Functions that deal with speech bubbles/explanations
 
+    // Cycle between a list of text boxes to flash on screen
+    function bubbleCycle(delay) {
+        
+        // prevent cycling if previous cycle's delay is ongoing
+        if (!bubbleDelayState) {
 
-// Cycle between a list of text boxes to flash on screen
-function bubbleCycle(delay) {
-    
-    // prevent cycling if previous cycle's delay is ongoing
-    if (!bubbleDelayState) {
+            if (bubbleState <= bubbleLength) {
 
-        if (bubbleState <= bubbleLength) {
-
-            // hide the currently active bubble, and show the next one (if it exists)
-            hide_element('bubble' + bubbleState)
-            if (bubbleState < bubbleLength) {
-                show_element('bubble' + (bubbleState + 1))
-            }
-            // move tracker to next bubble
-            bubbleState++
-            if (delay) {
-                bubbleDelayState = true
-                setTimeout(()=>{
-                    bubbleDelayState = false
-                }, delay)
-            }
-        }
-    }
-}
-
-// cycle bubbles if board is complete  
-function bubOnComplete() {
-    count = 0
-    answer = []
-    for (i=0; i < solution.length; i++) {
-        tColor = window.getComputedStyle(document.getElementById('d' + i)).backgroundColor
-        boxGreen = decode_hex(tColor)[1]
-        if (boxGreen > checkRigor) {
-            answer[i] = 1
-        }
-        else {
-            answer[i] = 0
-        }
-
-        if (answer[i] == solution[i]) {
-                count++
-            }
-    }
-
-    if (count >= solution.length * closeEnough) {
-        bubbleCycle()
-    }
-}
-
-// Cycle box color when box is clicked
-function colorSwitch(element, elNum) {
-    color = window.getComputedStyle(element).backgroundColor;
-    for (csi=0; csi < colors.length; csi++) {
-        countElement = document.getElementById('p' + elNum.toString())
-        countElement1 = countElement.getElementsByTagName('span')[0]
-
-        if (reliabilityLvl) {
-            countElement2 = countElement.getElementsByTagName('span')[1]
-        }
-        if (color === colors[csi]) {
-            element.style.background = colors[(csi+1) % colors.length]
-            countElement1.classList.add(textColors1[csi])
-            countElement1.classList.remove(textColors1[(csi + 1) % 2])
-            if (reliabilityLvl) {
-                countElement2.classList.add(textColors2[csi])
-                countElement2.classList.remove(textColors2[(csi + 1) % 2])
+                // hide the currently active bubble, and show the next one (if it exists)
+                hide_element('bubble' + bubbleState)
+                if (bubbleState < bubbleLength) {
+                    show_element('bubble' + (bubbleState + 1))
+                }
+                // move tracker to next bubble
+                bubbleState++
+                if (delay) {
+                    bubbleDelayState = true
+                    setTimeout(()=>{
+                        bubbleDelayState = false
+                    }, delay)
+                }
             }
         }
     }
-    if (levelNum == 1) {
+
+    // cycle bubbles if board is complete  
+    function bubOnComplete() {
         count = 0
-        for (csi = 0;csi<solution.length;csi++) {
-            if (window.getComputedStyle(document.getElementById('d' + csi.toString())).backgroundColor == colors[solution[csi]]) {
-                count++
+        answer = []
+        for (i=0; i < solution.length; i++) {
+            tColor = window.getComputedStyle(document.getElementById('d' + i)).backgroundColor
+            boxGreen = decode_hex(tColor)[1]
+            if (boxGreen > checkRigor) {
+                answer[i] = 1
             }
+            else {
+                answer[i] = 0
+            }
+
+            if (answer[i] == solution[i]) {
+                    count++
+                }
         }
-        if (count == solution.length) {
-            change_class('check', '', 'box-glow')
+
+        if (count >= solution.length * closeEnough) {
+            bubbleCycle()
         }
     }
-}
 
-// Check whether the board colors match the solution
-function check() {
+// Functions that deal with solutions and answer correctness
+    // Check whether the board colors match the solution
+    function check() {
     correctCount = 0
     answer = []
 
@@ -317,405 +287,439 @@ function check() {
             check_flash('fail')
         }
     }
-}
+    } 
 
-// flash a 'Well Done' or 'Try Again' message on screen
-function check_flash(win) {
-    elID = 'win-fail'
-    
-    for (cfi=0;cfi<3;cfi++) {
-        if (['win', 'perfect', 'fail'][cfi] == win) {
-            change_html(elID, ['Well Done!', 'Perfect!', 'Keep Going!'][cfi])
-            change_class(elID, ['text-orange', 'text-orange', 'text-green'][cfi], ['text-green', 'text-green', 'text-orange'][cfi])
+    // flash a 'Well Done' or 'Keep Going' message on screen
+    function check_flash(win) {
+        elID = 'win-fail'
+        
+        for (cfi=0;cfi<3;cfi++) {
+            if (['win', 'perfect', 'fail'][cfi] == win) {
+                change_html(elID, ['Well Done!', 'Perfect!', 'Keep Going!'][cfi])
+                change_class(elID, ['text-orange', 'text-orange', 'text-green'][cfi], ['text-green', 'text-green', 'text-orange'][cfi])
+            }
+        }
+        animate_fade(elID, 1, 2000)
+    }   
+
+// Functions that deal with board coloring
+
+    // Cycle box color when box is clicked
+    function colorSwitch(element, elNum) {
+        color = window.getComputedStyle(element).backgroundColor;
+        for (csi=0; csi < colors.length; csi++) {
+            countElement = document.getElementById('p' + elNum.toString())
+            countElement1 = countElement.getElementsByTagName('span')[0]
+
+            if (reliabilityLvl) {
+                countElement2 = countElement.getElementsByTagName('span')[1]
+            }
+            if (color === colors[csi]) {
+                element.style.background = colors[(csi+1) % colors.length]
+                countElement1.classList.add(textColors1[csi])
+                countElement1.classList.remove(textColors1[(csi + 1) % 2])
+                if (reliabilityLvl) {
+                    countElement2.classList.add(textColors2[csi])
+                    countElement2.classList.remove(textColors2[(csi + 1) % 2])
+                }
+            }
+        }
+        if (levelNum == 1) {
+            count = 0
+            for (csi = 0;csi<solution.length;csi++) {
+                if (window.getComputedStyle(document.getElementById('d' + csi.toString())).backgroundColor == colors[solution[csi]]) {
+                    count++
+                }
+            }
+            if (count == solution.length) {
+                change_class('check', '', 'box-glow')
+            }
         }
     }
-    animate_fade(elID, 1, 2000)
-}
 
-// input an accuracy float, create an semi-inaccurate version of the solution with the inputted accuracy, 
-//and alter box border colors based on it.
-function generateSolution() {
-    genSolution = []
-    for (let ci=0; ci < solution.length; ci++) {
-        if (Math.random() > acc) {
-            genSolution[ci] = (solution[ci] + 1) % colors.length
+    // update visuals for counter increases
+    function updateColor(type) {
+        guessCount = 0
+        if (levelNum > 2)
+        {
+            for (let uci = 0; uci < solution.length; uci++) {
+                document.getElementById('p' + uci).getElementsByTagName('span')[0].innerHTML = boxCounters[uci]
+                if (levelNum > 3 && levelNum < 5) {
+                    document.getElementById('p' + uci).getElementsByTagName('span')[1].innerHTML = boxMissCounters[uci]
+                }
+            }
+        }
+
+        range = topCounter - bottomCounter
+
+        // set border intensities based on range
+        if (range > 5) {
+
+            for (let uci=0; uci < solution.length; uci++) {
+                borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) / (range / 300))
+                if (borderIntensity[uci] > 255) {
+                    borderIntensity[uci] = 255
+                }
+            }
         }
         else {
-            genSolution[ci] = solution[ci]
-        }   
-    }
-    return genSolution
-}
-
-// Generate a completely random solution, and adjust it so it has a similar on/off ratio to the main solution.
-function advGenSol() {
-    genSolution=[]
-    changedIndex=[]
-    // track which solution indexes haven't been changed, and make genSolution match the solution
-    for (agsi=0; agsi<solution.length;agsi++) {
-        changedIndex[agsi] = agsi
-        genSolution[agsi] = solution[agsi]
-    }
-
-    // define a desired genAcc
-    genAcc = (Math.random() / 3) + .33 + acc
-
-    // debug: calculate average accuracy
-    accTotal = accTotal + genAcc
-    accCount++
-
-
-    // calculate number of wrong squares to get this accuracy
-    wrongs = Math.round((1 - genAcc) * solution.length)
-
-    // alter the solution randomly to match tmpGenAcc
-    for (agsi=0;agsi<wrongs;agsi++) {
-        // select a random index from the changedIndex array
-        tmpIndex = Math.floor(Math.random() * (solution.length - agsi))
-
-        // flip that cell in the genSolution
-        genSolution[changedIndex[tmpIndex]] = (genSolution[changedIndex[tmpIndex]] + 1) % 2
-
-        // remove that index from the array
-        changedIndex.splice(tmpIndex, 1)
-    }
-
-    return [genSolution, genAcc]
-}
-
-// update boxCounter array
-function updateCounter(genSolution) {
-    // check for highest counter and update counter array
-    for (let uci=0; uci < solution.length; uci++) {
-    boxCounters[uci] = boxCounters[uci] + genSolution[uci]  
-        if (topCounter < boxCounters[uci]) {
-            topCounter = boxCounters[uci]
-        }
-    }
-
-    // check for lowest counter
-    bottomCounter = boxCounters[0]
-    for (let uci=0; uci < boxCounters.length; uci++) {
-        if (bottomCounter > boxCounters[uci]) {
-            bottomCounter = boxCounters[uci]
-        }
-    }
-}
-
-// update boxCounter array, but with a bonus based on number of misses
-function updateCounter2(genSolution) {
-    // calculate number of hits and misses since last update
-    hitDiff = hitCount - lastHit
-    missDiff = missCount - lastMiss
-    if (missDiff < 1) {
-        missDiff = 1
-    }
-    if (hitDiff > missDiff)
-    {
-        hitDiff = missDiff
-    }
-
-    // check for highest counter and update counter array
-    // multiply counter increase by ratio of hits to misses
-    for (let uc2i=0; uc2i < solution.length; uc2i++) {
-    boxCounters[uc2i] = boxCounters[uc2i] + Math.round((genSolution[uc2i] * (missDiff / hitDiff)))
-        if (topCounter < boxCounters[uc2i]) {
-            topCounter = boxCounters[uc2i]
-        }
-    }
-
-    // check for lowest counter
-    bottomCounter = boxCounters[0]
-    for (let uc2i=0; uc2i < boxCounters.length; uc2i++) {
-        if (bottomCounter > boxCounters[uc2i]) {
-            bottomCounter = boxCounters[uc2i]
-        }
-    }
-}
-
-// update hit and miss counters
-function updateHitMiss() {
-    // update hit and miss counts
-    document.getElementById('hitInfo').innerHTML = ("Hits: " + hitCount.toString())
-    document.getElementById('missInfo').innerHTML = ("Misses: " + missCount.toString())
-}
-
-function updateMissCounter(genSolution) {
-    for (umci=0;umci<solution.length;umci++) {
-        if (genSolution[umci] == 0){
-            boxMissCounters[umci]++
-        }
-    }
-}
-
-// update visuals for counter increases
-function updateColor(type) {
-    guessCount = 0
-    if (levelNum > 2)
-    {
-        for (let uci = 0; uci < solution.length; uci++) {
-            document.getElementById('p' + uci).getElementsByTagName('span')[0].innerHTML = boxCounters[uci]
-            if (levelNum > 3 && levelNum < 5) {
-                document.getElementById('p' + uci).getElementsByTagName('span')[1].innerHTML = boxMissCounters[uci]
-            }
-        }
-    }
-
-    range = topCounter - bottomCounter
-
-    // set border intensities based on range
-    if (range > 5) {
-
-        for (let uci=0; uci < solution.length; uci++) {
-            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) / (range / 300))
-            if (borderIntensity[uci] > 255) {
-                borderIntensity[uci] = 255
-            }
-        }
-    }
-    else {
-        for (let uci=0; uci < solution.length; uci++) {
-            borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) * 64)
-            if (borderIntensity[uci] > 255) {
-                borderIntensity[uci] = 255
-            }
-        }
-    }
-
-    // change blue amount based on range
-    alter = [0, 0, 0, 0]
-    if (range > 5) {
-        alter[2]= 255
-    }
-    else {
-        alter[2] = range * 48
-    }
-
-    // set border colors
-    for (let uci=0; uci < solution.length; uci++) {
-        element = document.getElementById('d' + uci)
-        alter[1] = borderIntensity[uci]
-        alter[3] = borderIntensity[uci]
-        if (alter[2] > alter[3]) {
-            alter[3] = alter[2]
-        }
-        rgba = "rgba(0, 0, 0, 0)"
-        rgba = alter_hex(rgba, alter)
-        if (type == 'Border') {
-            element.style.borderColor = rgba
-        }
-        if (type == 'Box') {
-            element.style.backgroundColor = rgba
-        }
-        // reduce font size if counters are too large
-        if (boxCounters[uci] >= 100) {
-            element.classList.add('text-075')
-        }
-        if (boxCounters[uci] >= 1000) {
-            element.classList.remove('text-075')
-            element.classList.add('text-05')
-        }
-    }
-}
-
-// Flash a generated solution on screen
-function basicGenerate() {
-    for (bgi=0;bgi<guessLoops;bgi++) {
-        genSolution = generateSolution()
-        totalGuessCount++
-        change_class(['guess', 'check'], 'box-glow')
-        if (counterLvl) {
-            updateCounter(genSolution)
-            updateColor('Border')
-        }
-        genFlash(genSolution)
-    }
-}
-
-// flash genSol on screen
-function genFlash(genSolution) {
-    // if animation isn't already running for this function
-    if (!genFlashDelayState) {
-
-        boxOn = []
-
-        // if counters are visible, hide them.
-        hide_element(id_list('p', solution.length))
-
-        for (gfi=0;gfi<solution.length;gfi++) {
-            // set the ID of the box currently being edited
-            boxID = 'di' + gfi
-            // determine whether each box is on or off
-            boxOn[gfi] = decode_hex(window.getComputedStyle(document.getElementById('d' + gfi)).backgroundColor)[1] > checkRigor
-
-            // if level doesn't use counters
-            if (!counterLvl) {
-
-                // if generated box is off, remove text
-                if (genSolution[gfi] == 0) {
-                    change_html(boxID, '')
-                }
-                // otherwise, add text
-                else {
-                    // if the solution for this box is on
-                    if (solution[gfi] == 1) {
-                        // if active box, generated box, and solution all match, say 'Nice!'
-                        if (boxOn[gfi]) {
-                            change_html(boxID, 'Nice!')
-                        }
-                        // if active and generated boxes match, but the box isn't currently on, say 'Click Me!'
-                        else {
-                            change_html(boxID, 'Click Me!')
-                        }
-                    }
-                    // if the solution for this box is off
-                    else {
-                        // if box is active when it shouldn't be, say 'Whoops'
-                        if (boxOn[gfi]) {
-                            change_html(boxID, 'Whoops')
-                        }
-                        // if it's off and it should be, say 'not this'
-                        else {
-                            change_html(boxID, '(not this)')
-                        }
-                    }
+            for (let uci=0; uci < solution.length; uci++) {
+                borderIntensity[uci] = Math.round((boxCounters[uci] - bottomCounter) * 64)
+                if (borderIntensity[uci] > 255) {
+                    borderIntensity[uci] = 255
                 }
             }
-            // if level does use counters
+        }
+
+        // change blue amount based on range
+        alter = [0, 0, 0, 0]
+        if (range > 5) {
+            alter[2]= 255
+        }
+        else {
+            alter[2] = range * 48
+        }
+
+        // set border colors
+        for (let uci=0; uci < solution.length; uci++) {
+            element = document.getElementById('d' + uci)
+            alter[1] = borderIntensity[uci]
+            alter[3] = borderIntensity[uci]
+            if (alter[2] > alter[3]) {
+                alter[3] = alter[2]
+            }
+            rgba = "rgba(0, 0, 0, 0)"
+            rgba = alter_hex(rgba, alter)
+            if (type == 'Border') {
+                element.style.borderColor = rgba
+            }
+            if (type == 'Box') {
+                element.style.backgroundColor = rgba
+            }
+            // reduce font size if counters are too large
+            if (boxCounters[uci] >= 100) {
+                element.classList.add('text-075')
+            }
+            if (boxCounters[uci] >= 1000) {
+                element.classList.remove('text-075')
+                element.classList.add('text-05')
+            }
+        }
+    }
+
+
+// Functions that deal with generated patterns
+
+    // generate a random pattern
+    function generateSolution() {
+        genSolution = []
+        for (let i=0; i < solution.length; i++) {
+            if (Math.random() > acc) {
+                genSolution[i] = (solution[i] + 1) % colors.length
+            }
             else {
-                // if generated box is on, say 'Maybe?'
-                if (genSolution[gfi] == 1) {
-                    change_html(boxID, 'Maybe?')
-                }
+                genSolution[i] = solution[i]
+            }   
+        }
+        return genSolution
+    }
 
-                // if generated box is off, say nothing
-                else {
-                    change_html(boxID, '')
-                }
-            }
-
-            // for the generated box, remove the opposite background and border colors, add the correct ones, reveal the 'reliability' box, hide the counters
-            change_class(boxID, [backgroundColors[(genSolution[gfi] + 1) % 2], borderColors[(genSolution[gfi] + 1) % 2]], [backgroundColors[genSolution[gfi]], borderColors[genSolution[gfi]]])
-            show_element('reliability')
-            hide_element('p' + gfi)
+    // Generate a completely random solution, and adjust it so it has a similar on/off ratio to the main solution.
+    function advGenSol() {
+        genSolution=[]
+        changedIndex=[]
+        // track which solution indexes haven't been changed, and make genSolution match the solution
+        for (agsi=0; agsi<solution.length;agsi++) {
+            changedIndex[agsi] = agsi
+            genSolution[agsi] = solution[agsi]
         }
 
-        animate_fade(id_list('di', solution.length), 1, 1500)
-        genFlashDelayState = true
+        // define a desired genAcc
+        genAcc = (Math.random() / 3) + .33 + acc
 
-        // when animation is finished, revert changes and reveal hit/miss info if not already visible
-        setTimeout(()=>{
-            for (gfi=0;gfi<solution.length;gfi++) {
-                change_class('di' + gfi, [backgroundColors[genSolution[gfi]], borderColors[genSolution[gfi]]])
-                hide_element('reliability', 'di' + gfi)
-            }
+        // debug: calculate average accuracy
+        accTotal = accTotal + genAcc
+        accCount++
+
+
+        // calculate number of wrong squares to get this accuracy
+        wrongs = Math.round((1 - genAcc) * solution.length)
+
+        // alter the solution randomly to match tmpGenAcc
+        for (agsi=0;agsi<wrongs;agsi++) {
+            // select a random index from the changedIndex array
+            tmpIndex = Math.floor(Math.random() * (solution.length - agsi))
+
+            // flip that cell in the genSolution
+            genSolution[changedIndex[tmpIndex]] = (genSolution[changedIndex[tmpIndex]] + 1) % 2
+
+            // remove that index from the array
+            changedIndex.splice(tmpIndex, 1)
+        }
+
+        return [genSolution, genAcc]
+    }
+
+    // Generate a semi-random board pattern and flash it on screen
+    function basicGenerate() {
+        for (bgi=0;bgi<guessLoops;bgi++) {
+            genSolution = generateSolution()
+            totalGuessCount++
+            change_class(['guess', 'check'], 'box-glow')
             if (counterLvl) {
-                show_element(id_list('p', solution.length))
-            }
-            genFlashDelayState = false
-        }, 2500)
-        if (reliabilityLvl) {
-            setTimeout(()=>{
-                show_element('hitInfo', 'missInfo')
-            }, 2500)
-        }
-    }
-}
-
-function advancedGenerate() {
-    if (guessCount < maxGuess) {
-
-        for (agi=0;agi<guessLoops;agi++) {
-
-            if (document.getElementById('standards').value == -2) {
-                standards = 0
-            }
-            else if (document.getElementById('standards').value > -1) {
-                standards = ((document.getElementById('standards').value / 20) + .17)
-            }
-            else {
-                standards = (47 + ((1 / solRatio)) ** 1.2) / 100
-            }
-
-            // retrieve values from advGenSol
-            tmp = advGenSol()
-            genSolution = tmp[0]
-            genAcc = tmp[1]
-            hit = false
-
-            // decide whether it's a hit or a miss
-            if (genAcc > standards) {
-                hit = true
-                hitCount++
-            }
-            else
-            {
-                missCount++
-            }
-            // if it's a hit, update counters
-            if (hit) {
-                if (reliabilityLvl) {
-                    change_class('reliability', ['d-none', 'bg-maroon'], 'bg-dark-green')
-                    change_html('reliability', '<p class="text-center text-white">That was a good guess!</p>')
-                }
-                if (guessBoostLvl) {
-                    updateCounter2(genSolution)
-                }
-                else {
-                    updateCounter(genSolution)
-                }
-            }
-
-            // otherwise, update miss counters and show reliability (if available)
-            else {
-                updateMissCounter(genSolution)
-                if (reliabilityLvl) {
-                    change_class('reliability', ['d-none', 'bg-dark-green'], 'bg-maroon')
-                    change_html('reliability', "<p class='text-center text-white'>That wasn't a good guess...</p>")
-                }
-            }
-            // if condense button hasn't been added yet, update immediately
-            if (!condenseLvl) {
+                updateCounter(genSolution)
                 updateColor('Border')
             }
+            genFlash(genSolution)
+        }
+    }
 
-            guessCount++
-            totalGuessCount++
-            updateHitMiss()
+    // Track or ignore a fully-random generated board pattern based on the Standards input
+    function advancedGenerate() {
+        if (guessCount < maxGuess) {
 
-            if (flashLvl) {
-                genFlash(genSolution)
+            for (agi=0;agi<guessLoops;agi++) {
+
+                if (document.getElementById('standards').value == -2) {
+                    standards = 0
+                }
+                else if (document.getElementById('standards').value > -1) {
+                    standards = ((document.getElementById('standards').value / 20) + .17)
+                }
+                else {
+                    standards = (47 + ((1 / solRatio)) ** 1.2) / 100
+                }
+
+                // retrieve values from advGenSol
+                tmp = advGenSol()
+                genSolution = tmp[0]
+                genAcc = tmp[1]
+                hit = false
+
+                // decide whether it's a hit or a miss
+                if (genAcc > standards) {
+                    hit = true
+                    hitCount++
+                }
+                else
+                {
+                    missCount++
+                }
+                // if it's a hit, update counters
+                if (hit) {
+                    if (reliabilityLvl) {
+                        change_class('reliability', ['d-none', 'bg-maroon'], 'bg-dark-green')
+                        change_html('reliability', '<p class="text-center text-white">That was a good guess!</p>')
+                    }
+                    if (guessBoostLvl) {
+                        updateCounter2(genSolution)
+                    }
+                    else {
+                        updateCounter(genSolution)
+                    }
+                }
+
+                // otherwise, update miss counters and show reliability (if available)
+                else {
+                    updateMissCounter(genSolution)
+                    if (reliabilityLvl) {
+                        change_class('reliability', ['d-none', 'bg-dark-green'], 'bg-maroon')
+                        change_html('reliability', "<p class='text-center text-white'>That wasn't a good guess...</p>")
+                    }
+                }
+                // if condense button hasn't been added yet, update immediately
+                if (!condenseLvl) {
+                    updateColor('Border')
+                }
+
+                guessCount++
+                totalGuessCount++
+                updateHitMiss()
+
+                if (flashLvl) {
+                    genFlash(genSolution)
+                }
             }
         }
     }
-}
 
-// generate a new seed and redirect
-function new_puzzle() {
-    dir = window.location.href
-    if (dir.split('?').length > 1) {
-        window.location.replace(dir.split('?')[0] + '?seed=' + Math.floor(Math.random() * 1000000000))
-    }
-    else {
-        window.location.replace(dir + '?seed=' + Math.floor(Math.random() * 1000000000))
-    }
-}
+    // Flash a generated pattern on screen
+    function genFlash(genSolution) {
+        // if animation isn't already running for this function
+        if (!genFlashDelayState) {
 
-function boardClear() {
-    for (bci=0;bci<solution.length;bci++) {
-        boxCounters[bci] = 0
-        borderIntensity[bci] = 0
+            boxOn = []
+
+            // if counters are visible, hide them.
+            hide_element(id_list('p', solution.length))
+
+            for (gfi=0;gfi<solution.length;gfi++) {
+                // set the ID of the box currently being edited
+                boxID = 'di' + gfi
+                // determine whether each box is on or off
+                boxOn[gfi] = decode_hex(window.getComputedStyle(document.getElementById('d' + gfi)).backgroundColor)[1] > checkRigor
+
+                // if level doesn't use counters
+                if (!counterLvl) {
+
+                    // if generated box is off, remove text
+                    if (genSolution[gfi] == 0) {
+                        change_html(boxID, '')
+                    }
+                    // otherwise, add text
+                    else {
+                        // if the solution for this box is on
+                        if (solution[gfi] == 1) {
+                            // if active box, generated box, and solution all match, say 'Nice!'
+                            if (boxOn[gfi]) {
+                                change_html(boxID, 'Nice!')
+                            }
+                            // if active and generated boxes match, but the box isn't currently on, say 'Click Me!'
+                            else {
+                                change_html(boxID, 'Click Me!')
+                            }
+                        }
+                        // if the solution for this box is off
+                        else {
+                            // if box is active when it shouldn't be, say 'Whoops'
+                            if (boxOn[gfi]) {
+                                change_html(boxID, 'Whoops')
+                            }
+                            // if it's off and it should be, say 'not this'
+                            else {
+                                change_html(boxID, '(not this)')
+                            }
+                        }
+                    }
+                }
+                // if level does use counters
+                else {
+                    // if generated box is on, say 'Maybe?'
+                    if (genSolution[gfi] == 1) {
+                        change_html(boxID, 'Maybe?')
+                    }
+
+                    // if generated box is off, say nothing
+                    else {
+                        change_html(boxID, '')
+                    }
+                }
+
+                // for the generated box, remove the opposite background and border colors, add the correct ones, reveal the 'reliability' box, hide the counters
+                change_class(boxID, [backgroundColors[(genSolution[gfi] + 1) % 2], borderColors[(genSolution[gfi] + 1) % 2]], [backgroundColors[genSolution[gfi]], borderColors[genSolution[gfi]]])
+                show_element('reliability')
+                hide_element('p' + gfi)
+            }
+
+            animate_fade(id_list('di', solution.length), 1, 1500)
+            genFlashDelayState = true
+
+            // when animation is finished, revert changes and reveal hit/miss info if not already visible
+            setTimeout(()=>{
+                for (gfi=0;gfi<solution.length;gfi++) {
+                    change_class('di' + gfi, [backgroundColors[genSolution[gfi]], borderColors[genSolution[gfi]]])
+                    hide_element('reliability', 'di' + gfi)
+                }
+                if (counterLvl) {
+                    show_element(id_list('p', solution.length))
+                }
+                genFlashDelayState = false
+            }, 2500)
+            if (reliabilityLvl) {
+                setTimeout(()=>{
+                    show_element('hitInfo', 'missInfo')
+                }, 2500)
+            }
+        }
     }
-    hitCount = 0
-    missCount = 0
-    cleanCount = 0
-    topCounter = 0
-    bottomCounter = 0
-    range = 0
-    lastMiss = 0
-    lastHit = 0
-    guessCount = 0
-    totalGuessCount = 0
-    updateColor('Border')
-    updateHitMiss()
-}
+
+// Functions that deal with the tracking of guesses
+
+    // update boxCounter arrays
+    function updateCounter(genSolution) {
+        // check for highest counter and update counter array
+        for (let uci=0; uci < solution.length; uci++) {
+        boxCounters[uci] = boxCounters[uci] + genSolution[uci]  
+            if (topCounter < boxCounters[uci]) {
+                topCounter = boxCounters[uci]
+            }
+        }
+
+        // check for lowest counter
+        bottomCounter = boxCounters[0]
+        for (let uci=0; uci < boxCounters.length; uci++) {
+            if (bottomCounter > boxCounters[uci]) {
+                bottomCounter = boxCounters[uci]
+            }
+        }
+    }
+    function updateMissCounter(genSolution) {
+        for (umci=0;umci<solution.length;umci++) {
+            if (genSolution[umci] == 0){
+                boxMissCounters[umci]++
+            }
+        }
+    }
+
+    // update boxCounter array, but with a bonus based on number of misses
+    function updateCounter2(genSolution) {
+        // calculate number of hits and misses since last update
+        hitDiff = hitCount - lastHit
+        missDiff = missCount - lastMiss
+        if (missDiff < 1) {
+            missDiff = 1
+        }
+        if (hitDiff > missDiff)
+        {
+            hitDiff = missDiff
+        }
+
+        // check for highest counter and update counter array
+        // multiply counter increase by ratio of hits to misses
+        for (let uc2i=0; uc2i < solution.length; uc2i++) {
+        boxCounters[uc2i] = boxCounters[uc2i] + Math.round((genSolution[uc2i] * (missDiff / hitDiff)))
+            if (topCounter < boxCounters[uc2i]) {
+                topCounter = boxCounters[uc2i]
+            }
+        }
+
+        // check for lowest counter
+        bottomCounter = boxCounters[0]
+        for (let uc2i=0; uc2i < boxCounters.length; uc2i++) {
+            if (bottomCounter > boxCounters[uc2i]) {
+                bottomCounter = boxCounters[uc2i]
+            }
+        }
+    }
+
+// Functions that deal with resetting/reloading the page
+    // generate a new seed and redirect
+    function new_puzzle() {
+        dir = window.location.href
+        if (dir.split('?').length > 1) {
+            window.location.replace(dir.split('?')[0] + '?seed=' + Math.floor(Math.random() * 1000000000))
+        }
+        else {
+            window.location.replace(dir + '?seed=' + Math.floor(Math.random() * 1000000000))
+        }
+        }
+    
+    // set all counters to 0 and all board coloring to blue
+    function boardClear() {
+        for (bci=0;bci<solution.length;bci++) {
+            boxCounters[bci] = 0
+            borderIntensity[bci] = 0
+        }
+        hitCount = 0
+        missCount = 0
+        cleanCount = 0
+        topCounter = 0
+        bottomCounter = 0
+        range = 0
+        lastMiss = 0
+        lastHit = 0
+        guessCount = 0
+        totalGuessCount = 0
+        updateColor('Border')
+        updateHitMiss()
+    }
