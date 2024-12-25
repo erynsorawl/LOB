@@ -665,7 +665,7 @@ if (levelNum <= 4) {
     }
     function updateMissCounter(genSolution) {
         for (umci=0;umci<solution.length;umci++) {
-            if (genSolution[umci] == 0){
+            if (genSolution[umci] == 1){
                 boxMissCounters[umci]++
             }
         }
